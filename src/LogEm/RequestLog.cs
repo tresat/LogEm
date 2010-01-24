@@ -173,7 +173,7 @@ namespace LogEm
             //
 
             if (log == null)
-                log = new MemoryErrorLog();
+                log = new MemoryRequestLog();
 
             if (context != null)
             {

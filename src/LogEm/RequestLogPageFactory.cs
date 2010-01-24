@@ -94,9 +94,9 @@ namespace LogEm
                 //case "download":
                 //    return new RequestLogDownloadHandler();
 
-                //case "stylesheet":
-                //    return new ManifestResourceHandler("RequestLog.css",
-                //        "text/css", Encoding.GetEncoding("Windows-1252"));
+                case "stylesheet":
+                    return new ManifestResourceHandler("LogEm.css",
+                        "text/css", Encoding.GetEncoding("Windows-1252"));
 
                 //case "test":
                 //    throw new TestException();
@@ -105,7 +105,7 @@ namespace LogEm
                 //    return new AboutPage();
 
                 default:
-                    return null;//name.Length == 0 ? new RequestLogPage() : null;
+                    return name.Length == 0 ? new RequestLogPage() : null;
             }
         }
 

@@ -13,11 +13,11 @@ namespace LogEm
     /// backing store. 
     /// </summary>
     /// <remarks>
-    /// All <see cref="MemoryErrorLog"/> instances will share the same memory 
+    /// All <see cref="MemoryRequestLog"/> instances will share the same memory 
     /// store that is bound to the application (not an instance of this class).
     /// </remarks>
 
-    public sealed class MemoryErrorLog : RequestLog
+    public sealed class MemoryRequestLog : RequestLog
     {
         //
         // The collection that provides the actual storage for this log
@@ -49,18 +49,18 @@ namespace LogEm
         public static readonly int DefaultSize = 15;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryErrorLog"/> class
+        /// Initializes a new instance of the <see cref="MemoryRequestLog"/> class
         /// with a default size for maximum recordable entries.
         /// </summary>
 
-        public MemoryErrorLog() : this(DefaultSize) { }
+        public MemoryRequestLog() : this(DefaultSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryErrorLog"/> class
+        /// Initializes a new instance of the <see cref="MemoryRequestLog"/> class
         /// with a specific size for maximum recordable entries.
         /// </summary>
 
-        public MemoryErrorLog(int size)
+        public MemoryRequestLog(int size)
         {
             if (size < 0 || size > MaximumSize)
                 throw new ArgumentOutOfRangeException("size", size, string.Format("Size must be between 0 and {0}.", MaximumSize));
@@ -69,11 +69,11 @@ namespace LogEm
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryErrorLog"/> class
+        /// Initializes a new instance of the <see cref="MemoryRequestLog"/> class
         /// using a dictionary of configured settings.
         /// </summary>
 
-        public MemoryErrorLog(IDictionary config)
+        public MemoryRequestLog(IDictionary config)
         {
             if (config == null)
             {
