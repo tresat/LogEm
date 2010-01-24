@@ -1,0 +1,8 @@
+src/*.suo
+*.csproj.user
+src/LogEm/obj/*
+src/LogEm/bin/*
+src/MVCDemo/obj/*
+src/MVCDemo/bin/*
+src/WebFormsDemo/obj/*
+src/WebFormsDemo/bin/*
