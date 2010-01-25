@@ -328,7 +328,7 @@ namespace LogEm
             for (int errorIndex = 0; errorIndex < _requestEntryList.Count; errorIndex++)
             {
                 RequestLogEntry requestEntry = (RequestLogEntry)_requestEntryList[errorIndex];
-                Request request = requestEntry.Request;
+                UserRequest request = requestEntry.Request;
 
                 TableRow bodyRow = new TableRow();
                 bodyRow.CssClass = errorIndex % 2 == 0 ? "even-row" : "odd-row";

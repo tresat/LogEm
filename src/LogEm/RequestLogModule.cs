@@ -13,6 +13,8 @@ namespace LogEm
 
     public class RequestLogModule : HttpModuleBase
     {
+        public event RequestLoggedEventHandler Logged;
+
         /// <summary>
         /// Initializes the module and prepares it to handle requests.
         /// </summary>
@@ -39,7 +41,7 @@ namespace LogEm
         protected virtual void OnRequest(object sender, EventArgs args)
         {
             HttpApplication application = (HttpApplication)sender;
-            //LogRequest();
+            LogRequest(application.Context);
         }
 
         protected virtual void OnAuthenticate(object sender, EventArgs args)
@@ -47,5 +49,58 @@ namespace LogEm
             HttpApplication application = (HttpApplication)sender;
             //LogAuthenticate();
         }
-    }   
+        /// <summary>
+        /// Raises the <see cref="Logged"/> event.
+        /// </summary>
+
+        protected virtual void OnLogged(RequestLoggedEventArgs args)
+        {
+            RequestLoggedEventHandler handler = Logged;
+
+            if (handler != null)
+                handler(this, args);
+        }
+
+        /// <summary>
+        /// Logs an exception and its context to the error log.
+        /// </summary>
+
+        protected virtual void LogRequest(HttpContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            //
+            // Log away...
+            //
+            RequestLog log = GetRequestLog(context);
+            UserRequest request = new UserRequest();
+            string id = log.Log(request);
+            RequestLogEntry entry = new RequestLogEntry(log, id, request);
+
+            if (entry != null)
+                OnLogged(new RequestLoggedEventArgs(entry));
+        }
+    }
+
+    public delegate void RequestLoggedEventHandler(object sender, RequestLoggedEventArgs args);
+
+    [Serializable]
+    public sealed class RequestLoggedEventArgs : EventArgs
+    {
+        private readonly RequestLogEntry _entry;
+
+        public RequestLoggedEventArgs(RequestLogEntry entry)
+        {
+            if (entry == null)
+                throw new ArgumentNullException("entry");
+
+            _entry = entry;
+        }
+
+        public RequestLogEntry Entry
+        {
+            get { return _entry; }
+        }
+    }
 }

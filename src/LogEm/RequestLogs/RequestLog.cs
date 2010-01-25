@@ -20,29 +20,29 @@ namespace LogEm
         /// Logs a request in the log for the application.
         /// </summary>
         
-        public abstract string Log(Request request);
+        public abstract string Log(UserRequest request);
 
-//        /// <summary>
-//        /// When overridden in a subclass, begins an asynchronous version 
-//        /// of <see cref="Log"/>.
-//        /// </summary>
+        /// <summary>
+        /// When overridden in a subclass, begins an asynchronous version 
+        /// of <see cref="Log"/>.
+        /// </summary>
 
-//        public virtual IAsyncResult BeginLog(Error error, AsyncCallback asyncCallback, object asyncState)
-//        {
-//            return BeginSyncImpl(asyncCallback, asyncState, new LogHandler(Log), error);
-//        }
+        public virtual IAsyncResult BeginLog(UserRequest request, AsyncCallback asyncCallback, object asyncState)
+        {
+            return BeginSyncImpl(asyncCallback, asyncState, new LogHandler(Log), request);
+        }
 
-//        /// <summary>
-//        /// When overridden in a subclass, ends an asynchronous version 
-//        /// of <see cref="Log"/>.
-//        /// </summary>
+        /// <summary>
+        /// When overridden in a subclass, ends an asynchronous version 
+        /// of <see cref="Log"/>.
+        /// </summary>
 
-//        public virtual string EndLog(IAsyncResult asyncResult)
-//        {
-//            return (string) EndSyncImpl(asyncResult);
-//        }
+        public virtual string EndLog(IAsyncResult asyncResult)
+        {
+            return (string)EndSyncImpl(asyncResult);
+        }
 
-//        private delegate string LogHandler(Error error);
+        private delegate string LogHandler(UserRequest request);
 
         /// <summary>
         /// Retrieves a single application request from log given its 
@@ -51,27 +51,27 @@ namespace LogEm
 
         public abstract RequestLogEntry GetRequest(string id);
 
-//        /// <summary>
-//        /// When overridden in a subclass, begins an asynchronous version 
-//        /// of <see cref="GetError"/>.
-//        /// </summary>
+        /// <summary>
+        /// When overridden in a subclass, begins an asynchronous version 
+        /// of <see cref="GetRequest"/>.
+        /// </summary>
 
-//        public virtual IAsyncResult BeginGetError(string id, AsyncCallback asyncCallback, object asyncState)
-//        {
-//            return BeginSyncImpl(asyncCallback, asyncState, new GetErrorHandler(GetError), id);
-//        }
+        public virtual IAsyncResult BeginGetRequest(string id, AsyncCallback asyncCallback, object asyncState)
+        {
+            return BeginSyncImpl(asyncCallback, asyncState, new GetErrorHandler(GetRequest), id);
+        }
 
-//        /// <summary>
-//        /// When overridden in a subclass, ends an asynchronous version 
-//        /// of <see cref="GetError"/>.
-//        /// </summary>
+        /// <summary>
+        /// When overridden in a subclass, ends an asynchronous version 
+        /// of <see cref="GetRequest"/>.
+        /// </summary>
 
-//        public virtual ErrorLogEntry EndGetError(IAsyncResult asyncResult)
-//        {
-//            return (ErrorLogEntry) EndSyncImpl(asyncResult);
-//        }
+        public virtual RequestLogEntry EndGetRequest(IAsyncResult asyncResult)
+        {
+            return (RequestLogEntry)EndSyncImpl(asyncResult);
+        }
 
-//        private delegate ErrorLogEntry GetErrorHandler(string id);
+        private delegate RequestLogEntry GetErrorHandler(string id);
 
         /// <summary>
         /// Retrieves a page of application requests from the log in 
@@ -80,27 +80,27 @@ namespace LogEm
 
         public abstract int GetRequests(int pageIndex, int pageSize, IList errorEntryList);
 
-//        /// <summary>
-//        /// When overridden in a subclass, begins an asynchronous version 
-//        /// of <see cref="GetErrors"/>.
-//        /// </summary>
+        /// <summary>
+        /// When overridden in a subclass, begins an asynchronous version 
+        /// of <see cref="GetErrors"/>.
+        /// </summary>
 
-//        public virtual IAsyncResult BeginGetErrors(int pageIndex, int pageSize, IList errorEntryList, AsyncCallback asyncCallback, object asyncState)
-//        {
-//            return BeginSyncImpl(asyncCallback, asyncState, new GetErrorsHandler(GetErrors), pageIndex, pageSize, errorEntryList);
-//        }
+        public virtual IAsyncResult BeginGetRequests(int pageIndex, int pageSize, IList requestEntryList, AsyncCallback asyncCallback, object asyncState)
+        {
+            return BeginSyncImpl(asyncCallback, asyncState, new GetRequestsHandler(GetRequests), pageIndex, pageSize, requestEntryList);
+        }
 
-//        /// <summary>
-//        /// When overridden in a subclass, ends an asynchronous version 
-//        /// of <see cref="GetErrors"/>.
-//        /// </summary>
-        
-//        public virtual int EndGetErrors(IAsyncResult asyncResult)
-//        {
-//            return (int) EndSyncImpl(asyncResult);
-//        }
+        /// <summary>
+        /// When overridden in a subclass, ends an asynchronous version 
+        /// of <see cref="GetErrors"/>.
+        /// </summary>
 
-//        private delegate int GetErrorsHandler(int pageIndex, int pageSize, IList errorEntryList);
+        public virtual int EndGetRequests(IAsyncResult asyncResult)
+        {
+            return (int)EndSyncImpl(asyncResult);
+        }
+
+        private delegate int GetRequestsHandler(int pageIndex, int pageSize, IList errorEntryList);
 
         /// <summary>
         /// Get the name of this log.
@@ -240,58 +240,58 @@ namespace LogEm
 #endif
         }
 
-//        //
-//        // The following two methods are helpers that provide boilerplate 
-//        // implementations for implementing asnychronous BeginXXXX and 
-//        // EndXXXX methods over a default synchronous implementation.
-//        //
+        //
+        // The following two methods are helpers that provide boilerplate 
+        // implementations for implementing asnychronous BeginXXXX and 
+        // EndXXXX methods over a default synchronous implementation.
+        //
 
-//        private static IAsyncResult BeginSyncImpl(AsyncCallback asyncCallback, object asyncState, Delegate syncImpl, params object[] args)
-//        {
-//            Debug.Assert(syncImpl != null);
+        private static IAsyncResult BeginSyncImpl(AsyncCallback asyncCallback, object asyncState, Delegate syncImpl, params object[] args)
+        {
+            Debug.Assert(syncImpl != null);
 
-//            SynchronousAsyncResult asyncResult;
-//            string syncMethodName = syncImpl.Method.Name;
+            SynchronousAsyncResult asyncResult;
+            string syncMethodName = syncImpl.Method.Name;
 
-//            try
-//            {
-//                asyncResult = SynchronousAsyncResult.OnSuccess(syncMethodName, asyncState, 
-//                    syncImpl.DynamicInvoke(args));
-//            }
-//            catch (Exception e)
-//            {
-//                asyncResult = SynchronousAsyncResult.OnFailure(syncMethodName, asyncState, e);
-//            }
+            try
+            {
+                asyncResult = SynchronousAsyncResult.OnSuccess(syncMethodName, asyncState,
+                    syncImpl.DynamicInvoke(args));
+            }
+            catch (Exception e)
+            {
+                asyncResult = SynchronousAsyncResult.OnFailure(syncMethodName, asyncState, e);
+            }
 
-//            if (asyncCallback != null)
-//                asyncCallback(asyncResult);
+            if (asyncCallback != null)
+                asyncCallback(asyncResult);
 
-//            return asyncResult;
-//        }
+            return asyncResult;
+        }
 
-//        private static object EndSyncImpl(IAsyncResult asyncResult)
-//        {
-//            if (asyncResult == null)
-//                throw new ArgumentNullException("asyncResult");
+        private static object EndSyncImpl(IAsyncResult asyncResult)
+        {
+            if (asyncResult == null)
+                throw new ArgumentNullException("asyncResult");
 
-//            SynchronousAsyncResult syncResult = asyncResult as SynchronousAsyncResult;
+            SynchronousAsyncResult syncResult = asyncResult as SynchronousAsyncResult;
 
-//            if (syncResult == null)
-//                throw new ArgumentException("IAsyncResult object did not come from the corresponding async method on this type.", "asyncResult");
+            if (syncResult == null)
+                throw new ArgumentException("IAsyncResult object did not come from the corresponding async method on this type.", "asyncResult");
 
-//            //
-//            // IMPORTANT! The End method on SynchronousAsyncResult will 
-//            // throw an exception if that's what Log did when 
-//            // BeginLog called it. The unforunate side effect of this is
-//            // the stack trace information for the exception is lost and 
-//            // reset to this point. There seems to be a basic failure in the 
-//            // framework to accommodate for this case more generally. One 
-//            // could handle this through a custom exception that wraps the 
-//            // original exception, but this assumes that an invocation will 
-//            // only throw an exception of that custom type.
-//            //
+            //
+            // IMPORTANT! The End method on SynchronousAsyncResult will 
+            // throw an exception if that's what Log did when 
+            // BeginLog called it. The unforunate side effect of this is
+            // the stack trace information for the exception is lost and 
+            // reset to this point. There seems to be a basic failure in the 
+            // framework to accommodate for this case more generally. One 
+            // could handle this through a custom exception that wraps the 
+            // original exception, but this assumes that an invocation will 
+            // only throw an exception of that custom type.
+            //
 
-//            return syncResult.End();
-//        }
+            return syncResult.End();
+        }
     }
 }

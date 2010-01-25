@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RequestLogging" Class="LogEmDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ASPIRE\SQLEXPRESSTOM;Initial Catalog=RequestLogging;Persist Security Info=True;User ID=LogEmUser" SettingsObjectName="LogEm.Properties.Settings" SettingsPropertyName="RequestLoggingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="logEm.UserRequests" Member="UserRequests">
+    <Type Name="UserRequest">
+      <Column Name="UserRequestId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Application" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

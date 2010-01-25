@@ -12,14 +12,14 @@ namespace LogEm
     {
         private readonly string _id;
         private readonly RequestLog _log;
-        private readonly Request _request;
+        private readonly UserRequest _request;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorLogEntry"/> class
         /// for a given unique error entry in an error log.
         /// </summary>
 
-        public RequestLogEntry(RequestLog log, string id, Request request)
+        public RequestLogEntry(RequestLog log, string id, UserRequest request)
         {
             if (log == null)
                 throw new ArgumentNullException("log");
@@ -62,7 +62,7 @@ namespace LogEm
         /// Gets the <see cref="Request"/> object held in the entry.
         /// </summary>
 
-        public Request Request
+        public UserRequest Request
         {
             get { return _request; }
         }

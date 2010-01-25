@@ -111,7 +111,7 @@ namespace LogEm
         /// If the log is full then the oldest request entry is removed.
         /// </remarks>
 
-        public override string Log(Request request)
+        public override string Log(UserRequest request)
         {
             if (request == null)
                 throw new ArgumentNullException("request");
@@ -121,8 +121,8 @@ namespace LogEm
             // Assign a new GUID and create an entry for the error.
             //
 
-            request = (Request)((ICloneable)request).Clone();
-            request.ApplicationName = this.ApplicationName;
+            request = (UserRequest)((ICloneable)request).Clone();
+            request.Application = this.ApplicationName;
             Guid newId = Guid.NewGuid();
             RequestLogEntry entry = new RequestLogEntry(this, newId.ToString(), request);
 
@@ -175,7 +175,7 @@ namespace LogEm
             // Return a copy that the caller can party on.
             //
 
-            Request request = (Request)((ICloneable)entry.Request).Clone();
+            UserRequest request = (UserRequest)((ICloneable)entry.Request).Clone();
             return new RequestLogEntry(this, entry.Id, request);
         }
 
@@ -237,7 +237,7 @@ namespace LogEm
 
                 foreach (RequestLogEntry entry in selectedEntries)
                 {
-                    Request request = (Request)((ICloneable)entry.Request).Clone();
+                    UserRequest request = (UserRequest)((ICloneable)entry.Request).Clone();
                     errorEntryList.Add(new RequestLogEntry(this, entry.Id, request));
                 }
             }

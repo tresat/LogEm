@@ -7,10 +7,8 @@ using NameValueCollection = System.Collections.Specialized.NameValueCollection;
 namespace LogEm
 {
     /// <summary>
-    /// Represents a logical application error (as opposed to the actual 
-    /// exception it may be representing).
+    /// Represents a user request to the site.
     /// </summary>
-
     [ Serializable ]
     public sealed class Request : ICloneable
     {
@@ -34,86 +32,22 @@ namespace LogEm
         /// Initializes a new instance of the <see cref="Request"/> class.
         /// </summary>
 
-        public Request() {}
+        public Request() { }
 
-    //    /// <summary>
-    //    /// Initializes a new instance of the <see cref="Error"/> class
-    //    /// from a given <see cref="Exception"/> instance.
-    //    /// </summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Request"/> class.
+        /// </summary>
 
-    //    public Error(Exception e) : 
-    //        this(e, null) {}
-
-    //    /// <summary>
-    //    /// Initializes a new instance of the <see cref="Error"/> class
-    //    /// from a given <see cref="Exception"/> instance and 
-    //    /// <see cref="HttpContext"/> instance representing the HTTP 
-    //    /// context during the exception.
-    //    /// </summary>
-
-    //    public Error(Exception e, HttpContext context)
-    //    {
-    //        if (e == null)
-    //            throw new ArgumentNullException("e");
-
-    //        _exception = e;
-    //        Exception baseException = e.GetBaseException();
-
-    //        //
-    //        // Load the basic information.
-    //        //
-
-    //        _hostName = Environment.MachineName;
-    //        _typeName = baseException.GetType().FullName;
-    //        _message = baseException.Message;
-    //        _source = baseException.Source;
-    //        _detail = e.ToString();
-    //        _user = Mask.NullString(Thread.CurrentPrincipal.Identity.Name);
-    //        _time = DateTime.Now;
-
-    //        //
-    //        // If this is an HTTP exception, then get the status code
-    //        // and detailed HTML message provided by the host.
-    //        //
-
-    //        HttpException httpException = e as HttpException;
-
-    //        if (httpException != null)
-    //        {
-    //            _statusCode = httpException.GetHttpCode();
-    //            _webHostHtmlMessage = Mask.NullString(httpException.GetHtmlErrorMessage());
-    //        }
-
-    //        //
-    //        // If the HTTP context is available, then capture the
-    //        // collections that represent the state request.
-    //        //
-
-    //        if (context != null)
-    //        {
-    //            HttpRequest request = context.Request;
-
-    //            _serverVariables = CopyCollection(request.ServerVariables);
-    //            _queryString = CopyCollection(request.QueryString);
-    //            _form = CopyCollection(request.Form);
-    //            _cookies = CopyCollection(request.Cookies);
-    //        }
-    //    }
-
-    //    /// <summary>
-    //    /// Gets the <see cref="Exception"/> instance used to initialize this
-    //    /// instance.
-    //    /// </summary>
-    //    /// <remarks>
-    //    /// This is a run-time property only that is not written or read 
-    //    /// during XML serialization via <see cref="ErrorXml.Decode"/> and 
-    //    /// <see cref="ErrorXml.Encode(Error,XmlWriter)"/>.
-    //    /// </remarks>
-
-    //    public Exception Exception
-    //    {
-    //        get { return _exception; }
-    //    }
+        public Request(HttpContext context) {
+            if (context.User != null)
+            {
+                _user = context.User.Identity.Name;
+            }
+            else
+            {
+                _user = "anonymous";
+            }
+        }
 
         /// <summary>
         /// Gets or sets the name of application in which this request occurred.
@@ -326,13 +260,5 @@ namespace LogEm
 
             return copy;
         }
-
-    //    private static NameValueCollection FaultIn(ref NameValueCollection collection)
-    //    {
-    //        if (collection == null)
-    //            collection = new NameValueCollection();
-
-    //        return collection;
-    //    }
     }
 }
