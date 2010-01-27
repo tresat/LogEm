@@ -56,14 +56,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LogEm.dbml</DependentUpon>
     </Compile>
-    <Compile Include="RequestLogEntry.cs" />
     <Compile Include="HttpModuleBase.cs" />
     <Compile Include="HttpModuleRegistry.cs" />
     <Compile Include="HttpRequestSecurity.cs" />
     <Compile Include="JetBrains.Annotations.cs" />
     <Compile Include="ManifestResourceHelper.cs" />
     <Compile Include="Mask.cs" />
-    <Compile Include="RequestLogs\MemoryRequestLog.cs" />
     <Compile Include="RequestLogModule.cs" />
     <Compile Include="ManifestResourceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,7 +74,9 @@
     <Compile Include="RequestPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ResourceRequestBase.cs" />
     <Compile Include="SecurityConfiguration.cs" />
+    <Compile Include="SessionBase.cs" />
     <Compile Include="SimpleServiceProviderFactory.cs" />
     <Compile Include="RequestLogs\SqlRequestLog.cs" />
     <Compile Include="StringTranslation.cs" />

@@ -48,23 +48,56 @@ END
 GO
 
 /* ------------------------------------------------------------------------ 
-        SCHEMAS
+        SCHEMAS (MUST BE FIRST DDL, UNCOMMENT IF FIRST TIME RUNNING)
    ------------------------------------------------------------------------ */
-   
-CREATE SCHEMA logEm;
+
+
+--CREATE SCHEMA logEm;
 GO
 
 /* ------------------------------------------------------------------------ 
         TABLES
    ------------------------------------------------------------------------ */
 
-CREATE TABLE [logEm].[UserRequests]
+IF EXISTS(
+	SELECT 1
+	FROM sys.tables
+	WHERE name = 'Session')
+BEGIN
+	DROP TABLE logEm.Session;
+END
+
+IF EXISTS(
+	SELECT 1
+	FROM sys.tables
+	WHERE name = 'ResourceRequest')
+BEGIN
+	DROP TABLE logEm.ResourceRequest;
+END
+
+CREATE TABLE [logEm].[Session]
 (
-    [UserRequestId]   UNIQUEIDENTIFIER NOT NULL,
-    [Application] NVARCHAR(60)  COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-    [TimeUtc]     DATETIME NOT NULL,
-	[User]			NVARCHAR(100) NULL,
-    [Sequence]    INT IDENTITY (1, 1) NOT NULL
+    [SessionID]				UNIQUEIDENTIFIER NOT NULL,
+    [Application]			NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+    [Host]					NVARCHAR(50) NOT NULL,
+	[User]					NVARCHAR(256) NOT NULL,
+    [Sequence]				INT IDENTITY (1, 1) NOT NULL,
+    [ASPSessionID]			NVARCHAR(256) NOT NULL,
+    [SessionBeginTimeUtc]	DATETIME NOT NULL,
+    [SessionEndTimeUtc]		DATETIME NULL,
+) 
+ON [PRIMARY]
+GO
+
+CREATE TABLE [logEm].[ResourceRequest]
+(
+    [ResourceRequestID]		UNIQUEIDENTIFIER NOT NULL,
+    [Application]			NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+    [Host]					NVARCHAR(50) NOT NULL,
+    [TimeUtc]				DATETIME NOT NULL,
+	[User]					NVARCHAR(256) NULL,
+    [Sequence]				INT IDENTITY (1, 1) NOT NULL,
+    [fkSessionID]			UNIQUEIDENTIFIER NULL
 ) 
 ON [PRIMARY]
 GO
@@ -73,23 +106,45 @@ GO
         CONSTRAINTS
    ------------------------------------------------------------------------ */
 
-ALTER TABLE [logEm].[UserRequests] WITH NOCHECK ADD 
-    CONSTRAINT [PK_UserRequests] PRIMARY KEY NONCLUSTERED ([UserRequestId]) ON [PRIMARY] 
+ALTER TABLE [logEm].[Session] WITH NOCHECK ADD 
+    CONSTRAINT [PK_Session] PRIMARY KEY CLUSTERED ([SessionId]) ON [PRIMARY] 
 GO
 
-ALTER TABLE [logEm].[UserRequests] ADD 
-    CONSTRAINT [DF_UserRequests_UserRequestId] DEFAULT (NEWID()) FOR [UserRequestId]
+ALTER TABLE [logEm].[Session] ADD 
+    CONSTRAINT [DF_Session_SessionID] DEFAULT (NEWID()) FOR [SessionID]
+GO
+
+ALTER TABLE [logEm].[ResourceRequest] WITH NOCHECK ADD 
+    CONSTRAINT [PK_ResourceRequest] PRIMARY KEY CLUSTERED ([ResourceRequestId]) ON [PRIMARY] 
+GO
+
+ALTER TABLE [logEm].[ResourceRequest] ADD 
+    CONSTRAINT [DF_ResourceRequest_ResourceRequestID] DEFAULT (NEWID()) FOR [ResourceRequestID]
+GO
+
+ALTER TABLE [logEm].[ResourceRequest] ADD 
+	CONSTRAINT [FK_ResourceRequest_Session] FOREIGN KEY ([fkSessionID])
+	REFERENCES [logEm].[Session]([SessionID]);
 GO
 
 /* ------------------------------------------------------------------------ 
         INDICES
    ------------------------------------------------------------------------ */
 
-CREATE NONCLUSTERED INDEX [IX_UserRequests_UserRequest_App_Time_Seq] ON [logEm].[UserRequests] 
+CREATE NONCLUSTERED INDEX [IX_ResourceRequest_App_Time_Seq] ON [logEm].[ResourceRequest] 
 (
-    [Application]   ASC,
-    [TimeUtc]       DESC,
-    [Sequence]      DESC
+    [Application]			ASC,
+    [TimeUtc]				DESC,
+    [Sequence]				DESC
+) 
+ON [PRIMARY]
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Session_App_Time_Seq] ON [logEm].[Session] 
+(
+    [Application]			ASC,
+    [SessionBeginTimeUtc]	DESC,
+    [Sequence]				DESC
 ) 
 ON [PRIMARY]
 GO

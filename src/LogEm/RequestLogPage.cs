@@ -327,8 +327,7 @@ namespace LogEm
 
             for (int errorIndex = 0; errorIndex < _requestEntryList.Count; errorIndex++)
             {
-                RequestLogEntry requestEntry = (RequestLogEntry)_requestEntryList[errorIndex];
-                UserRequest request = requestEntry.Request;
+                ResourceRequestBase requestEntry = (ResourceRequestBase)_requestEntryList[errorIndex];
 
                 TableRow bodyRow = new TableRow();
                 bodyRow.CssClass = errorIndex % 2 == 0 ? "even-row" : "odd-row";
@@ -354,7 +353,7 @@ namespace LogEm
                 //messageLabel.Text = this.Server.HtmlEncode(request.Message);
 
                 HyperLink detailsLink = new HyperLink();
-                detailsLink.NavigateUrl = BasePageName + "/detail?id=" + HttpUtility.UrlEncode(requestEntry.Id);
+                detailsLink.NavigateUrl = BasePageName + "/detail?id=" + HttpUtility.UrlEncode("5");
                 detailsLink.Text = "Details&hellip;";
 
                 messageCell.Controls.Add(messageLabel);

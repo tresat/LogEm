@@ -20,14 +20,14 @@ namespace LogEm.RequestLogs
         /// Logs a request in the log for the application.
         /// </summary>
         
-        public abstract string Log(ResourceRequestBase request);
+        public abstract string Log(UserRequest request);
 
         /// <summary>
         /// When overridden in a subclass, begins an asynchronous version 
         /// of <see cref="Log"/>.
         /// </summary>
 
-        public virtual IAsyncResult BeginLog(ResourceRequestBase request, AsyncCallback asyncCallback, object asyncState)
+        public virtual IAsyncResult BeginLog(UserRequest request, AsyncCallback asyncCallback, object asyncState)
         {
             return BeginSyncImpl(asyncCallback, asyncState, new LogHandler(Log), request);
         }
@@ -42,14 +42,14 @@ namespace LogEm.RequestLogs
             return (string)EndSyncImpl(asyncResult);
         }
 
-        private delegate string LogHandler(ResourceRequestBase request);
+        private delegate string LogHandler(UserRequest request);
 
         /// <summary>
         /// Retrieves a single application request from log given its 
         /// identifier, or null if it does not exist.
         /// </summary>
 
-        public abstract ResourceRequestBase GetRequest(string id);
+        public abstract RequestLogEntry GetRequest(string id);
 
         /// <summary>
         /// When overridden in a subclass, begins an asynchronous version 
@@ -66,12 +66,12 @@ namespace LogEm.RequestLogs
         /// of <see cref="GetRequest"/>.
         /// </summary>
 
-        public virtual ResourceRequestBase EndGetRequest(IAsyncResult asyncResult)
+        public virtual RequestLogEntry EndGetRequest(IAsyncResult asyncResult)
         {
-            return (ResourceRequestBase)EndSyncImpl(asyncResult);
+            return (RequestLogEntry)EndSyncImpl(asyncResult);
         }
 
-        private delegate ResourceRequestBase GetErrorHandler(string id);
+        private delegate RequestLogEntry GetErrorHandler(string id);
 
         /// <summary>
         /// Retrieves a page of application requests from the log in 
@@ -166,10 +166,14 @@ namespace LogEm.RequestLogs
 
             log = (RequestLog)SimpleServiceProviderFactory.CreateFromConfigSection(Configuration.GroupSlash + "requestLog");
 
+            //
             // If no object got created (probably because the right 
-            // configuration settings are missing) then throw an exception.
+            // configuration settings are missing) then default to 
+            // the in-memory log implementation.
+            //
+
             if (log == null)
-                throw new ApplicationException("Log type not set!");
+                log = new MemoryRequestLog();
 
             if (context != null)
             {

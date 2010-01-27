@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using LogEm.RequestLogs;
 
 namespace LogEm
 {
@@ -13,8 +14,7 @@ namespace LogEm
 
     public class RequestLogModule : HttpModuleBase
     {
-        public event RequestLoggedEventHandler Logged;
-
+#region "Application Event Handling"
         /// <summary>
         /// Initializes the module and prepares it to handle requests.
         /// </summary>
@@ -29,6 +29,47 @@ namespace LogEm
         }
 
         /// <summary>
+        /// A request has come in for logem.axd, or an embedded resource like
+        /// a stylesheet.
+        /// </summary>
+
+        protected virtual void OnRequest(object sender, EventArgs args)
+        {
+            const String LOGEM_URL = "LOGEM.AXD";
+
+            if (sender == null)
+                throw new ArgumentNullException("sender");
+
+            // Check each URL segment, if one of them matches logem.axd
+            // then we DON'T need to log it, since it's a request to LOGEM
+            HttpApplication application = (HttpApplication)sender;
+            foreach (String seg in application.Request.Url.Segments)
+            {
+                if (seg.ToUpper().StartsWith(LOGEM_URL, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return;
+                }
+            }
+
+            LogRequest(application.Context);
+        }
+
+        /// <summary>
+        /// A user has just been authorized for the application.
+        /// </summary>
+
+        protected virtual void OnAuthenticate(object sender, EventArgs args)
+        {
+            if (sender == null)
+                throw new ArgumentNullException("sender");
+
+            HttpApplication application = (HttpApplication)sender;
+            LogAuthentication(application.Context);
+        }
+#endregion
+
+#region "Protected Helpers"
+        /// <summary>
         /// Gets the <see cref="RequestLog"/> instance to which the module
         /// will log requests.
         /// </summary>
@@ -38,31 +79,8 @@ namespace LogEm
             return RequestLog.GetDefault(context);
         }
 
-        protected virtual void OnRequest(object sender, EventArgs args)
-        {
-            HttpApplication application = (HttpApplication)sender;
-            LogRequest(application.Context);
-        }
-
-        protected virtual void OnAuthenticate(object sender, EventArgs args)
-        {
-            HttpApplication application = (HttpApplication)sender;
-            //LogAuthenticate();
-        }
         /// <summary>
-        /// Raises the <see cref="Logged"/> event.
-        /// </summary>
-
-        protected virtual void OnLogged(RequestLoggedEventArgs args)
-        {
-            RequestLoggedEventHandler handler = Logged;
-
-            if (handler != null)
-                handler(this, args);
-        }
-
-        /// <summary>
-        /// Logs an exception and its context to the error log.
+        /// Logs a request for a resource and its context to the error log.
         /// </summary>
 
         protected virtual void LogRequest(HttpContext context)
@@ -70,37 +88,32 @@ namespace LogEm
             if (context == null)
                 throw new ArgumentNullException("context");
 
-            //
-            // Log away...
-            //
+            // Create the ResourceRequest object
+            ResourceRequest request = new ResourceRequest(context);
+
+            // Log the user request
             RequestLog log = GetRequestLog(context);
-            UserRequest request = new UserRequest();
             string id = log.Log(request);
-            RequestLogEntry entry = new RequestLogEntry(log, id, request);
-
-            if (entry != null)
-                OnLogged(new RequestLoggedEventArgs(entry));
         }
-    }
 
-    public delegate void RequestLoggedEventHandler(object sender, RequestLoggedEventArgs args);
+        /// <summary>
+        /// Logs a user logging in to the application.
+        /// </summary>
 
-    [Serializable]
-    public sealed class RequestLoggedEventArgs : EventArgs
-    {
-        private readonly RequestLogEntry _entry;
-
-        public RequestLoggedEventArgs(RequestLogEntry entry)
+        protected virtual void LogAuthentication(HttpContext context)
         {
-            if (entry == null)
-                throw new ArgumentNullException("entry");
+            if (context == null)
+                throw new ArgumentNullException("context");
 
-            _entry = entry;
-        }
+            // Create the UserAuthentication object
+            //UserRequest request = new UserRequest();
+            //request.Application = 
 
-        public RequestLogEntry Entry
-        {
-            get { return _entry; }
+            // Log the user request
+            RequestLog log = GetRequestLog(context);
+
+            //context.Session.SessionID;
         }
+#endregion
     }
 }

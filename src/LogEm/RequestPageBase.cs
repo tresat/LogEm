@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.UI;
+using LogEm.RequestLogs;
 
 using CultureInfo = System.Globalization.CultureInfo;
 

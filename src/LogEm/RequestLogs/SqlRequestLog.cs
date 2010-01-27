@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using IDictionary = System.Collections.IDictionary;
 using IList = System.Collections.IList;
 
-namespace LogEm
+namespace LogEm.RequestLogs
 {
     /// <summary>
     /// An <see cref="ErrorLog"/> implementation that uses Microsoft SQL 
@@ -117,18 +117,19 @@ namespace LogEm
         /// implementation stores all errors for an indefinite time.
         /// </remarks>
 
-        public override string Log(UserRequest request)
+        public override string Log(ResourceRequestBase request)
         {
             if (request == null)
                 throw new ArgumentNullException("request");
 
             Guid id = Guid.NewGuid();
-            UserRequest ur = new UserRequest();
-            ur.UserRequestId = id;
-            ur.Application = this.ApplicationName;
-            ur.TimeUtc = DateTime.UtcNow;
+            ResourceRequest rr = new ResourceRequest(request.Context);
+            rr.ResourceRequestID = id;
+            rr.Application = this.ApplicationName;
+            rr.TimeUtc = DateTime.UtcNow;
+            rr.Host = Environment.MachineName;
 
-            _dc.UserRequests.InsertOnSubmit(ur);
+            _dc.ResourceRequests.InsertOnSubmit(rr);
             _dc.SubmitChanges();
 
             return id.ToString();
@@ -147,16 +148,16 @@ namespace LogEm
             if (pageSize < 0)
                 throw new ArgumentOutOfRangeException("pageSize", pageSize, null);
 
-            List<UserRequest> requestList = new List<UserRequest>();
-            foreach(UserRequest ur in (from ur in _dc.UserRequests
-                            select ur))
+            List<ResourceRequest> requestList = new List<ResourceRequest>();
+            foreach (ResourceRequest rr in (from rr in _dc.ResourceRequests
+                    select rr))
             {
-                requestEntryList.Add(new RequestLogEntry(this, ur.UserRequestId.ToString(), new UserRequest()));
+                requestEntryList.Add(rr);
             }
 
             requestEntryList = requestList;
 
-            return requestList.Count();
+            return requestList.Count;
         }
 
 #if ASYNC_ADONET
@@ -271,7 +272,7 @@ namespace LogEm
         /// if it does not exist.
         /// </summary>
 
-        public override RequestLogEntry GetRequest(string id)
+        public override ResourceRequestBase GetRequest(string id)
         {
             if (id == null)
                 throw new ArgumentNullException("id");
