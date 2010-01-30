@@ -4,8 +4,7 @@ src/LogEm/obj/*
 src/LogEm/bin/*
 src/MVCDemo/obj/*
 src/MVCDemo/bin/*
-src/MVCDemo/App_Data/Elmah/*
 src/WebFormsDemo/obj/*
 src/WebFormsDemo/bin/*
-src/WebFormsDemo/App_Data/Elmah/*
- 
+sampledbs/*
+debug/*

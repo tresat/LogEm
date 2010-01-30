@@ -2,7 +2,7 @@
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Register
-</asp:Content>
+</asp:Content> 
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Create a New Account</h2>

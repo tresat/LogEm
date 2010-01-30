@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.UI;
-using LogEm.RequestLogs;
+using LogEm.Logging.RequestLogs;
 
 using CultureInfo = System.Globalization.CultureInfo;
 
@@ -10,7 +10,6 @@ namespace LogEm
     /// Provides the base implementation and layout for most pages that render 
     /// HTML for the error log.
     /// </summary>
-
     internal abstract class RequestPageBase : Page
     {
         private string _title;
@@ -26,7 +25,7 @@ namespace LogEm
             get
             {
                 if (_log == null)
-                    _log = RequestLog.GetDefault(Context);
+                    _log = RequestLog.GetLog(Context);
 
                 return _log;
             }

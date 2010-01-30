@@ -43,18 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigSectionHandlers\RequestLogSectionHandler.cs" />
+    <Compile Include="ConfigSectionHandlers\SecuritySectionHandler.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Logging\RequestLogs\Sql2005RequestLog\LogEm.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogEm.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="RequestLogs\LogEm.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LogEm.dbml</DependentUpon>
     </Compile>
     <Compile Include="HttpModuleBase.cs" />
     <Compile Include="HttpModuleRegistry.cs" />
@@ -62,46 +64,46 @@
     <Compile Include="JetBrains.Annotations.cs" />
     <Compile Include="ManifestResourceHelper.cs" />
     <Compile Include="Mask.cs" />
-    <Compile Include="RequestLogModule.cs" />
-    <Compile Include="ManifestResourceHandler.cs" />
+    <Compile Include="Logging\RequestLogModule.cs" />
+    <Compile Include="HTTPHandlers\ManifestResourceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestLogs\RequestLog.cs" />
+    <Compile Include="Logging\RequestLogs\RequestLog.cs" />
     <Compile Include="RequestLogPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="RequestLogPageFactory.cs" />
-    <Compile Include="RequestLogSectionHandler.cs" />
     <Compile Include="RequestPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ResourceRequestBase.cs" />
+    <Compile Include="Logging\ResourceRequestBase.cs" />
     <Compile Include="SecurityConfiguration.cs" />
-    <Compile Include="SessionBase.cs" />
-    <Compile Include="SimpleServiceProviderFactory.cs" />
-    <Compile Include="RequestLogs\SqlRequestLog.cs" />
+    <Compile Include="Logging\SessionBase.cs" />
+    <Compile Include="ObjectFactory.cs" />
+    <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005RequestLog.cs" />
     <Compile Include="StringTranslation.cs" />
-    <Compile Include="SynchronousAsyncResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LogEm.css" />
+    <EmbeddedResource Include="EmbeddedResources\css\LogEm.css" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="RequestLogs\LogEm.dbml">
+    <None Include="app.config" />
+    <None Include="Logging\RequestLogs\Sql2005RequestLog\LogEm.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>LogEm.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="RequestLogs\LogEm.dbml.layout">
+    <None Include="Logging\RequestLogs\Sql2005RequestLog\LogEm.dbml.layout">
       <DependentUpon>LogEm.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

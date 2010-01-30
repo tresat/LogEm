@@ -1,7 +1,7 @@
 using System;
 using System.Web;
 
-namespace LogEm
+namespace LogEm 
 {
     /// <summary>
     /// Provides an abstract base class for <see cref="IHttpModule"/> that

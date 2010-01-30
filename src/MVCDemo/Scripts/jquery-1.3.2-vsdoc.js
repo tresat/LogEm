@@ -4,7 +4,7 @@
  * intended to be used only for design-time IntelliSense.  Please use the
  * standard jQuery library for all production use.
  *
- * Comment version: 1.3.2a
+ * Comment version: 1.3.2a 
  */
 
 /*

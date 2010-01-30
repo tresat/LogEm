@@ -2,7 +2,7 @@
 
 <asp:Content ID="changePasswordTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Change Password
-</asp:Content>
+</asp:Content> 
 
 <asp:Content ID="changePasswordSuccessContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Change Password</h2>

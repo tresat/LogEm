@@ -6,7 +6,7 @@
 // http://www.google.com/search?q=resharper+%22code+annotations%22+site%3Ajetbrains.com
 //
 
-namespace JetBrains.Annotations
+namespace JetBrains.Annotations 
 {
     using System;
 

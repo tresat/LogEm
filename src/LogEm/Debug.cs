@@ -2,7 +2,7 @@ using System.Diagnostics;
 using SysDebug = System.Diagnostics.Debug;
 using JetBrains.Annotations;
 
-namespace LogEm
+namespace LogEm 
 {
     /// <summary>
     /// Provides methods for assertions and debugging help that is mostly 

@@ -3,7 +3,7 @@
 //!----------------------------------------------------------
 //! MicrosoftMvcAjax.js
 
-Type.registerNamespace('Sys.Mvc');
+Type.registerNamespace('Sys.Mvc'); 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Sys.Mvc.AjaxOptions

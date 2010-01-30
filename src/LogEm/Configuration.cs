@@ -2,7 +2,7 @@
 using System.Configuration;
 
 namespace LogEm
-{
+{ 
     internal sealed class Configuration
     {
         internal const string GroupName = "logEm";

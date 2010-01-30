@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LogEm.Logging;
 
 using CultureInfo = System.Globalization.CultureInfo;
 using ArrayList = System.Collections.ArrayList;

@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LogEm.RequestLogs
+namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -20,9 +20,9 @@ namespace LogEm.RequestLogs
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	using System.Web;
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="RequestLogging")]
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="E:\\PROJECTS\\LOGEM\\SAMPLEDBS\\LOGGING.MDF")]
 	public partial class LogEmDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,19 +30,13 @@ namespace LogEm.RequestLogs
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertResourceRequest(ResourceRequest instance);
-    partial void UpdateResourceRequest(ResourceRequest instance);
-    partial void DeleteResourceRequest(ResourceRequest instance);
-    partial void InsertSession(Session instance);
-    partial void UpdateSession(Session instance);
-    partial void DeleteSession(Session instance);
+    partial void InsertSQL2005Session(SQL2005Session instance);
+    partial void UpdateSQL2005Session(SQL2005Session instance);
+    partial void DeleteSQL2005Session(SQL2005Session instance);
+    partial void InsertSQL2005ResourceRequest(SQL2005ResourceRequest instance);
+    partial void UpdateSQL2005ResourceRequest(SQL2005ResourceRequest instance);
+    partial void DeleteSQL2005ResourceRequest(SQL2005ResourceRequest instance);
     #endregion
-		
-		public LogEmDataContext() : 
-				base(global::LogEm.Properties.Settings.Default.RequestLoggingConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public LogEmDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -68,280 +62,25 @@ namespace LogEm.RequestLogs
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<ResourceRequest> ResourceRequests
+		public System.Data.Linq.Table<SQL2005Session> SQL2005Sessions
 		{
 			get
 			{
-				return this.GetTable<ResourceRequest>();
+				return this.GetTable<SQL2005Session>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Session> Sessions
+		public System.Data.Linq.Table<SQL2005ResourceRequest> SQL2005ResourceRequests
 		{
 			get
 			{
-				return this.GetTable<Session>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="logEm.ResourceRequest")]
-	public partial class ResourceRequest : ResourceRequestBase, INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ResourceRequestID;
-		
-		private string _Application;
-		
-		private string _Host;
-		
-		private System.DateTime _TimeUtc;
-		
-		private string _User;
-		
-		private int _Sequence;
-		
-		private System.Nullable<System.Guid> _fkSessionID;
-		
-		private EntityRef<Session> _Session;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnResourceRequestIDChanging(System.Guid value);
-    partial void OnResourceRequestIDChanged();
-    partial void OnApplicationChanging(string value);
-    partial void OnApplicationChanged();
-    partial void OnHostChanging(string value);
-    partial void OnHostChanged();
-    partial void OnTimeUtcChanging(System.DateTime value);
-    partial void OnTimeUtcChanged();
-    partial void OnUserChanging(string value);
-    partial void OnUserChanged();
-    partial void OnSequenceChanging(int value);
-    partial void OnSequenceChanged();
-    partial void OnfkSessionIDChanging(System.Nullable<System.Guid> value);
-    partial void OnfkSessionIDChanged();
-    #endregion
-		
-		public ResourceRequest()
-		{
-			this._Session = default(EntityRef<Session>);
-			OnCreated();
-		}
-
-        public ResourceRequest(HttpContext context)
-        {
-            this._Session = default(EntityRef<Session>);
-            OnCreated();
-
-            this._context = context;
-        }
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResourceRequestID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ResourceRequestID
-		{
-			get
-			{
-				return this._ResourceRequestID;
-			}
-			set
-			{
-				if ((this._ResourceRequestID != value))
-				{
-					this.OnResourceRequestIDChanging(value);
-					this.SendPropertyChanging();
-					this._ResourceRequestID = value;
-					this.SendPropertyChanged("ResourceRequestID");
-					this.OnResourceRequestIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Application", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
-		public string Application
-		{
-			get
-			{
-				return this._Application;
-			}
-			set
-			{
-				if ((this._Application != value))
-				{
-					this.OnApplicationChanging(value);
-					this.SendPropertyChanging();
-					this._Application = value;
-					this.SendPropertyChanged("Application");
-					this.OnApplicationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Host", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Host
-		{
-			get
-			{
-				return this._Host;
-			}
-			set
-			{
-				if ((this._Host != value))
-				{
-					this.OnHostChanging(value);
-					this.SendPropertyChanging();
-					this._Host = value;
-					this.SendPropertyChanged("Host");
-					this.OnHostChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeUtc", DbType="DateTime NOT NULL")]
-		public System.DateTime TimeUtc
-		{
-			get
-			{
-				return this._TimeUtc;
-			}
-			set
-			{
-				if ((this._TimeUtc != value))
-				{
-					this.OnTimeUtcChanging(value);
-					this.SendPropertyChanging();
-					this._TimeUtc = value;
-					this.SendPropertyChanged("TimeUtc");
-					this.OnTimeUtcChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(256)")]
-		public string User
-		{
-			get
-			{
-				return this._User;
-			}
-			set
-			{
-				if ((this._User != value))
-				{
-					this.OnUserChanging(value);
-					this.SendPropertyChanging();
-					this._User = value;
-					this.SendPropertyChanged("User");
-					this.OnUserChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sequence", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int Sequence
-		{
-			get
-			{
-				return this._Sequence;
-			}
-			set
-			{
-				if ((this._Sequence != value))
-				{
-					this.OnSequenceChanging(value);
-					this.SendPropertyChanging();
-					this._Sequence = value;
-					this.SendPropertyChanged("Sequence");
-					this.OnSequenceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fkSessionID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> fkSessionID
-		{
-			get
-			{
-				return this._fkSessionID;
-			}
-			set
-			{
-				if ((this._fkSessionID != value))
-				{
-					if (this._Session.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnfkSessionIDChanging(value);
-					this.SendPropertyChanging();
-					this._fkSessionID = value;
-					this.SendPropertyChanged("fkSessionID");
-					this.OnfkSessionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_Session", ThisKey="fkSessionID", OtherKey="SessionID", IsForeignKey=true)]
-		public Session Session
-		{
-			get
-			{
-				return this._Session.Entity;
-			}
-			set
-			{
-				Session previousValue = this._Session.Entity;
-				if (((previousValue != value) 
-							|| (this._Session.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Session.Entity = null;
-						previousValue.ResourceRequests.Remove(this);
-					}
-					this._Session.Entity = value;
-					if ((value != null))
-					{
-						value.ResourceRequests.Add(this);
-						this._fkSessionID = value.SessionID;
-					}
-					else
-					{
-						this._fkSessionID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("Session");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<SQL2005ResourceRequest>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="logEm.Session")]
-	public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class SQL2005Session : SessionBase, INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -362,7 +101,7 @@ namespace LogEm.RequestLogs
 		
 		private System.Nullable<System.DateTime> _SessionEndTimeUtc;
 		
-		private EntitySet<ResourceRequest> _ResourceRequests;
+		private EntitySet<SQL2005ResourceRequest> _SQL2005ResourceRequests;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -386,9 +125,9 @@ namespace LogEm.RequestLogs
     partial void OnSessionEndTimeUtcChanged();
     #endregion
 		
-		public Session()
+		public SQL2005Session()
 		{
-			this._ResourceRequests = new EntitySet<ResourceRequest>(new Action<ResourceRequest>(this.attach_ResourceRequests), new Action<ResourceRequest>(this.detach_ResourceRequests));
+			this._SQL2005ResourceRequests = new EntitySet<SQL2005ResourceRequest>(new Action<SQL2005ResourceRequest>(this.attach_SQL2005ResourceRequests), new Action<SQL2005ResourceRequest>(this.detach_SQL2005ResourceRequests));
 			OnCreated();
 		}
 		
@@ -552,16 +291,16 @@ namespace LogEm.RequestLogs
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_ResourceRequests", ThisKey="SessionID", OtherKey="fkSessionID")]
-		public EntitySet<ResourceRequest> ResourceRequests
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_SQL2005ResourceRequests", ThisKey="SessionID", OtherKey="fkSessionID")]
+		public EntitySet<SQL2005ResourceRequest> SQL2005ResourceRequests
 		{
 			get
 			{
-				return this._ResourceRequests;
+				return this._SQL2005ResourceRequests;
 			}
 			set
 			{
-				this._ResourceRequests.Assign(value);
+				this._SQL2005ResourceRequests.Assign(value);
 			}
 		}
 		
@@ -585,16 +324,263 @@ namespace LogEm.RequestLogs
 			}
 		}
 		
-		private void attach_ResourceRequests(ResourceRequest entity)
+		private void attach_SQL2005ResourceRequests(SQL2005ResourceRequest entity)
 		{
 			this.SendPropertyChanging();
-			entity.Session = this;
+			entity.SQL2005Session = this;
 		}
 		
-		private void detach_ResourceRequests(ResourceRequest entity)
+		private void detach_SQL2005ResourceRequests(SQL2005ResourceRequest entity)
 		{
 			this.SendPropertyChanging();
-			entity.Session = null;
+			entity.SQL2005Session = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="logEm.ResourceRequest")]
+	public partial class SQL2005ResourceRequest : ResourceRequestBase, INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ResourceRequestID;
+		
+		private string _Application;
+		
+		private string _Host;
+		
+		private System.DateTime _TimeUtc;
+		
+		private string _User;
+		
+		private int _Sequence;
+		
+		private System.Nullable<System.Guid> _fkSessionID;
+		
+		private EntityRef<SQL2005Session> _SQL2005Session;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnResourceRequestIDChanging(System.Guid value);
+    partial void OnResourceRequestIDChanged();
+    partial void OnApplicationChanging(string value);
+    partial void OnApplicationChanged();
+    partial void OnHostChanging(string value);
+    partial void OnHostChanged();
+    partial void OnTimeUtcChanging(System.DateTime value);
+    partial void OnTimeUtcChanged();
+    partial void OnUserChanging(string value);
+    partial void OnUserChanged();
+    partial void OnSequenceChanging(int value);
+    partial void OnSequenceChanged();
+    partial void OnfkSessionIDChanging(System.Nullable<System.Guid> value);
+    partial void OnfkSessionIDChanged();
+    #endregion
+		
+		public SQL2005ResourceRequest()
+		{
+			this._SQL2005Session = default(EntityRef<SQL2005Session>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResourceRequestID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ResourceRequestID
+		{
+			get
+			{
+				return this._ResourceRequestID;
+			}
+			set
+			{
+				if ((this._ResourceRequestID != value))
+				{
+					this.OnResourceRequestIDChanging(value);
+					this.SendPropertyChanging();
+					this._ResourceRequestID = value;
+					this.SendPropertyChanged("ResourceRequestID");
+					this.OnResourceRequestIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Application", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string Application
+		{
+			get
+			{
+				return this._Application;
+			}
+			set
+			{
+				if ((this._Application != value))
+				{
+					this.OnApplicationChanging(value);
+					this.SendPropertyChanging();
+					this._Application = value;
+					this.SendPropertyChanged("Application");
+					this.OnApplicationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Host", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Host
+		{
+			get
+			{
+				return this._Host;
+			}
+			set
+			{
+				if ((this._Host != value))
+				{
+					this.OnHostChanging(value);
+					this.SendPropertyChanging();
+					this._Host = value;
+					this.SendPropertyChanged("Host");
+					this.OnHostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeUtc", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeUtc
+		{
+			get
+			{
+				return this._TimeUtc;
+			}
+			set
+			{
+				if ((this._TimeUtc != value))
+				{
+					this.OnTimeUtcChanging(value);
+					this.SendPropertyChanging();
+					this._TimeUtc = value;
+					this.SendPropertyChanged("TimeUtc");
+					this.OnTimeUtcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(256)")]
+		public string User
+		{
+			get
+			{
+				return this._User;
+			}
+			set
+			{
+				if ((this._User != value))
+				{
+					this.OnUserChanging(value);
+					this.SendPropertyChanging();
+					this._User = value;
+					this.SendPropertyChanged("User");
+					this.OnUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sequence", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int Sequence
+		{
+			get
+			{
+				return this._Sequence;
+			}
+			set
+			{
+				if ((this._Sequence != value))
+				{
+					this.OnSequenceChanging(value);
+					this.SendPropertyChanging();
+					this._Sequence = value;
+					this.SendPropertyChanged("Sequence");
+					this.OnSequenceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fkSessionID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> fkSessionID
+		{
+			get
+			{
+				return this._fkSessionID;
+			}
+			set
+			{
+				if ((this._fkSessionID != value))
+				{
+					if (this._SQL2005Session.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnfkSessionIDChanging(value);
+					this.SendPropertyChanging();
+					this._fkSessionID = value;
+					this.SendPropertyChanged("fkSessionID");
+					this.OnfkSessionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_SQL2005Session", ThisKey="fkSessionID", OtherKey="SessionID", IsForeignKey=true)]
+		public SQL2005Session SQL2005Session
+		{
+			get
+			{
+				return this._SQL2005Session.Entity;
+			}
+			set
+			{
+				SQL2005Session previousValue = this._SQL2005Session.Entity;
+				if (((previousValue != value) 
+							|| (this._SQL2005Session.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SQL2005Session.Entity = null;
+						previousValue.SQL2005ResourceRequests.Remove(this);
+					}
+					this._SQL2005Session.Entity = value;
+					if ((value != null))
+					{
+						value.SQL2005ResourceRequests.Add(this);
+						this._fkSessionID = value.SessionID;
+					}
+					else
+					{
+						this._fkSessionID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("SQL2005Session");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

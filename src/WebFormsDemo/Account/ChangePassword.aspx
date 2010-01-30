@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Change Password" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="false"
     CodeFile="ChangePassword.aspx.vb" Inherits="Account_ChangePassword" %>
-
+     
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">

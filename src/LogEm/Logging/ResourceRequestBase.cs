@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace LogEm
+namespace LogEm.Logging
 {
     public class ResourceRequestBase
     {

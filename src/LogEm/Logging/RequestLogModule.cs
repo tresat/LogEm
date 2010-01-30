@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using LogEm.RequestLogs;
+using LogEm.Logging;
+using LogEm.Logging.RequestLogs;
 
-namespace LogEm
+namespace LogEm.Logging
 {
     /// <summary>
     /// HTTP handler factory that dispenses handlers for rendering views and 
@@ -18,7 +19,6 @@ namespace LogEm
         /// <summary>
         /// Initializes the module and prepares it to handle requests.
         /// </summary>
-
         protected override void OnInit(HttpApplication application)
         {
             if (application == null)
@@ -32,7 +32,6 @@ namespace LogEm
         /// A request has come in for logem.axd, or an embedded resource like
         /// a stylesheet.
         /// </summary>
-
         protected virtual void OnRequest(object sender, EventArgs args)
         {
             const String LOGEM_URL = "LOGEM.AXD";
@@ -57,7 +56,6 @@ namespace LogEm
         /// <summary>
         /// A user has just been authorized for the application.
         /// </summary>
-
         protected virtual void OnAuthenticate(object sender, EventArgs args)
         {
             if (sender == null)
@@ -73,33 +71,32 @@ namespace LogEm
         /// Gets the <see cref="RequestLog"/> instance to which the module
         /// will log requests.
         /// </summary>
-
         protected virtual RequestLog GetRequestLog(HttpContext context)
         {
-            return RequestLog.GetDefault(context);
+            return RequestLog.GetLog(context);
         }
 
         /// <summary>
         /// Logs a request for a resource and its context to the error log.
         /// </summary>
-
         protected virtual void LogRequest(HttpContext context)
         {
             if (context == null)
                 throw new ArgumentNullException("context");
 
+            // Get the log
+            RequestLog log = GetRequestLog(context);
+
             // Create the ResourceRequest object
-            ResourceRequest request = new ResourceRequest(context);
+            ResourceRequestBase request = log.CreateNewResourceRequest(context);
 
             // Log the user request
-            RequestLog log = GetRequestLog(context);
             string id = log.Log(request);
         }
 
         /// <summary>
         /// Logs a user logging in to the application.
         /// </summary>
-
         protected virtual void LogAuthentication(HttpContext context)
         {
             if (context == null)

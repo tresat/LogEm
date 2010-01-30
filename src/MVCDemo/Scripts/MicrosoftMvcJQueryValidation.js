@@ -1,7 +1,7 @@
 ﻿/// <reference path="jquery-1.3.2.js" />
 /// <reference path="jquery.validate.js" />
 
-// register custom jQuery methods
+// register custom jQuery methods 
 
 jQuery.validator.addMethod("regex", function(value, element, params) {
     if (this.optional(element)) {

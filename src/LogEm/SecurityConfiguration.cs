@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Globalization;
 
-namespace LogEm
+namespace LogEm 
 {
     [ Serializable ]
     internal sealed class SecurityConfiguration

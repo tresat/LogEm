@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogEm
+namespace LogEm 
 {
     /// <summary>
     /// Provides translation from multiple representations of a string to a

@@ -13,7 +13,7 @@ namespace LogEm
 
             Type thisType = typeof(ManifestResourceHelper);
 
-            using (Stream inputStream = thisType.Assembly.GetManifestResourceStream(thisType, resourceName))
+            using (Stream inputStream = thisType.Assembly.GetManifestResourceStream(resourceName))
             {
 
                 //

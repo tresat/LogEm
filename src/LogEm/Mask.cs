@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogEm
+namespace LogEm 
 {
     /// <summary>
     /// Collection of utility methods for masking values.

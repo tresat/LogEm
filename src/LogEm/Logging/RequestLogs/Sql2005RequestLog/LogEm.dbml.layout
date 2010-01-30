@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LogEm">
+  <DataContextMoniker Name="/LogEmDataContext" />
+  <nestedChildShapes>
+    <classShape Id="06f34720-5250-4347-937d-34ba3c537753" absoluteBounds="0.5, 0.5, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/LogEmDataContext/SQL2005Session" />
+      <nestedChildShapes>
+        <elementListCompartment Id="78d05953-9f18-46ba-87bd-c54f768cbc66" absoluteBounds="0.515, 0.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6afaacfb-528d-46df-9735-713294afc777" absoluteBounds="0.5, 2.875, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/LogEmDataContext/SQL2005ResourceRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2eae34a7-1c20-4d72-a604-b76ef7254c40" absoluteBounds="0.51500000000000012, 3.335, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 2.58223714192708); (1.5 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LogEmDataContext/SQL2005Session/Session_ResourceRequest" />
+      <nodes>
+        <classShapeMoniker Id="06f34720-5250-4347-937d-34ba3c537753" />
+        <classShapeMoniker Id="6afaacfb-528d-46df-9735-713294afc777" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

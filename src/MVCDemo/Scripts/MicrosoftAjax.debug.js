@@ -6,7 +6,7 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //-----------------------------------------------------------------------
 // MicrosoftAjax.js
-// Microsoft AJAX Framework.
+// Microsoft AJAX Framework. 
  
 Function.__typeName = 'Function';
 Function.__class = true;

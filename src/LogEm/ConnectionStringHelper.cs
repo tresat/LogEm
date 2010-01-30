@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 using IDictionary = System.Collections.IDictionary;
 
-namespace LogEm
+namespace LogEm.Logging
 {
     /// <summary>
     /// Helper class for resolving connection strings.

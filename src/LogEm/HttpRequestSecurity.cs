@@ -1,7 +1,7 @@
 using System;
 using System.Web;
 
-namespace LogEm
+namespace LogEm 
 {
     /// <summary>
     /// Security-related helper methods for web requests.
