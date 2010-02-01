@@ -9,6 +9,110 @@
       <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ASPSessionID" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="SessionBeginTimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ActiveXControls" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AOL" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="BackgroundSounds" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Beta" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Browser" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="BrowserInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CanCombineFormsInDeck" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanInitiateVoiceCall" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderAfterInputOrSelectElement" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderEmptySelects" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderInputAndSelectElementsTogether" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderMixedSelects" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderOneventAndPrevElementsTogether" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderPostBackCars" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRenderSetvarZeroWithMultiSelectionList" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanSendMail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Capabilities" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ClrVersion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Cookies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Crawler" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultSubmitButtonLimit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EcmaScriptVersion" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Frames" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HasBackButton" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HidesRightAlignedMultiselectScrollbars" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="InputType" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsColor" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsMobileDevice" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="JavaApplets" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="JScriptVersion" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="MajorVersion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaximumHrefLength" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaximumRenderedPageSize" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaximumSoftkeyLabelLength" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MinorVersion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileDeviceManufacturer" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="MobileDeviceModel" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="MSDomVersion" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="NumberOfSoftKeys" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Platform" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PreferredImageMime" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PreferredRenderingMime" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PreferredRenderingType" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PreferredRequestEncoding" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PreferredResponseEncoding" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="RendersBreakBeforeWmlSelectAndInput" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RendersBreaksAfterHtmlLists" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RendersBreaksAfterWmlAnchor" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RendersBreaksAfterWmlInput" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RendersWmlDoAcceptsInline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RendersWmlSelectsAsMenuCards" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiredMetaTagNameValue" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="RequiresAttributeColonSubstitution" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresContentTypeMetaTag" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresContentStateInSession" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresDBCSCharacter" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresHtmlAdaptiveErrorReporting" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresLeadingPageBreak" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresNoBreakInFormatting" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresOutputOptimization" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresPhoneNumbersAsPlainText" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresSpecialViewStateEncoding" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresUniqueFilePathSuffix" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresUniqueHtmlCheckboxNames" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresUniqueHtmlInputNames" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiresUrlEncodedPostfieldValues" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenBitDepth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenCharactersHeight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenCharactersWidth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenPixelsHeight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenPixelsWidth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsAccesskeyAttribute" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsBodyColor" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsBold" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsCacheControlMetaTag" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsCallback" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsCss" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsDivAlign" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsDivNoWrap" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsEmptyStringInCookieValue" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsFontColor" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsFontName" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsFontSize" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsImageSubmit" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsIModeSymbols" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsInputIStyle" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsInputMode" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsItalic" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsJPhoneMultiMediaAttributes" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsJPhoneSymbols" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsQueryStringInFormAction" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsRedirectWithCookie" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsSelectMultiple" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsUncheck" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupportsXmlHttp" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Tables" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="UseOptimizedCacheKey" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="VBScript" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Version" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="W3CDOMVersion" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Win16" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Win32" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Session_ResourceRequest" Member="Sql2005ResourceRequests" ThisKey="SessionID" OtherKey="fkSessionID" Type="Sql2005ResourceRequest" />
     </Type>
   </Table>
@@ -25,7 +129,7 @@
       <Column Name="AnonymousID" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="ApplicationPath" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="RequestEncoding" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="RequestType" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestType" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="RequestCookies" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="RequestFormValues" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="RequestHttpMethod" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />

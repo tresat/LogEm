@@ -49,6 +49,7 @@
     <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="ExtensionMethods\HttpCookieCollection.cs" />
+    <Compile Include="ExtensionMethods\IDictionary.cs" />
     <Compile Include="ExtensionMethods\NameValueCollection.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\LogEm.designer.cs">
       <AutoGen>True</AutoGen>

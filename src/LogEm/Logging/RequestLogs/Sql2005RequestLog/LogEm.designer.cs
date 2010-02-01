@@ -22,7 +22,6 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="E:\\PROJECTS\\LOGEM\\SAMPLEDBS\\LOGGING.MDF")]
 	public partial class LogEmDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -105,6 +104,214 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 		
 		private System.DateTime _SessionBeginTimeUtc;
 		
+		private bool _ActiveXControls;
+		
+		private bool _AOL;
+		
+		private bool _BackgroundSounds;
+		
+		private bool _Beta;
+		
+		private string _Browser;
+		
+		private string _BrowserInfo;
+		
+		private bool _CanCombineFormsInDeck;
+		
+		private bool _CanInitiateVoiceCall;
+		
+		private bool _CanRenderAfterInputOrSelectElement;
+		
+		private bool _CanRenderEmptySelects;
+		
+		private bool _CanRenderInputAndSelectElementsTogether;
+		
+		private bool _CanRenderMixedSelects;
+		
+		private bool _CanRenderOneventAndPrevElementsTogether;
+		
+		private bool _CanRenderPostBackCars;
+		
+		private bool _CanRenderSetvarZeroWithMultiSelectionList;
+		
+		private bool _CanSendMail;
+		
+		private string _Capabilities;
+		
+		private string _ClrVersion;
+		
+		private bool _Cookies;
+		
+		private bool _Crawler;
+		
+		private int _DefaultSubmitButtonLimit;
+		
+		private string _EcmaScriptVersion;
+		
+		private bool _Frames;
+		
+		private bool _HasBackButton;
+		
+		private bool _HidesRightAlignedMultiselectScrollbars;
+		
+		private string _Id;
+		
+		private string _InputType;
+		
+		private bool _IsColor;
+		
+		private bool _IsMobileDevice;
+		
+		private bool _JavaApplets;
+		
+		private string _JScriptVersion;
+		
+		private int _MajorVersion;
+		
+		private int _MaximumHrefLength;
+		
+		private int _MaximumRenderedPageSize;
+		
+		private int _MaximumSoftkeyLabelLength;
+		
+		private decimal _MinorVersion;
+		
+		private string _MobileDeviceManufacturer;
+		
+		private string _MobileDeviceModel;
+		
+		private string _MSDomVersion;
+		
+		private int _NumberOfSoftKeys;
+		
+		private string _Platform;
+		
+		private string _PreferredImageMime;
+		
+		private string _PreferredRenderingMime;
+		
+		private string _PreferredRenderingType;
+		
+		private string _PreferredRequestEncoding;
+		
+		private string _PreferredResponseEncoding;
+		
+		private bool _RendersBreakBeforeWmlSelectAndInput;
+		
+		private bool _RendersBreaksAfterHtmlLists;
+		
+		private bool _RendersBreaksAfterWmlAnchor;
+		
+		private bool _RendersBreaksAfterWmlInput;
+		
+		private bool _RendersWmlDoAcceptsInline;
+		
+		private bool _RendersWmlSelectsAsMenuCards;
+		
+		private string _RequiredMetaTagNameValue;
+		
+		private bool _RequiresAttributeColonSubstitution;
+		
+		private bool _RequiresContentTypeMetaTag;
+		
+		private bool _RequiresContentStateInSession;
+		
+		private bool _RequiresDBCSCharacter;
+		
+		private bool _RequiresHtmlAdaptiveErrorReporting;
+		
+		private bool _RequiresLeadingPageBreak;
+		
+		private bool _RequiresNoBreakInFormatting;
+		
+		private bool _RequiresOutputOptimization;
+		
+		private bool _RequiresPhoneNumbersAsPlainText;
+		
+		private bool _RequiresSpecialViewStateEncoding;
+		
+		private bool _RequiresUniqueFilePathSuffix;
+		
+		private bool _RequiresUniqueHtmlCheckboxNames;
+		
+		private bool _RequiresUniqueHtmlInputNames;
+		
+		private bool _RequiresUrlEncodedPostfieldValues;
+		
+		private int _ScreenBitDepth;
+		
+		private int _ScreenCharactersHeight;
+		
+		private int _ScreenCharactersWidth;
+		
+		private int _ScreenPixelsHeight;
+		
+		private int _ScreenPixelsWidth;
+		
+		private bool _SupportsAccesskeyAttribute;
+		
+		private bool _SupportsBodyColor;
+		
+		private bool _SupportsBold;
+		
+		private bool _SupportsCacheControlMetaTag;
+		
+		private bool _SupportsCallback;
+		
+		private bool _SupportsCss;
+		
+		private bool _SupportsDivAlign;
+		
+		private bool _SupportsDivNoWrap;
+		
+		private bool _SupportsEmptyStringInCookieValue;
+		
+		private bool _SupportsFontColor;
+		
+		private bool _SupportsFontName;
+		
+		private bool _SupportsFontSize;
+		
+		private bool _SupportsImageSubmit;
+		
+		private bool _SupportsIModeSymbols;
+		
+		private bool _SupportsInputIStyle;
+		
+		private bool _SupportsInputMode;
+		
+		private bool _SupportsItalic;
+		
+		private bool _SupportsJPhoneMultiMediaAttributes;
+		
+		private bool _SupportsJPhoneSymbols;
+		
+		private bool _SupportsQueryStringInFormAction;
+		
+		private bool _SupportsRedirectWithCookie;
+		
+		private bool _SupportsSelectMultiple;
+		
+		private bool _SupportsUncheck;
+		
+		private bool _SupportsXmlHttp;
+		
+		private bool _Tables;
+		
+		private string _Type;
+		
+		private bool _UseOptimizedCacheKey;
+		
+		private bool _VBScript;
+		
+		private string _Version;
+		
+		private string _W3CDOMVersion;
+		
+		private bool _Win16;
+		
+		private bool _Win32;
+		
 		private EntitySet<Sql2005ResourceRequest> _Sql2005ResourceRequests;
 		
     #region Extensibility Method Definitions
@@ -125,6 +332,214 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
     partial void OnASPSessionIDChanged();
     partial void OnSessionBeginTimeUtcChanging(System.DateTime value);
     partial void OnSessionBeginTimeUtcChanged();
+    partial void OnActiveXControlsChanging(bool value);
+    partial void OnActiveXControlsChanged();
+    partial void OnAOLChanging(bool value);
+    partial void OnAOLChanged();
+    partial void OnBackgroundSoundsChanging(bool value);
+    partial void OnBackgroundSoundsChanged();
+    partial void OnBetaChanging(bool value);
+    partial void OnBetaChanged();
+    partial void OnBrowserChanging(string value);
+    partial void OnBrowserChanged();
+    partial void OnBrowserInfoChanging(string value);
+    partial void OnBrowserInfoChanged();
+    partial void OnCanCombineFormsInDeckChanging(bool value);
+    partial void OnCanCombineFormsInDeckChanged();
+    partial void OnCanInitiateVoiceCallChanging(bool value);
+    partial void OnCanInitiateVoiceCallChanged();
+    partial void OnCanRenderAfterInputOrSelectElementChanging(bool value);
+    partial void OnCanRenderAfterInputOrSelectElementChanged();
+    partial void OnCanRenderEmptySelectsChanging(bool value);
+    partial void OnCanRenderEmptySelectsChanged();
+    partial void OnCanRenderInputAndSelectElementsTogetherChanging(bool value);
+    partial void OnCanRenderInputAndSelectElementsTogetherChanged();
+    partial void OnCanRenderMixedSelectsChanging(bool value);
+    partial void OnCanRenderMixedSelectsChanged();
+    partial void OnCanRenderOneventAndPrevElementsTogetherChanging(bool value);
+    partial void OnCanRenderOneventAndPrevElementsTogetherChanged();
+    partial void OnCanRenderPostBackCarsChanging(bool value);
+    partial void OnCanRenderPostBackCarsChanged();
+    partial void OnCanRenderSetvarZeroWithMultiSelectionListChanging(bool value);
+    partial void OnCanRenderSetvarZeroWithMultiSelectionListChanged();
+    partial void OnCanSendMailChanging(bool value);
+    partial void OnCanSendMailChanged();
+    partial void OnCapabilitiesChanging(string value);
+    partial void OnCapabilitiesChanged();
+    partial void OnClrVersionChanging(string value);
+    partial void OnClrVersionChanged();
+    partial void OnCookiesChanging(bool value);
+    partial void OnCookiesChanged();
+    partial void OnCrawlerChanging(bool value);
+    partial void OnCrawlerChanged();
+    partial void OnDefaultSubmitButtonLimitChanging(int value);
+    partial void OnDefaultSubmitButtonLimitChanged();
+    partial void OnEcmaScriptVersionChanging(string value);
+    partial void OnEcmaScriptVersionChanged();
+    partial void OnFramesChanging(bool value);
+    partial void OnFramesChanged();
+    partial void OnHasBackButtonChanging(bool value);
+    partial void OnHasBackButtonChanged();
+    partial void OnHidesRightAlignedMultiselectScrollbarsChanging(bool value);
+    partial void OnHidesRightAlignedMultiselectScrollbarsChanged();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnInputTypeChanging(string value);
+    partial void OnInputTypeChanged();
+    partial void OnIsColorChanging(bool value);
+    partial void OnIsColorChanged();
+    partial void OnIsMobileDeviceChanging(bool value);
+    partial void OnIsMobileDeviceChanged();
+    partial void OnJavaAppletsChanging(bool value);
+    partial void OnJavaAppletsChanged();
+    partial void OnJScriptVersionChanging(string value);
+    partial void OnJScriptVersionChanged();
+    partial void OnMajorVersionChanging(int value);
+    partial void OnMajorVersionChanged();
+    partial void OnMaximumHrefLengthChanging(int value);
+    partial void OnMaximumHrefLengthChanged();
+    partial void OnMaximumRenderedPageSizeChanging(int value);
+    partial void OnMaximumRenderedPageSizeChanged();
+    partial void OnMaximumSoftkeyLabelLengthChanging(int value);
+    partial void OnMaximumSoftkeyLabelLengthChanged();
+    partial void OnMinorVersionChanging(decimal value);
+    partial void OnMinorVersionChanged();
+    partial void OnMobileDeviceManufacturerChanging(string value);
+    partial void OnMobileDeviceManufacturerChanged();
+    partial void OnMobileDeviceModelChanging(string value);
+    partial void OnMobileDeviceModelChanged();
+    partial void OnMSDomVersionChanging(string value);
+    partial void OnMSDomVersionChanged();
+    partial void OnNumberOfSoftKeysChanging(int value);
+    partial void OnNumberOfSoftKeysChanged();
+    partial void OnPlatformChanging(string value);
+    partial void OnPlatformChanged();
+    partial void OnPreferredImageMimeChanging(string value);
+    partial void OnPreferredImageMimeChanged();
+    partial void OnPreferredRenderingMimeChanging(string value);
+    partial void OnPreferredRenderingMimeChanged();
+    partial void OnPreferredRenderingTypeChanging(string value);
+    partial void OnPreferredRenderingTypeChanged();
+    partial void OnPreferredRequestEncodingChanging(string value);
+    partial void OnPreferredRequestEncodingChanged();
+    partial void OnPreferredResponseEncodingChanging(string value);
+    partial void OnPreferredResponseEncodingChanged();
+    partial void OnRendersBreakBeforeWmlSelectAndInputChanging(bool value);
+    partial void OnRendersBreakBeforeWmlSelectAndInputChanged();
+    partial void OnRendersBreaksAfterHtmlListsChanging(bool value);
+    partial void OnRendersBreaksAfterHtmlListsChanged();
+    partial void OnRendersBreaksAfterWmlAnchorChanging(bool value);
+    partial void OnRendersBreaksAfterWmlAnchorChanged();
+    partial void OnRendersBreaksAfterWmlInputChanging(bool value);
+    partial void OnRendersBreaksAfterWmlInputChanged();
+    partial void OnRendersWmlDoAcceptsInlineChanging(bool value);
+    partial void OnRendersWmlDoAcceptsInlineChanged();
+    partial void OnRendersWmlSelectsAsMenuCardsChanging(bool value);
+    partial void OnRendersWmlSelectsAsMenuCardsChanged();
+    partial void OnRequiredMetaTagNameValueChanging(string value);
+    partial void OnRequiredMetaTagNameValueChanged();
+    partial void OnRequiresAttributeColonSubstitutionChanging(bool value);
+    partial void OnRequiresAttributeColonSubstitutionChanged();
+    partial void OnRequiresContentTypeMetaTagChanging(bool value);
+    partial void OnRequiresContentTypeMetaTagChanged();
+    partial void OnRequiresContentStateInSessionChanging(bool value);
+    partial void OnRequiresContentStateInSessionChanged();
+    partial void OnRequiresDBCSCharacterChanging(bool value);
+    partial void OnRequiresDBCSCharacterChanged();
+    partial void OnRequiresHtmlAdaptiveErrorReportingChanging(bool value);
+    partial void OnRequiresHtmlAdaptiveErrorReportingChanged();
+    partial void OnRequiresLeadingPageBreakChanging(bool value);
+    partial void OnRequiresLeadingPageBreakChanged();
+    partial void OnRequiresNoBreakInFormattingChanging(bool value);
+    partial void OnRequiresNoBreakInFormattingChanged();
+    partial void OnRequiresOutputOptimizationChanging(bool value);
+    partial void OnRequiresOutputOptimizationChanged();
+    partial void OnRequiresPhoneNumbersAsPlainTextChanging(bool value);
+    partial void OnRequiresPhoneNumbersAsPlainTextChanged();
+    partial void OnRequiresSpecialViewStateEncodingChanging(bool value);
+    partial void OnRequiresSpecialViewStateEncodingChanged();
+    partial void OnRequiresUniqueFilePathSuffixChanging(bool value);
+    partial void OnRequiresUniqueFilePathSuffixChanged();
+    partial void OnRequiresUniqueHtmlCheckboxNamesChanging(bool value);
+    partial void OnRequiresUniqueHtmlCheckboxNamesChanged();
+    partial void OnRequiresUniqueHtmlInputNamesChanging(bool value);
+    partial void OnRequiresUniqueHtmlInputNamesChanged();
+    partial void OnRequiresUrlEncodedPostfieldValuesChanging(bool value);
+    partial void OnRequiresUrlEncodedPostfieldValuesChanged();
+    partial void OnScreenBitDepthChanging(int value);
+    partial void OnScreenBitDepthChanged();
+    partial void OnScreenCharactersHeightChanging(int value);
+    partial void OnScreenCharactersHeightChanged();
+    partial void OnScreenCharactersWidthChanging(int value);
+    partial void OnScreenCharactersWidthChanged();
+    partial void OnScreenPixelsHeightChanging(int value);
+    partial void OnScreenPixelsHeightChanged();
+    partial void OnScreenPixelsWidthChanging(int value);
+    partial void OnScreenPixelsWidthChanged();
+    partial void OnSupportsAccesskeyAttributeChanging(bool value);
+    partial void OnSupportsAccesskeyAttributeChanged();
+    partial void OnSupportsBodyColorChanging(bool value);
+    partial void OnSupportsBodyColorChanged();
+    partial void OnSupportsBoldChanging(bool value);
+    partial void OnSupportsBoldChanged();
+    partial void OnSupportsCacheControlMetaTagChanging(bool value);
+    partial void OnSupportsCacheControlMetaTagChanged();
+    partial void OnSupportsCallbackChanging(bool value);
+    partial void OnSupportsCallbackChanged();
+    partial void OnSupportsCssChanging(bool value);
+    partial void OnSupportsCssChanged();
+    partial void OnSupportsDivAlignChanging(bool value);
+    partial void OnSupportsDivAlignChanged();
+    partial void OnSupportsDivNoWrapChanging(bool value);
+    partial void OnSupportsDivNoWrapChanged();
+    partial void OnSupportsEmptyStringInCookieValueChanging(bool value);
+    partial void OnSupportsEmptyStringInCookieValueChanged();
+    partial void OnSupportsFontColorChanging(bool value);
+    partial void OnSupportsFontColorChanged();
+    partial void OnSupportsFontNameChanging(bool value);
+    partial void OnSupportsFontNameChanged();
+    partial void OnSupportsFontSizeChanging(bool value);
+    partial void OnSupportsFontSizeChanged();
+    partial void OnSupportsImageSubmitChanging(bool value);
+    partial void OnSupportsImageSubmitChanged();
+    partial void OnSupportsIModeSymbolsChanging(bool value);
+    partial void OnSupportsIModeSymbolsChanged();
+    partial void OnSupportsInputIStyleChanging(bool value);
+    partial void OnSupportsInputIStyleChanged();
+    partial void OnSupportsInputModeChanging(bool value);
+    partial void OnSupportsInputModeChanged();
+    partial void OnSupportsItalicChanging(bool value);
+    partial void OnSupportsItalicChanged();
+    partial void OnSupportsJPhoneMultiMediaAttributesChanging(bool value);
+    partial void OnSupportsJPhoneMultiMediaAttributesChanged();
+    partial void OnSupportsJPhoneSymbolsChanging(bool value);
+    partial void OnSupportsJPhoneSymbolsChanged();
+    partial void OnSupportsQueryStringInFormActionChanging(bool value);
+    partial void OnSupportsQueryStringInFormActionChanged();
+    partial void OnSupportsRedirectWithCookieChanging(bool value);
+    partial void OnSupportsRedirectWithCookieChanged();
+    partial void OnSupportsSelectMultipleChanging(bool value);
+    partial void OnSupportsSelectMultipleChanged();
+    partial void OnSupportsUncheckChanging(bool value);
+    partial void OnSupportsUncheckChanged();
+    partial void OnSupportsXmlHttpChanging(bool value);
+    partial void OnSupportsXmlHttpChanged();
+    partial void OnTablesChanging(bool value);
+    partial void OnTablesChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnUseOptimizedCacheKeyChanging(bool value);
+    partial void OnUseOptimizedCacheKeyChanged();
+    partial void OnVBScriptChanging(bool value);
+    partial void OnVBScriptChanged();
+    partial void OnVersionChanging(string value);
+    partial void OnVersionChanged();
+    partial void OnW3CDOMVersionChanging(string value);
+    partial void OnW3CDOMVersionChanged();
+    partial void OnWin16Changing(bool value);
+    partial void OnWin16Changed();
+    partial void OnWin32Changing(bool value);
+    partial void OnWin32Changed();
     #endregion
 		
 		public Sql2005Session()
@@ -269,6 +684,2086 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 					this._SessionBeginTimeUtc = value;
 					this.SendPropertyChanged("SessionBeginTimeUtc");
 					this.OnSessionBeginTimeUtcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActiveXControls", DbType="Bit NOT NULL")]
+		public bool ActiveXControls
+		{
+			get
+			{
+				return this._ActiveXControls;
+			}
+			set
+			{
+				if ((this._ActiveXControls != value))
+				{
+					this.OnActiveXControlsChanging(value);
+					this.SendPropertyChanging();
+					this._ActiveXControls = value;
+					this.SendPropertyChanged("ActiveXControls");
+					this.OnActiveXControlsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AOL", DbType="Bit NOT NULL")]
+		public bool AOL
+		{
+			get
+			{
+				return this._AOL;
+			}
+			set
+			{
+				if ((this._AOL != value))
+				{
+					this.OnAOLChanging(value);
+					this.SendPropertyChanging();
+					this._AOL = value;
+					this.SendPropertyChanged("AOL");
+					this.OnAOLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackgroundSounds", DbType="Bit NOT NULL")]
+		public bool BackgroundSounds
+		{
+			get
+			{
+				return this._BackgroundSounds;
+			}
+			set
+			{
+				if ((this._BackgroundSounds != value))
+				{
+					this.OnBackgroundSoundsChanging(value);
+					this.SendPropertyChanging();
+					this._BackgroundSounds = value;
+					this.SendPropertyChanged("BackgroundSounds");
+					this.OnBackgroundSoundsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Beta", DbType="Bit NOT NULL")]
+		public bool Beta
+		{
+			get
+			{
+				return this._Beta;
+			}
+			set
+			{
+				if ((this._Beta != value))
+				{
+					this.OnBetaChanging(value);
+					this.SendPropertyChanging();
+					this._Beta = value;
+					this.SendPropertyChanged("Beta");
+					this.OnBetaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Browser", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string Browser
+		{
+			get
+			{
+				return this._Browser;
+			}
+			set
+			{
+				if ((this._Browser != value))
+				{
+					this.OnBrowserChanging(value);
+					this.SendPropertyChanging();
+					this._Browser = value;
+					this.SendPropertyChanged("Browser");
+					this.OnBrowserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrowserInfo", DbType="NVarChar(MAX)")]
+		public string BrowserInfo
+		{
+			get
+			{
+				return this._BrowserInfo;
+			}
+			set
+			{
+				if ((this._BrowserInfo != value))
+				{
+					this.OnBrowserInfoChanging(value);
+					this.SendPropertyChanging();
+					this._BrowserInfo = value;
+					this.SendPropertyChanged("BrowserInfo");
+					this.OnBrowserInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanCombineFormsInDeck", DbType="Bit NOT NULL")]
+		public bool CanCombineFormsInDeck
+		{
+			get
+			{
+				return this._CanCombineFormsInDeck;
+			}
+			set
+			{
+				if ((this._CanCombineFormsInDeck != value))
+				{
+					this.OnCanCombineFormsInDeckChanging(value);
+					this.SendPropertyChanging();
+					this._CanCombineFormsInDeck = value;
+					this.SendPropertyChanged("CanCombineFormsInDeck");
+					this.OnCanCombineFormsInDeckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanInitiateVoiceCall", DbType="Bit NOT NULL")]
+		public bool CanInitiateVoiceCall
+		{
+			get
+			{
+				return this._CanInitiateVoiceCall;
+			}
+			set
+			{
+				if ((this._CanInitiateVoiceCall != value))
+				{
+					this.OnCanInitiateVoiceCallChanging(value);
+					this.SendPropertyChanging();
+					this._CanInitiateVoiceCall = value;
+					this.SendPropertyChanged("CanInitiateVoiceCall");
+					this.OnCanInitiateVoiceCallChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderAfterInputOrSelectElement", DbType="Bit NOT NULL")]
+		public bool CanRenderAfterInputOrSelectElement
+		{
+			get
+			{
+				return this._CanRenderAfterInputOrSelectElement;
+			}
+			set
+			{
+				if ((this._CanRenderAfterInputOrSelectElement != value))
+				{
+					this.OnCanRenderAfterInputOrSelectElementChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderAfterInputOrSelectElement = value;
+					this.SendPropertyChanged("CanRenderAfterInputOrSelectElement");
+					this.OnCanRenderAfterInputOrSelectElementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderEmptySelects", DbType="Bit NOT NULL")]
+		public bool CanRenderEmptySelects
+		{
+			get
+			{
+				return this._CanRenderEmptySelects;
+			}
+			set
+			{
+				if ((this._CanRenderEmptySelects != value))
+				{
+					this.OnCanRenderEmptySelectsChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderEmptySelects = value;
+					this.SendPropertyChanged("CanRenderEmptySelects");
+					this.OnCanRenderEmptySelectsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderInputAndSelectElementsTogether", DbType="Bit NOT NULL")]
+		public bool CanRenderInputAndSelectElementsTogether
+		{
+			get
+			{
+				return this._CanRenderInputAndSelectElementsTogether;
+			}
+			set
+			{
+				if ((this._CanRenderInputAndSelectElementsTogether != value))
+				{
+					this.OnCanRenderInputAndSelectElementsTogetherChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderInputAndSelectElementsTogether = value;
+					this.SendPropertyChanged("CanRenderInputAndSelectElementsTogether");
+					this.OnCanRenderInputAndSelectElementsTogetherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderMixedSelects", DbType="Bit NOT NULL")]
+		public bool CanRenderMixedSelects
+		{
+			get
+			{
+				return this._CanRenderMixedSelects;
+			}
+			set
+			{
+				if ((this._CanRenderMixedSelects != value))
+				{
+					this.OnCanRenderMixedSelectsChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderMixedSelects = value;
+					this.SendPropertyChanged("CanRenderMixedSelects");
+					this.OnCanRenderMixedSelectsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderOneventAndPrevElementsTogether", DbType="Bit NOT NULL")]
+		public bool CanRenderOneventAndPrevElementsTogether
+		{
+			get
+			{
+				return this._CanRenderOneventAndPrevElementsTogether;
+			}
+			set
+			{
+				if ((this._CanRenderOneventAndPrevElementsTogether != value))
+				{
+					this.OnCanRenderOneventAndPrevElementsTogetherChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderOneventAndPrevElementsTogether = value;
+					this.SendPropertyChanged("CanRenderOneventAndPrevElementsTogether");
+					this.OnCanRenderOneventAndPrevElementsTogetherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderPostBackCars", DbType="Bit NOT NULL")]
+		public bool CanRenderPostBackCars
+		{
+			get
+			{
+				return this._CanRenderPostBackCars;
+			}
+			set
+			{
+				if ((this._CanRenderPostBackCars != value))
+				{
+					this.OnCanRenderPostBackCarsChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderPostBackCars = value;
+					this.SendPropertyChanged("CanRenderPostBackCars");
+					this.OnCanRenderPostBackCarsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanRenderSetvarZeroWithMultiSelectionList", DbType="Bit NOT NULL")]
+		public bool CanRenderSetvarZeroWithMultiSelectionList
+		{
+			get
+			{
+				return this._CanRenderSetvarZeroWithMultiSelectionList;
+			}
+			set
+			{
+				if ((this._CanRenderSetvarZeroWithMultiSelectionList != value))
+				{
+					this.OnCanRenderSetvarZeroWithMultiSelectionListChanging(value);
+					this.SendPropertyChanging();
+					this._CanRenderSetvarZeroWithMultiSelectionList = value;
+					this.SendPropertyChanged("CanRenderSetvarZeroWithMultiSelectionList");
+					this.OnCanRenderSetvarZeroWithMultiSelectionListChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanSendMail", DbType="Bit NOT NULL")]
+		public bool CanSendMail
+		{
+			get
+			{
+				return this._CanSendMail;
+			}
+			set
+			{
+				if ((this._CanSendMail != value))
+				{
+					this.OnCanSendMailChanging(value);
+					this.SendPropertyChanging();
+					this._CanSendMail = value;
+					this.SendPropertyChanged("CanSendMail");
+					this.OnCanSendMailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capabilities", DbType="NVarChar(MAX)")]
+		public string Capabilities
+		{
+			get
+			{
+				return this._Capabilities;
+			}
+			set
+			{
+				if ((this._Capabilities != value))
+				{
+					this.OnCapabilitiesChanging(value);
+					this.SendPropertyChanging();
+					this._Capabilities = value;
+					this.SendPropertyChanged("Capabilities");
+					this.OnCapabilitiesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClrVersion", DbType="NVarChar(100)")]
+		public string ClrVersion
+		{
+			get
+			{
+				return this._ClrVersion;
+			}
+			set
+			{
+				if ((this._ClrVersion != value))
+				{
+					this.OnClrVersionChanging(value);
+					this.SendPropertyChanging();
+					this._ClrVersion = value;
+					this.SendPropertyChanged("ClrVersion");
+					this.OnClrVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cookies", DbType="Bit NOT NULL")]
+		public bool Cookies
+		{
+			get
+			{
+				return this._Cookies;
+			}
+			set
+			{
+				if ((this._Cookies != value))
+				{
+					this.OnCookiesChanging(value);
+					this.SendPropertyChanging();
+					this._Cookies = value;
+					this.SendPropertyChanged("Cookies");
+					this.OnCookiesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Crawler", DbType="Bit NOT NULL")]
+		public bool Crawler
+		{
+			get
+			{
+				return this._Crawler;
+			}
+			set
+			{
+				if ((this._Crawler != value))
+				{
+					this.OnCrawlerChanging(value);
+					this.SendPropertyChanging();
+					this._Crawler = value;
+					this.SendPropertyChanged("Crawler");
+					this.OnCrawlerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DefaultSubmitButtonLimit", DbType="Int NOT NULL")]
+		public int DefaultSubmitButtonLimit
+		{
+			get
+			{
+				return this._DefaultSubmitButtonLimit;
+			}
+			set
+			{
+				if ((this._DefaultSubmitButtonLimit != value))
+				{
+					this.OnDefaultSubmitButtonLimitChanging(value);
+					this.SendPropertyChanging();
+					this._DefaultSubmitButtonLimit = value;
+					this.SendPropertyChanged("DefaultSubmitButtonLimit");
+					this.OnDefaultSubmitButtonLimitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EcmaScriptVersion", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string EcmaScriptVersion
+		{
+			get
+			{
+				return this._EcmaScriptVersion;
+			}
+			set
+			{
+				if ((this._EcmaScriptVersion != value))
+				{
+					this.OnEcmaScriptVersionChanging(value);
+					this.SendPropertyChanging();
+					this._EcmaScriptVersion = value;
+					this.SendPropertyChanged("EcmaScriptVersion");
+					this.OnEcmaScriptVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Frames", DbType="Bit NOT NULL")]
+		public bool Frames
+		{
+			get
+			{
+				return this._Frames;
+			}
+			set
+			{
+				if ((this._Frames != value))
+				{
+					this.OnFramesChanging(value);
+					this.SendPropertyChanging();
+					this._Frames = value;
+					this.SendPropertyChanged("Frames");
+					this.OnFramesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasBackButton", DbType="Bit NOT NULL")]
+		public bool HasBackButton
+		{
+			get
+			{
+				return this._HasBackButton;
+			}
+			set
+			{
+				if ((this._HasBackButton != value))
+				{
+					this.OnHasBackButtonChanging(value);
+					this.SendPropertyChanging();
+					this._HasBackButton = value;
+					this.SendPropertyChanged("HasBackButton");
+					this.OnHasBackButtonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HidesRightAlignedMultiselectScrollbars", DbType="Bit NOT NULL")]
+		public bool HidesRightAlignedMultiselectScrollbars
+		{
+			get
+			{
+				return this._HidesRightAlignedMultiselectScrollbars;
+			}
+			set
+			{
+				if ((this._HidesRightAlignedMultiselectScrollbars != value))
+				{
+					this.OnHidesRightAlignedMultiselectScrollbarsChanging(value);
+					this.SendPropertyChanging();
+					this._HidesRightAlignedMultiselectScrollbars = value;
+					this.SendPropertyChanged("HidesRightAlignedMultiselectScrollbars");
+					this.OnHidesRightAlignedMultiselectScrollbarsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(100)")]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InputType", DbType="NVarChar(100)")]
+		public string InputType
+		{
+			get
+			{
+				return this._InputType;
+			}
+			set
+			{
+				if ((this._InputType != value))
+				{
+					this.OnInputTypeChanging(value);
+					this.SendPropertyChanging();
+					this._InputType = value;
+					this.SendPropertyChanged("InputType");
+					this.OnInputTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsColor", DbType="Bit NOT NULL")]
+		public bool IsColor
+		{
+			get
+			{
+				return this._IsColor;
+			}
+			set
+			{
+				if ((this._IsColor != value))
+				{
+					this.OnIsColorChanging(value);
+					this.SendPropertyChanging();
+					this._IsColor = value;
+					this.SendPropertyChanged("IsColor");
+					this.OnIsColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsMobileDevice", DbType="Bit NOT NULL")]
+		public bool IsMobileDevice
+		{
+			get
+			{
+				return this._IsMobileDevice;
+			}
+			set
+			{
+				if ((this._IsMobileDevice != value))
+				{
+					this.OnIsMobileDeviceChanging(value);
+					this.SendPropertyChanging();
+					this._IsMobileDevice = value;
+					this.SendPropertyChanged("IsMobileDevice");
+					this.OnIsMobileDeviceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JavaApplets", DbType="Bit NOT NULL")]
+		public bool JavaApplets
+		{
+			get
+			{
+				return this._JavaApplets;
+			}
+			set
+			{
+				if ((this._JavaApplets != value))
+				{
+					this.OnJavaAppletsChanging(value);
+					this.SendPropertyChanging();
+					this._JavaApplets = value;
+					this.SendPropertyChanged("JavaApplets");
+					this.OnJavaAppletsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JScriptVersion", DbType="NVarChar(256)")]
+		public string JScriptVersion
+		{
+			get
+			{
+				return this._JScriptVersion;
+			}
+			set
+			{
+				if ((this._JScriptVersion != value))
+				{
+					this.OnJScriptVersionChanging(value);
+					this.SendPropertyChanging();
+					this._JScriptVersion = value;
+					this.SendPropertyChanged("JScriptVersion");
+					this.OnJScriptVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MajorVersion", DbType="Int NOT NULL")]
+		public int MajorVersion
+		{
+			get
+			{
+				return this._MajorVersion;
+			}
+			set
+			{
+				if ((this._MajorVersion != value))
+				{
+					this.OnMajorVersionChanging(value);
+					this.SendPropertyChanging();
+					this._MajorVersion = value;
+					this.SendPropertyChanged("MajorVersion");
+					this.OnMajorVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaximumHrefLength", DbType="Int NOT NULL")]
+		public int MaximumHrefLength
+		{
+			get
+			{
+				return this._MaximumHrefLength;
+			}
+			set
+			{
+				if ((this._MaximumHrefLength != value))
+				{
+					this.OnMaximumHrefLengthChanging(value);
+					this.SendPropertyChanging();
+					this._MaximumHrefLength = value;
+					this.SendPropertyChanged("MaximumHrefLength");
+					this.OnMaximumHrefLengthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaximumRenderedPageSize", DbType="Int NOT NULL")]
+		public int MaximumRenderedPageSize
+		{
+			get
+			{
+				return this._MaximumRenderedPageSize;
+			}
+			set
+			{
+				if ((this._MaximumRenderedPageSize != value))
+				{
+					this.OnMaximumRenderedPageSizeChanging(value);
+					this.SendPropertyChanging();
+					this._MaximumRenderedPageSize = value;
+					this.SendPropertyChanged("MaximumRenderedPageSize");
+					this.OnMaximumRenderedPageSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaximumSoftkeyLabelLength", DbType="Int NOT NULL")]
+		public int MaximumSoftkeyLabelLength
+		{
+			get
+			{
+				return this._MaximumSoftkeyLabelLength;
+			}
+			set
+			{
+				if ((this._MaximumSoftkeyLabelLength != value))
+				{
+					this.OnMaximumSoftkeyLabelLengthChanging(value);
+					this.SendPropertyChanging();
+					this._MaximumSoftkeyLabelLength = value;
+					this.SendPropertyChanged("MaximumSoftkeyLabelLength");
+					this.OnMaximumSoftkeyLabelLengthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinorVersion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal MinorVersion
+		{
+			get
+			{
+				return this._MinorVersion;
+			}
+			set
+			{
+				if ((this._MinorVersion != value))
+				{
+					this.OnMinorVersionChanging(value);
+					this.SendPropertyChanging();
+					this._MinorVersion = value;
+					this.SendPropertyChanged("MinorVersion");
+					this.OnMinorVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileDeviceManufacturer", DbType="NVarChar(256)")]
+		public string MobileDeviceManufacturer
+		{
+			get
+			{
+				return this._MobileDeviceManufacturer;
+			}
+			set
+			{
+				if ((this._MobileDeviceManufacturer != value))
+				{
+					this.OnMobileDeviceManufacturerChanging(value);
+					this.SendPropertyChanging();
+					this._MobileDeviceManufacturer = value;
+					this.SendPropertyChanged("MobileDeviceManufacturer");
+					this.OnMobileDeviceManufacturerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileDeviceModel", DbType="NVarChar(256)")]
+		public string MobileDeviceModel
+		{
+			get
+			{
+				return this._MobileDeviceModel;
+			}
+			set
+			{
+				if ((this._MobileDeviceModel != value))
+				{
+					this.OnMobileDeviceModelChanging(value);
+					this.SendPropertyChanging();
+					this._MobileDeviceModel = value;
+					this.SendPropertyChanged("MobileDeviceModel");
+					this.OnMobileDeviceModelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSDomVersion", DbType="NVarChar(256)")]
+		public string MSDomVersion
+		{
+			get
+			{
+				return this._MSDomVersion;
+			}
+			set
+			{
+				if ((this._MSDomVersion != value))
+				{
+					this.OnMSDomVersionChanging(value);
+					this.SendPropertyChanging();
+					this._MSDomVersion = value;
+					this.SendPropertyChanged("MSDomVersion");
+					this.OnMSDomVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfSoftKeys", DbType="Int NOT NULL")]
+		public int NumberOfSoftKeys
+		{
+			get
+			{
+				return this._NumberOfSoftKeys;
+			}
+			set
+			{
+				if ((this._NumberOfSoftKeys != value))
+				{
+					this.OnNumberOfSoftKeysChanging(value);
+					this.SendPropertyChanging();
+					this._NumberOfSoftKeys = value;
+					this.SendPropertyChanged("NumberOfSoftKeys");
+					this.OnNumberOfSoftKeysChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Platform", DbType="NVarChar(256)")]
+		public string Platform
+		{
+			get
+			{
+				return this._Platform;
+			}
+			set
+			{
+				if ((this._Platform != value))
+				{
+					this.OnPlatformChanging(value);
+					this.SendPropertyChanging();
+					this._Platform = value;
+					this.SendPropertyChanged("Platform");
+					this.OnPlatformChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PreferredImageMime", DbType="NVarChar(256)")]
+		public string PreferredImageMime
+		{
+			get
+			{
+				return this._PreferredImageMime;
+			}
+			set
+			{
+				if ((this._PreferredImageMime != value))
+				{
+					this.OnPreferredImageMimeChanging(value);
+					this.SendPropertyChanging();
+					this._PreferredImageMime = value;
+					this.SendPropertyChanged("PreferredImageMime");
+					this.OnPreferredImageMimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PreferredRenderingMime", DbType="NVarChar(256)")]
+		public string PreferredRenderingMime
+		{
+			get
+			{
+				return this._PreferredRenderingMime;
+			}
+			set
+			{
+				if ((this._PreferredRenderingMime != value))
+				{
+					this.OnPreferredRenderingMimeChanging(value);
+					this.SendPropertyChanging();
+					this._PreferredRenderingMime = value;
+					this.SendPropertyChanged("PreferredRenderingMime");
+					this.OnPreferredRenderingMimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PreferredRenderingType", DbType="NVarChar(256)")]
+		public string PreferredRenderingType
+		{
+			get
+			{
+				return this._PreferredRenderingType;
+			}
+			set
+			{
+				if ((this._PreferredRenderingType != value))
+				{
+					this.OnPreferredRenderingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._PreferredRenderingType = value;
+					this.SendPropertyChanged("PreferredRenderingType");
+					this.OnPreferredRenderingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PreferredRequestEncoding", DbType="NVarChar(256)")]
+		public string PreferredRequestEncoding
+		{
+			get
+			{
+				return this._PreferredRequestEncoding;
+			}
+			set
+			{
+				if ((this._PreferredRequestEncoding != value))
+				{
+					this.OnPreferredRequestEncodingChanging(value);
+					this.SendPropertyChanging();
+					this._PreferredRequestEncoding = value;
+					this.SendPropertyChanged("PreferredRequestEncoding");
+					this.OnPreferredRequestEncodingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PreferredResponseEncoding", DbType="NVarChar(256)")]
+		public string PreferredResponseEncoding
+		{
+			get
+			{
+				return this._PreferredResponseEncoding;
+			}
+			set
+			{
+				if ((this._PreferredResponseEncoding != value))
+				{
+					this.OnPreferredResponseEncodingChanging(value);
+					this.SendPropertyChanging();
+					this._PreferredResponseEncoding = value;
+					this.SendPropertyChanged("PreferredResponseEncoding");
+					this.OnPreferredResponseEncodingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RendersBreakBeforeWmlSelectAndInput", DbType="Bit NOT NULL")]
+		public bool RendersBreakBeforeWmlSelectAndInput
+		{
+			get
+			{
+				return this._RendersBreakBeforeWmlSelectAndInput;
+			}
+			set
+			{
+				if ((this._RendersBreakBeforeWmlSelectAndInput != value))
+				{
+					this.OnRendersBreakBeforeWmlSelectAndInputChanging(value);
+					this.SendPropertyChanging();
+					this._RendersBreakBeforeWmlSelectAndInput = value;
+					this.SendPropertyChanged("RendersBreakBeforeWmlSelectAndInput");
+					this.OnRendersBreakBeforeWmlSelectAndInputChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RendersBreaksAfterHtmlLists", DbType="Bit NOT NULL")]
+		public bool RendersBreaksAfterHtmlLists
+		{
+			get
+			{
+				return this._RendersBreaksAfterHtmlLists;
+			}
+			set
+			{
+				if ((this._RendersBreaksAfterHtmlLists != value))
+				{
+					this.OnRendersBreaksAfterHtmlListsChanging(value);
+					this.SendPropertyChanging();
+					this._RendersBreaksAfterHtmlLists = value;
+					this.SendPropertyChanged("RendersBreaksAfterHtmlLists");
+					this.OnRendersBreaksAfterHtmlListsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RendersBreaksAfterWmlAnchor", DbType="Bit NOT NULL")]
+		public bool RendersBreaksAfterWmlAnchor
+		{
+			get
+			{
+				return this._RendersBreaksAfterWmlAnchor;
+			}
+			set
+			{
+				if ((this._RendersBreaksAfterWmlAnchor != value))
+				{
+					this.OnRendersBreaksAfterWmlAnchorChanging(value);
+					this.SendPropertyChanging();
+					this._RendersBreaksAfterWmlAnchor = value;
+					this.SendPropertyChanged("RendersBreaksAfterWmlAnchor");
+					this.OnRendersBreaksAfterWmlAnchorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RendersBreaksAfterWmlInput", DbType="Bit NOT NULL")]
+		public bool RendersBreaksAfterWmlInput
+		{
+			get
+			{
+				return this._RendersBreaksAfterWmlInput;
+			}
+			set
+			{
+				if ((this._RendersBreaksAfterWmlInput != value))
+				{
+					this.OnRendersBreaksAfterWmlInputChanging(value);
+					this.SendPropertyChanging();
+					this._RendersBreaksAfterWmlInput = value;
+					this.SendPropertyChanged("RendersBreaksAfterWmlInput");
+					this.OnRendersBreaksAfterWmlInputChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RendersWmlDoAcceptsInline", DbType="Bit NOT NULL")]
+		public bool RendersWmlDoAcceptsInline
+		{
+			get
+			{
+				return this._RendersWmlDoAcceptsInline;
+			}
+			set
+			{
+				if ((this._RendersWmlDoAcceptsInline != value))
+				{
+					this.OnRendersWmlDoAcceptsInlineChanging(value);
+					this.SendPropertyChanging();
+					this._RendersWmlDoAcceptsInline = value;
+					this.SendPropertyChanged("RendersWmlDoAcceptsInline");
+					this.OnRendersWmlDoAcceptsInlineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RendersWmlSelectsAsMenuCards", DbType="Bit NOT NULL")]
+		public bool RendersWmlSelectsAsMenuCards
+		{
+			get
+			{
+				return this._RendersWmlSelectsAsMenuCards;
+			}
+			set
+			{
+				if ((this._RendersWmlSelectsAsMenuCards != value))
+				{
+					this.OnRendersWmlSelectsAsMenuCardsChanging(value);
+					this.SendPropertyChanging();
+					this._RendersWmlSelectsAsMenuCards = value;
+					this.SendPropertyChanged("RendersWmlSelectsAsMenuCards");
+					this.OnRendersWmlSelectsAsMenuCardsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiredMetaTagNameValue", DbType="NVarChar(256)")]
+		public string RequiredMetaTagNameValue
+		{
+			get
+			{
+				return this._RequiredMetaTagNameValue;
+			}
+			set
+			{
+				if ((this._RequiredMetaTagNameValue != value))
+				{
+					this.OnRequiredMetaTagNameValueChanging(value);
+					this.SendPropertyChanging();
+					this._RequiredMetaTagNameValue = value;
+					this.SendPropertyChanged("RequiredMetaTagNameValue");
+					this.OnRequiredMetaTagNameValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresAttributeColonSubstitution", DbType="Bit NOT NULL")]
+		public bool RequiresAttributeColonSubstitution
+		{
+			get
+			{
+				return this._RequiresAttributeColonSubstitution;
+			}
+			set
+			{
+				if ((this._RequiresAttributeColonSubstitution != value))
+				{
+					this.OnRequiresAttributeColonSubstitutionChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresAttributeColonSubstitution = value;
+					this.SendPropertyChanged("RequiresAttributeColonSubstitution");
+					this.OnRequiresAttributeColonSubstitutionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresContentTypeMetaTag", DbType="Bit NOT NULL")]
+		public bool RequiresContentTypeMetaTag
+		{
+			get
+			{
+				return this._RequiresContentTypeMetaTag;
+			}
+			set
+			{
+				if ((this._RequiresContentTypeMetaTag != value))
+				{
+					this.OnRequiresContentTypeMetaTagChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresContentTypeMetaTag = value;
+					this.SendPropertyChanged("RequiresContentTypeMetaTag");
+					this.OnRequiresContentTypeMetaTagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresContentStateInSession", DbType="Bit NOT NULL")]
+		public bool RequiresContentStateInSession
+		{
+			get
+			{
+				return this._RequiresContentStateInSession;
+			}
+			set
+			{
+				if ((this._RequiresContentStateInSession != value))
+				{
+					this.OnRequiresContentStateInSessionChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresContentStateInSession = value;
+					this.SendPropertyChanged("RequiresContentStateInSession");
+					this.OnRequiresContentStateInSessionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresDBCSCharacter", DbType="Bit NOT NULL")]
+		public bool RequiresDBCSCharacter
+		{
+			get
+			{
+				return this._RequiresDBCSCharacter;
+			}
+			set
+			{
+				if ((this._RequiresDBCSCharacter != value))
+				{
+					this.OnRequiresDBCSCharacterChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresDBCSCharacter = value;
+					this.SendPropertyChanged("RequiresDBCSCharacter");
+					this.OnRequiresDBCSCharacterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresHtmlAdaptiveErrorReporting", DbType="Bit NOT NULL")]
+		public bool RequiresHtmlAdaptiveErrorReporting
+		{
+			get
+			{
+				return this._RequiresHtmlAdaptiveErrorReporting;
+			}
+			set
+			{
+				if ((this._RequiresHtmlAdaptiveErrorReporting != value))
+				{
+					this.OnRequiresHtmlAdaptiveErrorReportingChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresHtmlAdaptiveErrorReporting = value;
+					this.SendPropertyChanged("RequiresHtmlAdaptiveErrorReporting");
+					this.OnRequiresHtmlAdaptiveErrorReportingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresLeadingPageBreak", DbType="Bit NOT NULL")]
+		public bool RequiresLeadingPageBreak
+		{
+			get
+			{
+				return this._RequiresLeadingPageBreak;
+			}
+			set
+			{
+				if ((this._RequiresLeadingPageBreak != value))
+				{
+					this.OnRequiresLeadingPageBreakChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresLeadingPageBreak = value;
+					this.SendPropertyChanged("RequiresLeadingPageBreak");
+					this.OnRequiresLeadingPageBreakChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresNoBreakInFormatting", DbType="Bit NOT NULL")]
+		public bool RequiresNoBreakInFormatting
+		{
+			get
+			{
+				return this._RequiresNoBreakInFormatting;
+			}
+			set
+			{
+				if ((this._RequiresNoBreakInFormatting != value))
+				{
+					this.OnRequiresNoBreakInFormattingChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresNoBreakInFormatting = value;
+					this.SendPropertyChanged("RequiresNoBreakInFormatting");
+					this.OnRequiresNoBreakInFormattingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresOutputOptimization", DbType="Bit NOT NULL")]
+		public bool RequiresOutputOptimization
+		{
+			get
+			{
+				return this._RequiresOutputOptimization;
+			}
+			set
+			{
+				if ((this._RequiresOutputOptimization != value))
+				{
+					this.OnRequiresOutputOptimizationChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresOutputOptimization = value;
+					this.SendPropertyChanged("RequiresOutputOptimization");
+					this.OnRequiresOutputOptimizationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresPhoneNumbersAsPlainText", DbType="Bit NOT NULL")]
+		public bool RequiresPhoneNumbersAsPlainText
+		{
+			get
+			{
+				return this._RequiresPhoneNumbersAsPlainText;
+			}
+			set
+			{
+				if ((this._RequiresPhoneNumbersAsPlainText != value))
+				{
+					this.OnRequiresPhoneNumbersAsPlainTextChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresPhoneNumbersAsPlainText = value;
+					this.SendPropertyChanged("RequiresPhoneNumbersAsPlainText");
+					this.OnRequiresPhoneNumbersAsPlainTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresSpecialViewStateEncoding", DbType="Bit NOT NULL")]
+		public bool RequiresSpecialViewStateEncoding
+		{
+			get
+			{
+				return this._RequiresSpecialViewStateEncoding;
+			}
+			set
+			{
+				if ((this._RequiresSpecialViewStateEncoding != value))
+				{
+					this.OnRequiresSpecialViewStateEncodingChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresSpecialViewStateEncoding = value;
+					this.SendPropertyChanged("RequiresSpecialViewStateEncoding");
+					this.OnRequiresSpecialViewStateEncodingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresUniqueFilePathSuffix", DbType="Bit NOT NULL")]
+		public bool RequiresUniqueFilePathSuffix
+		{
+			get
+			{
+				return this._RequiresUniqueFilePathSuffix;
+			}
+			set
+			{
+				if ((this._RequiresUniqueFilePathSuffix != value))
+				{
+					this.OnRequiresUniqueFilePathSuffixChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresUniqueFilePathSuffix = value;
+					this.SendPropertyChanged("RequiresUniqueFilePathSuffix");
+					this.OnRequiresUniqueFilePathSuffixChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresUniqueHtmlCheckboxNames", DbType="Bit NOT NULL")]
+		public bool RequiresUniqueHtmlCheckboxNames
+		{
+			get
+			{
+				return this._RequiresUniqueHtmlCheckboxNames;
+			}
+			set
+			{
+				if ((this._RequiresUniqueHtmlCheckboxNames != value))
+				{
+					this.OnRequiresUniqueHtmlCheckboxNamesChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresUniqueHtmlCheckboxNames = value;
+					this.SendPropertyChanged("RequiresUniqueHtmlCheckboxNames");
+					this.OnRequiresUniqueHtmlCheckboxNamesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresUniqueHtmlInputNames", DbType="Bit NOT NULL")]
+		public bool RequiresUniqueHtmlInputNames
+		{
+			get
+			{
+				return this._RequiresUniqueHtmlInputNames;
+			}
+			set
+			{
+				if ((this._RequiresUniqueHtmlInputNames != value))
+				{
+					this.OnRequiresUniqueHtmlInputNamesChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresUniqueHtmlInputNames = value;
+					this.SendPropertyChanged("RequiresUniqueHtmlInputNames");
+					this.OnRequiresUniqueHtmlInputNamesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiresUrlEncodedPostfieldValues", DbType="Bit NOT NULL")]
+		public bool RequiresUrlEncodedPostfieldValues
+		{
+			get
+			{
+				return this._RequiresUrlEncodedPostfieldValues;
+			}
+			set
+			{
+				if ((this._RequiresUrlEncodedPostfieldValues != value))
+				{
+					this.OnRequiresUrlEncodedPostfieldValuesChanging(value);
+					this.SendPropertyChanging();
+					this._RequiresUrlEncodedPostfieldValues = value;
+					this.SendPropertyChanged("RequiresUrlEncodedPostfieldValues");
+					this.OnRequiresUrlEncodedPostfieldValuesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScreenBitDepth", DbType="Int NOT NULL")]
+		public int ScreenBitDepth
+		{
+			get
+			{
+				return this._ScreenBitDepth;
+			}
+			set
+			{
+				if ((this._ScreenBitDepth != value))
+				{
+					this.OnScreenBitDepthChanging(value);
+					this.SendPropertyChanging();
+					this._ScreenBitDepth = value;
+					this.SendPropertyChanged("ScreenBitDepth");
+					this.OnScreenBitDepthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScreenCharactersHeight", DbType="Int NOT NULL")]
+		public int ScreenCharactersHeight
+		{
+			get
+			{
+				return this._ScreenCharactersHeight;
+			}
+			set
+			{
+				if ((this._ScreenCharactersHeight != value))
+				{
+					this.OnScreenCharactersHeightChanging(value);
+					this.SendPropertyChanging();
+					this._ScreenCharactersHeight = value;
+					this.SendPropertyChanged("ScreenCharactersHeight");
+					this.OnScreenCharactersHeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScreenCharactersWidth", DbType="Int NOT NULL")]
+		public int ScreenCharactersWidth
+		{
+			get
+			{
+				return this._ScreenCharactersWidth;
+			}
+			set
+			{
+				if ((this._ScreenCharactersWidth != value))
+				{
+					this.OnScreenCharactersWidthChanging(value);
+					this.SendPropertyChanging();
+					this._ScreenCharactersWidth = value;
+					this.SendPropertyChanged("ScreenCharactersWidth");
+					this.OnScreenCharactersWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScreenPixelsHeight", DbType="Int NOT NULL")]
+		public int ScreenPixelsHeight
+		{
+			get
+			{
+				return this._ScreenPixelsHeight;
+			}
+			set
+			{
+				if ((this._ScreenPixelsHeight != value))
+				{
+					this.OnScreenPixelsHeightChanging(value);
+					this.SendPropertyChanging();
+					this._ScreenPixelsHeight = value;
+					this.SendPropertyChanged("ScreenPixelsHeight");
+					this.OnScreenPixelsHeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScreenPixelsWidth", DbType="Int NOT NULL")]
+		public int ScreenPixelsWidth
+		{
+			get
+			{
+				return this._ScreenPixelsWidth;
+			}
+			set
+			{
+				if ((this._ScreenPixelsWidth != value))
+				{
+					this.OnScreenPixelsWidthChanging(value);
+					this.SendPropertyChanging();
+					this._ScreenPixelsWidth = value;
+					this.SendPropertyChanged("ScreenPixelsWidth");
+					this.OnScreenPixelsWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsAccesskeyAttribute", DbType="Bit NOT NULL")]
+		public bool SupportsAccesskeyAttribute
+		{
+			get
+			{
+				return this._SupportsAccesskeyAttribute;
+			}
+			set
+			{
+				if ((this._SupportsAccesskeyAttribute != value))
+				{
+					this.OnSupportsAccesskeyAttributeChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsAccesskeyAttribute = value;
+					this.SendPropertyChanged("SupportsAccesskeyAttribute");
+					this.OnSupportsAccesskeyAttributeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsBodyColor", DbType="Bit NOT NULL")]
+		public bool SupportsBodyColor
+		{
+			get
+			{
+				return this._SupportsBodyColor;
+			}
+			set
+			{
+				if ((this._SupportsBodyColor != value))
+				{
+					this.OnSupportsBodyColorChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsBodyColor = value;
+					this.SendPropertyChanged("SupportsBodyColor");
+					this.OnSupportsBodyColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsBold", DbType="Bit NOT NULL")]
+		public bool SupportsBold
+		{
+			get
+			{
+				return this._SupportsBold;
+			}
+			set
+			{
+				if ((this._SupportsBold != value))
+				{
+					this.OnSupportsBoldChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsBold = value;
+					this.SendPropertyChanged("SupportsBold");
+					this.OnSupportsBoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsCacheControlMetaTag", DbType="Bit NOT NULL")]
+		public bool SupportsCacheControlMetaTag
+		{
+			get
+			{
+				return this._SupportsCacheControlMetaTag;
+			}
+			set
+			{
+				if ((this._SupportsCacheControlMetaTag != value))
+				{
+					this.OnSupportsCacheControlMetaTagChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsCacheControlMetaTag = value;
+					this.SendPropertyChanged("SupportsCacheControlMetaTag");
+					this.OnSupportsCacheControlMetaTagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsCallback", DbType="Bit NOT NULL")]
+		public bool SupportsCallback
+		{
+			get
+			{
+				return this._SupportsCallback;
+			}
+			set
+			{
+				if ((this._SupportsCallback != value))
+				{
+					this.OnSupportsCallbackChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsCallback = value;
+					this.SendPropertyChanged("SupportsCallback");
+					this.OnSupportsCallbackChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsCss", DbType="Bit NOT NULL")]
+		public bool SupportsCss
+		{
+			get
+			{
+				return this._SupportsCss;
+			}
+			set
+			{
+				if ((this._SupportsCss != value))
+				{
+					this.OnSupportsCssChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsCss = value;
+					this.SendPropertyChanged("SupportsCss");
+					this.OnSupportsCssChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsDivAlign", DbType="Bit NOT NULL")]
+		public bool SupportsDivAlign
+		{
+			get
+			{
+				return this._SupportsDivAlign;
+			}
+			set
+			{
+				if ((this._SupportsDivAlign != value))
+				{
+					this.OnSupportsDivAlignChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsDivAlign = value;
+					this.SendPropertyChanged("SupportsDivAlign");
+					this.OnSupportsDivAlignChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsDivNoWrap", DbType="Bit NOT NULL")]
+		public bool SupportsDivNoWrap
+		{
+			get
+			{
+				return this._SupportsDivNoWrap;
+			}
+			set
+			{
+				if ((this._SupportsDivNoWrap != value))
+				{
+					this.OnSupportsDivNoWrapChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsDivNoWrap = value;
+					this.SendPropertyChanged("SupportsDivNoWrap");
+					this.OnSupportsDivNoWrapChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsEmptyStringInCookieValue", DbType="Bit NOT NULL")]
+		public bool SupportsEmptyStringInCookieValue
+		{
+			get
+			{
+				return this._SupportsEmptyStringInCookieValue;
+			}
+			set
+			{
+				if ((this._SupportsEmptyStringInCookieValue != value))
+				{
+					this.OnSupportsEmptyStringInCookieValueChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsEmptyStringInCookieValue = value;
+					this.SendPropertyChanged("SupportsEmptyStringInCookieValue");
+					this.OnSupportsEmptyStringInCookieValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsFontColor", DbType="Bit NOT NULL")]
+		public bool SupportsFontColor
+		{
+			get
+			{
+				return this._SupportsFontColor;
+			}
+			set
+			{
+				if ((this._SupportsFontColor != value))
+				{
+					this.OnSupportsFontColorChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsFontColor = value;
+					this.SendPropertyChanged("SupportsFontColor");
+					this.OnSupportsFontColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsFontName", DbType="Bit NOT NULL")]
+		public bool SupportsFontName
+		{
+			get
+			{
+				return this._SupportsFontName;
+			}
+			set
+			{
+				if ((this._SupportsFontName != value))
+				{
+					this.OnSupportsFontNameChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsFontName = value;
+					this.SendPropertyChanged("SupportsFontName");
+					this.OnSupportsFontNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsFontSize", DbType="Bit NOT NULL")]
+		public bool SupportsFontSize
+		{
+			get
+			{
+				return this._SupportsFontSize;
+			}
+			set
+			{
+				if ((this._SupportsFontSize != value))
+				{
+					this.OnSupportsFontSizeChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsFontSize = value;
+					this.SendPropertyChanged("SupportsFontSize");
+					this.OnSupportsFontSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsImageSubmit", DbType="Bit NOT NULL")]
+		public bool SupportsImageSubmit
+		{
+			get
+			{
+				return this._SupportsImageSubmit;
+			}
+			set
+			{
+				if ((this._SupportsImageSubmit != value))
+				{
+					this.OnSupportsImageSubmitChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsImageSubmit = value;
+					this.SendPropertyChanged("SupportsImageSubmit");
+					this.OnSupportsImageSubmitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsIModeSymbols", DbType="Bit NOT NULL")]
+		public bool SupportsIModeSymbols
+		{
+			get
+			{
+				return this._SupportsIModeSymbols;
+			}
+			set
+			{
+				if ((this._SupportsIModeSymbols != value))
+				{
+					this.OnSupportsIModeSymbolsChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsIModeSymbols = value;
+					this.SendPropertyChanged("SupportsIModeSymbols");
+					this.OnSupportsIModeSymbolsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsInputIStyle", DbType="Bit NOT NULL")]
+		public bool SupportsInputIStyle
+		{
+			get
+			{
+				return this._SupportsInputIStyle;
+			}
+			set
+			{
+				if ((this._SupportsInputIStyle != value))
+				{
+					this.OnSupportsInputIStyleChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsInputIStyle = value;
+					this.SendPropertyChanged("SupportsInputIStyle");
+					this.OnSupportsInputIStyleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsInputMode", DbType="Bit NOT NULL")]
+		public bool SupportsInputMode
+		{
+			get
+			{
+				return this._SupportsInputMode;
+			}
+			set
+			{
+				if ((this._SupportsInputMode != value))
+				{
+					this.OnSupportsInputModeChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsInputMode = value;
+					this.SendPropertyChanged("SupportsInputMode");
+					this.OnSupportsInputModeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsItalic", DbType="Bit NOT NULL")]
+		public bool SupportsItalic
+		{
+			get
+			{
+				return this._SupportsItalic;
+			}
+			set
+			{
+				if ((this._SupportsItalic != value))
+				{
+					this.OnSupportsItalicChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsItalic = value;
+					this.SendPropertyChanged("SupportsItalic");
+					this.OnSupportsItalicChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsJPhoneMultiMediaAttributes", DbType="Bit NOT NULL")]
+		public bool SupportsJPhoneMultiMediaAttributes
+		{
+			get
+			{
+				return this._SupportsJPhoneMultiMediaAttributes;
+			}
+			set
+			{
+				if ((this._SupportsJPhoneMultiMediaAttributes != value))
+				{
+					this.OnSupportsJPhoneMultiMediaAttributesChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsJPhoneMultiMediaAttributes = value;
+					this.SendPropertyChanged("SupportsJPhoneMultiMediaAttributes");
+					this.OnSupportsJPhoneMultiMediaAttributesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsJPhoneSymbols", DbType="Bit NOT NULL")]
+		public bool SupportsJPhoneSymbols
+		{
+			get
+			{
+				return this._SupportsJPhoneSymbols;
+			}
+			set
+			{
+				if ((this._SupportsJPhoneSymbols != value))
+				{
+					this.OnSupportsJPhoneSymbolsChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsJPhoneSymbols = value;
+					this.SendPropertyChanged("SupportsJPhoneSymbols");
+					this.OnSupportsJPhoneSymbolsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsQueryStringInFormAction", DbType="Bit NOT NULL")]
+		public bool SupportsQueryStringInFormAction
+		{
+			get
+			{
+				return this._SupportsQueryStringInFormAction;
+			}
+			set
+			{
+				if ((this._SupportsQueryStringInFormAction != value))
+				{
+					this.OnSupportsQueryStringInFormActionChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsQueryStringInFormAction = value;
+					this.SendPropertyChanged("SupportsQueryStringInFormAction");
+					this.OnSupportsQueryStringInFormActionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsRedirectWithCookie", DbType="Bit NOT NULL")]
+		public bool SupportsRedirectWithCookie
+		{
+			get
+			{
+				return this._SupportsRedirectWithCookie;
+			}
+			set
+			{
+				if ((this._SupportsRedirectWithCookie != value))
+				{
+					this.OnSupportsRedirectWithCookieChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsRedirectWithCookie = value;
+					this.SendPropertyChanged("SupportsRedirectWithCookie");
+					this.OnSupportsRedirectWithCookieChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsSelectMultiple", DbType="Bit NOT NULL")]
+		public bool SupportsSelectMultiple
+		{
+			get
+			{
+				return this._SupportsSelectMultiple;
+			}
+			set
+			{
+				if ((this._SupportsSelectMultiple != value))
+				{
+					this.OnSupportsSelectMultipleChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsSelectMultiple = value;
+					this.SendPropertyChanged("SupportsSelectMultiple");
+					this.OnSupportsSelectMultipleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsUncheck", DbType="Bit NOT NULL")]
+		public bool SupportsUncheck
+		{
+			get
+			{
+				return this._SupportsUncheck;
+			}
+			set
+			{
+				if ((this._SupportsUncheck != value))
+				{
+					this.OnSupportsUncheckChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsUncheck = value;
+					this.SendPropertyChanged("SupportsUncheck");
+					this.OnSupportsUncheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportsXmlHttp", DbType="Bit NOT NULL")]
+		public bool SupportsXmlHttp
+		{
+			get
+			{
+				return this._SupportsXmlHttp;
+			}
+			set
+			{
+				if ((this._SupportsXmlHttp != value))
+				{
+					this.OnSupportsXmlHttpChanging(value);
+					this.SendPropertyChanging();
+					this._SupportsXmlHttp = value;
+					this.SendPropertyChanged("SupportsXmlHttp");
+					this.OnSupportsXmlHttpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tables", DbType="Bit NOT NULL")]
+		public bool Tables
+		{
+			get
+			{
+				return this._Tables;
+			}
+			set
+			{
+				if ((this._Tables != value))
+				{
+					this.OnTablesChanging(value);
+					this.SendPropertyChanging();
+					this._Tables = value;
+					this.SendPropertyChanged("Tables");
+					this.OnTablesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(256)")]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UseOptimizedCacheKey", DbType="Bit NOT NULL")]
+		public bool UseOptimizedCacheKey
+		{
+			get
+			{
+				return this._UseOptimizedCacheKey;
+			}
+			set
+			{
+				if ((this._UseOptimizedCacheKey != value))
+				{
+					this.OnUseOptimizedCacheKeyChanging(value);
+					this.SendPropertyChanging();
+					this._UseOptimizedCacheKey = value;
+					this.SendPropertyChanged("UseOptimizedCacheKey");
+					this.OnUseOptimizedCacheKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VBScript", DbType="Bit NOT NULL")]
+		public bool VBScript
+		{
+			get
+			{
+				return this._VBScript;
+			}
+			set
+			{
+				if ((this._VBScript != value))
+				{
+					this.OnVBScriptChanging(value);
+					this.SendPropertyChanging();
+					this._VBScript = value;
+					this.SendPropertyChanged("VBScript");
+					this.OnVBScriptChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", DbType="NVarChar(256)")]
+		public string Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_W3CDOMVersion", DbType="NVarChar(256)")]
+		public string W3CDOMVersion
+		{
+			get
+			{
+				return this._W3CDOMVersion;
+			}
+			set
+			{
+				if ((this._W3CDOMVersion != value))
+				{
+					this.OnW3CDOMVersionChanging(value);
+					this.SendPropertyChanging();
+					this._W3CDOMVersion = value;
+					this.SendPropertyChanged("W3CDOMVersion");
+					this.OnW3CDOMVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Win16", DbType="Bit NOT NULL")]
+		public bool Win16
+		{
+			get
+			{
+				return this._Win16;
+			}
+			set
+			{
+				if ((this._Win16 != value))
+				{
+					this.OnWin16Changing(value);
+					this.SendPropertyChanging();
+					this._Win16 = value;
+					this.SendPropertyChanged("Win16");
+					this.OnWin16Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Win32", DbType="Bit NOT NULL")]
+		public bool Win32
+		{
+			get
+			{
+				return this._Win32;
+			}
+			set
+			{
+				if ((this._Win32 != value))
+				{
+					this.OnWin32Changing(value);
+					this.SendPropertyChanging();
+					this._Win32 = value;
+					this.SendPropertyChanged("Win32");
+					this.OnWin32Changed();
 				}
 			}
 		}
@@ -691,7 +3186,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestType", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestType", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string RequestType
 		{
 			get

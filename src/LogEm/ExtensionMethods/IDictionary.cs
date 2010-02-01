@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Collections;
+using System.Linq;
 using System.Text;
 
 namespace LogEm.ExtensionMethods
 {
-    public static class NameValueCollectionExtensions
+    public static class IDictionaryExtensions
     {
         /// <summary>
-        /// Converts a NameValueCollection to a CSV dictionary string.
+        /// Converts a Dictionary to a CSV dictionary string.
         /// </summary>
-        /// <param name="me">The NameValueCollection to convert.</param>
+        /// <param name="me">The IDictionary to convert.</param>
         /// <returns>A string "key1=value1;key2=value2;".</returns>
-        public static string ToCSVString(this NameValueCollection me)
+        public static String ToCSVString(this IDictionary me)
         {
             StringBuilder result = new StringBuilder();
 
-            foreach (String key in me.AllKeys)
+            foreach (String key in me.Keys)
             {
                 result.Append(key).Append("=").Append(me[key]).Append(";");
             }
