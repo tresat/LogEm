@@ -2,24 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace LogEm.Logging
 {
     public class ResourceRequestBase
     {
-        protected HttpContext _context;
+        #region "Member Vars"
+        protected Guid? _id;
+        protected String _handler;
+        #endregion
 
-        public HttpContext Context
+        #region "Properties"
+        public virtual Guid? ID
         {
-            get { return _context; }
+            get { return _id; }
+            set { _id = value; }
         }
-
-        public ResourceRequestBase() { }
-
-        public ResourceRequestBase(HttpContext context)
+        public virtual String Handler
         {
-            _context = context;
+            get { return _handler; }
+            set { _handler = value; }
         }
+        #endregion
+
+        #region "Constructors"
+        public ResourceRequestBase()
+        {
+            _id = Guid.NewGuid();
+        }
+        #endregion
     }
 }

@@ -48,11 +48,15 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="ExtensionMethods\HttpCookieCollection.cs" />
+    <Compile Include="ExtensionMethods\NameValueCollection.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\LogEm.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LogEm.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005ResourceRequest.cs" />
+    <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005Session.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

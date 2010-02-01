@@ -30,13 +30,19 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertSQL2005Session(SQL2005Session instance);
-    partial void UpdateSQL2005Session(SQL2005Session instance);
-    partial void DeleteSQL2005Session(SQL2005Session instance);
-    partial void InsertSQL2005ResourceRequest(SQL2005ResourceRequest instance);
-    partial void UpdateSQL2005ResourceRequest(SQL2005ResourceRequest instance);
-    partial void DeleteSQL2005ResourceRequest(SQL2005ResourceRequest instance);
+    partial void InsertSql2005Session(Sql2005Session instance);
+    partial void UpdateSql2005Session(Sql2005Session instance);
+    partial void DeleteSql2005Session(Sql2005Session instance);
+    partial void InsertSql2005ResourceRequest(Sql2005ResourceRequest instance);
+    partial void UpdateSql2005ResourceRequest(Sql2005ResourceRequest instance);
+    partial void DeleteSql2005ResourceRequest(Sql2005ResourceRequest instance);
     #endregion
+		
+		public LogEmDataContext() : 
+				base(global::LogEm.Properties.Settings.Default.E__PROJECTS_LOGEM_SAMPLEDBS_LOGGING_MDFConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public LogEmDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -62,25 +68,25 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<SQL2005Session> SQL2005Sessions
+		public System.Data.Linq.Table<Sql2005Session> Sql2005Sessions
 		{
 			get
 			{
-				return this.GetTable<SQL2005Session>();
+				return this.GetTable<Sql2005Session>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SQL2005ResourceRequest> SQL2005ResourceRequests
+		public System.Data.Linq.Table<Sql2005ResourceRequest> Sql2005ResourceRequests
 		{
 			get
 			{
-				return this.GetTable<SQL2005ResourceRequest>();
+				return this.GetTable<Sql2005ResourceRequest>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="logEm.Session")]
-	public partial class SQL2005Session : SessionBase, INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Sql2005Session : SessionBase, INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -99,9 +105,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 		
 		private System.DateTime _SessionBeginTimeUtc;
 		
-		private System.Nullable<System.DateTime> _SessionEndTimeUtc;
-		
-		private EntitySet<SQL2005ResourceRequest> _SQL2005ResourceRequests;
+		private EntitySet<Sql2005ResourceRequest> _Sql2005ResourceRequests;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -121,13 +125,11 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
     partial void OnASPSessionIDChanged();
     partial void OnSessionBeginTimeUtcChanging(System.DateTime value);
     partial void OnSessionBeginTimeUtcChanged();
-    partial void OnSessionEndTimeUtcChanging(System.Nullable<System.DateTime> value);
-    partial void OnSessionEndTimeUtcChanged();
     #endregion
 		
-		public SQL2005Session()
+		public Sql2005Session()
 		{
-			this._SQL2005ResourceRequests = new EntitySet<SQL2005ResourceRequest>(new Action<SQL2005ResourceRequest>(this.attach_SQL2005ResourceRequests), new Action<SQL2005ResourceRequest>(this.detach_SQL2005ResourceRequests));
+			this._Sql2005ResourceRequests = new EntitySet<Sql2005ResourceRequest>(new Action<Sql2005ResourceRequest>(this.attach_Sql2005ResourceRequests), new Action<Sql2005ResourceRequest>(this.detach_Sql2005ResourceRequests));
 			OnCreated();
 		}
 		
@@ -191,7 +193,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(256)")]
 		public string User
 		{
 			get
@@ -271,36 +273,16 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionEndTimeUtc", DbType="DateTime")]
-		public System.Nullable<System.DateTime> SessionEndTimeUtc
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_Sql2005ResourceRequests", ThisKey="SessionID", OtherKey="fkSessionID")]
+		public EntitySet<Sql2005ResourceRequest> Sql2005ResourceRequests
 		{
 			get
 			{
-				return this._SessionEndTimeUtc;
+				return this._Sql2005ResourceRequests;
 			}
 			set
 			{
-				if ((this._SessionEndTimeUtc != value))
-				{
-					this.OnSessionEndTimeUtcChanging(value);
-					this.SendPropertyChanging();
-					this._SessionEndTimeUtc = value;
-					this.SendPropertyChanged("SessionEndTimeUtc");
-					this.OnSessionEndTimeUtcChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_SQL2005ResourceRequests", ThisKey="SessionID", OtherKey="fkSessionID")]
-		public EntitySet<SQL2005ResourceRequest> SQL2005ResourceRequests
-		{
-			get
-			{
-				return this._SQL2005ResourceRequests;
-			}
-			set
-			{
-				this._SQL2005ResourceRequests.Assign(value);
+				this._Sql2005ResourceRequests.Assign(value);
 			}
 		}
 		
@@ -324,21 +306,21 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		private void attach_SQL2005ResourceRequests(SQL2005ResourceRequest entity)
+		private void attach_Sql2005ResourceRequests(Sql2005ResourceRequest entity)
 		{
 			this.SendPropertyChanging();
-			entity.SQL2005Session = this;
+			entity.Sql2005Session = this;
 		}
 		
-		private void detach_SQL2005ResourceRequests(SQL2005ResourceRequest entity)
+		private void detach_Sql2005ResourceRequests(Sql2005ResourceRequest entity)
 		{
 			this.SendPropertyChanging();
-			entity.SQL2005Session = null;
+			entity.Sql2005Session = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="logEm.ResourceRequest")]
-	public partial class SQL2005ResourceRequest : ResourceRequestBase, INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Sql2005ResourceRequest : ResourceRequestBase, INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -349,15 +331,65 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 		
 		private string _Host;
 		
-		private System.DateTime _TimeUtc;
-		
 		private string _User;
 		
 		private int _Sequence;
 		
 		private System.Nullable<System.Guid> _fkSessionID;
 		
-		private EntityRef<SQL2005Session> _SQL2005Session;
+		private System.DateTime _ResourceRequestTimeUtc;
+		
+		private string _RequestAcceptTypes;
+		
+		private string _AnonymousID;
+		
+		private string _ApplicationPath;
+		
+		private string _RequestEncoding;
+		
+		private string _RequestType;
+		
+		private string _RequestCookies;
+		
+		private string _RequestFormValues;
+		
+		private string _RequestHttpMethod;
+		
+		private bool _RequestIsAuthenticated;
+		
+		private bool _RequestIsLocal;
+		
+		private bool _RequestIsSecure;
+		
+		private string _RequestQueryString;
+		
+		private string _RequestServerVariables;
+		
+		private int _RequestBytes;
+		
+		private string _URL;
+		
+		private string _UserAgent;
+		
+		private string _UserHost;
+		
+		private string _UserHostName;
+		
+		private System.DateTime _UserRequestTime;
+		
+		private string _ResponseEncoding;
+		
+		private string _ResponseType;
+		
+		private string _ResponseCookies;
+		
+		private string _ResponseStatus;
+		
+		private int _ResponseBytes;
+		
+		private string _HandlerName;
+		
+		private EntityRef<Sql2005Session> _Sql2005Session;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -369,19 +401,69 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
     partial void OnApplicationChanged();
     partial void OnHostChanging(string value);
     partial void OnHostChanged();
-    partial void OnTimeUtcChanging(System.DateTime value);
-    partial void OnTimeUtcChanged();
     partial void OnUserChanging(string value);
     partial void OnUserChanged();
     partial void OnSequenceChanging(int value);
     partial void OnSequenceChanged();
     partial void OnfkSessionIDChanging(System.Nullable<System.Guid> value);
     partial void OnfkSessionIDChanged();
+    partial void OnResourceRequestTimeUtcChanging(System.DateTime value);
+    partial void OnResourceRequestTimeUtcChanged();
+    partial void OnRequestAcceptTypesChanging(string value);
+    partial void OnRequestAcceptTypesChanged();
+    partial void OnAnonymousIDChanging(string value);
+    partial void OnAnonymousIDChanged();
+    partial void OnApplicationPathChanging(string value);
+    partial void OnApplicationPathChanged();
+    partial void OnRequestEncodingChanging(string value);
+    partial void OnRequestEncodingChanged();
+    partial void OnRequestTypeChanging(string value);
+    partial void OnRequestTypeChanged();
+    partial void OnRequestCookiesChanging(string value);
+    partial void OnRequestCookiesChanged();
+    partial void OnRequestFormValuesChanging(string value);
+    partial void OnRequestFormValuesChanged();
+    partial void OnRequestHttpMethodChanging(string value);
+    partial void OnRequestHttpMethodChanged();
+    partial void OnRequestIsAuthenticatedChanging(bool value);
+    partial void OnRequestIsAuthenticatedChanged();
+    partial void OnRequestIsLocalChanging(bool value);
+    partial void OnRequestIsLocalChanged();
+    partial void OnRequestIsSecureChanging(bool value);
+    partial void OnRequestIsSecureChanged();
+    partial void OnRequestQueryStringChanging(string value);
+    partial void OnRequestQueryStringChanged();
+    partial void OnRequestServerVariablesChanging(string value);
+    partial void OnRequestServerVariablesChanged();
+    partial void OnRequestBytesChanging(int value);
+    partial void OnRequestBytesChanged();
+    partial void OnURLChanging(string value);
+    partial void OnURLChanged();
+    partial void OnUserAgentChanging(string value);
+    partial void OnUserAgentChanged();
+    partial void OnUserHostChanging(string value);
+    partial void OnUserHostChanged();
+    partial void OnUserHostNameChanging(string value);
+    partial void OnUserHostNameChanged();
+    partial void OnUserRequestTimeChanging(System.DateTime value);
+    partial void OnUserRequestTimeChanged();
+    partial void OnResponseEncodingChanging(string value);
+    partial void OnResponseEncodingChanged();
+    partial void OnResponseTypeChanging(string value);
+    partial void OnResponseTypeChanged();
+    partial void OnResponseCookiesChanging(string value);
+    partial void OnResponseCookiesChanged();
+    partial void OnResponseStatusChanging(string value);
+    partial void OnResponseStatusChanged();
+    partial void OnResponseBytesChanging(int value);
+    partial void OnResponseBytesChanged();
+    partial void OnHandlerNameChanging(string value);
+    partial void OnHandlerNameChanged();
     #endregion
 		
-		public SQL2005ResourceRequest()
+		public Sql2005ResourceRequest()
 		{
-			this._SQL2005Session = default(EntityRef<SQL2005Session>);
+			this._Sql2005Session = default(EntityRef<Sql2005Session>);
 			OnCreated();
 		}
 		
@@ -445,26 +527,6 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeUtc", DbType="DateTime NOT NULL")]
-		public System.DateTime TimeUtc
-		{
-			get
-			{
-				return this._TimeUtc;
-			}
-			set
-			{
-				if ((this._TimeUtc != value))
-				{
-					this.OnTimeUtcChanging(value);
-					this.SendPropertyChanging();
-					this._TimeUtc = value;
-					this.SendPropertyChanged("TimeUtc");
-					this.OnTimeUtcChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(256)")]
 		public string User
 		{
@@ -516,7 +578,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			{
 				if ((this._fkSessionID != value))
 				{
-					if (this._SQL2005Session.HasLoadedOrAssignedValue)
+					if (this._Sql2005Session.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -529,36 +591,556 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_SQL2005Session", ThisKey="fkSessionID", OtherKey="SessionID", IsForeignKey=true)]
-		public SQL2005Session SQL2005Session
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResourceRequestTimeUtc", DbType="DateTime NOT NULL")]
+		public System.DateTime ResourceRequestTimeUtc
 		{
 			get
 			{
-				return this._SQL2005Session.Entity;
+				return this._ResourceRequestTimeUtc;
 			}
 			set
 			{
-				SQL2005Session previousValue = this._SQL2005Session.Entity;
+				if ((this._ResourceRequestTimeUtc != value))
+				{
+					this.OnResourceRequestTimeUtcChanging(value);
+					this.SendPropertyChanging();
+					this._ResourceRequestTimeUtc = value;
+					this.SendPropertyChanged("ResourceRequestTimeUtc");
+					this.OnResourceRequestTimeUtcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestAcceptTypes", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string RequestAcceptTypes
+		{
+			get
+			{
+				return this._RequestAcceptTypes;
+			}
+			set
+			{
+				if ((this._RequestAcceptTypes != value))
+				{
+					this.OnRequestAcceptTypesChanging(value);
+					this.SendPropertyChanging();
+					this._RequestAcceptTypes = value;
+					this.SendPropertyChanged("RequestAcceptTypes");
+					this.OnRequestAcceptTypesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnonymousID", DbType="NVarChar(256)")]
+		public string AnonymousID
+		{
+			get
+			{
+				return this._AnonymousID;
+			}
+			set
+			{
+				if ((this._AnonymousID != value))
+				{
+					this.OnAnonymousIDChanging(value);
+					this.SendPropertyChanging();
+					this._AnonymousID = value;
+					this.SendPropertyChanged("AnonymousID");
+					this.OnAnonymousIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationPath", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string ApplicationPath
+		{
+			get
+			{
+				return this._ApplicationPath;
+			}
+			set
+			{
+				if ((this._ApplicationPath != value))
+				{
+					this.OnApplicationPathChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationPath = value;
+					this.SendPropertyChanged("ApplicationPath");
+					this.OnApplicationPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestEncoding", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string RequestEncoding
+		{
+			get
+			{
+				return this._RequestEncoding;
+			}
+			set
+			{
+				if ((this._RequestEncoding != value))
+				{
+					this.OnRequestEncodingChanging(value);
+					this.SendPropertyChanging();
+					this._RequestEncoding = value;
+					this.SendPropertyChanged("RequestEncoding");
+					this.OnRequestEncodingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestType", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string RequestType
+		{
+			get
+			{
+				return this._RequestType;
+			}
+			set
+			{
+				if ((this._RequestType != value))
+				{
+					this.OnRequestTypeChanging(value);
+					this.SendPropertyChanging();
+					this._RequestType = value;
+					this.SendPropertyChanged("RequestType");
+					this.OnRequestTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestCookies", DbType="NVarChar(MAX)")]
+		public string RequestCookies
+		{
+			get
+			{
+				return this._RequestCookies;
+			}
+			set
+			{
+				if ((this._RequestCookies != value))
+				{
+					this.OnRequestCookiesChanging(value);
+					this.SendPropertyChanging();
+					this._RequestCookies = value;
+					this.SendPropertyChanged("RequestCookies");
+					this.OnRequestCookiesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestFormValues", DbType="NVarChar(MAX)")]
+		public string RequestFormValues
+		{
+			get
+			{
+				return this._RequestFormValues;
+			}
+			set
+			{
+				if ((this._RequestFormValues != value))
+				{
+					this.OnRequestFormValuesChanging(value);
+					this.SendPropertyChanging();
+					this._RequestFormValues = value;
+					this.SendPropertyChanged("RequestFormValues");
+					this.OnRequestFormValuesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestHttpMethod", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string RequestHttpMethod
+		{
+			get
+			{
+				return this._RequestHttpMethod;
+			}
+			set
+			{
+				if ((this._RequestHttpMethod != value))
+				{
+					this.OnRequestHttpMethodChanging(value);
+					this.SendPropertyChanging();
+					this._RequestHttpMethod = value;
+					this.SendPropertyChanged("RequestHttpMethod");
+					this.OnRequestHttpMethodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestIsAuthenticated", DbType="Bit NOT NULL")]
+		public bool RequestIsAuthenticated
+		{
+			get
+			{
+				return this._RequestIsAuthenticated;
+			}
+			set
+			{
+				if ((this._RequestIsAuthenticated != value))
+				{
+					this.OnRequestIsAuthenticatedChanging(value);
+					this.SendPropertyChanging();
+					this._RequestIsAuthenticated = value;
+					this.SendPropertyChanged("RequestIsAuthenticated");
+					this.OnRequestIsAuthenticatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestIsLocal", DbType="Bit NOT NULL")]
+		public bool RequestIsLocal
+		{
+			get
+			{
+				return this._RequestIsLocal;
+			}
+			set
+			{
+				if ((this._RequestIsLocal != value))
+				{
+					this.OnRequestIsLocalChanging(value);
+					this.SendPropertyChanging();
+					this._RequestIsLocal = value;
+					this.SendPropertyChanged("RequestIsLocal");
+					this.OnRequestIsLocalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestIsSecure", DbType="Bit NOT NULL")]
+		public bool RequestIsSecure
+		{
+			get
+			{
+				return this._RequestIsSecure;
+			}
+			set
+			{
+				if ((this._RequestIsSecure != value))
+				{
+					this.OnRequestIsSecureChanging(value);
+					this.SendPropertyChanging();
+					this._RequestIsSecure = value;
+					this.SendPropertyChanged("RequestIsSecure");
+					this.OnRequestIsSecureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestQueryString", DbType="NVarChar(MAX)")]
+		public string RequestQueryString
+		{
+			get
+			{
+				return this._RequestQueryString;
+			}
+			set
+			{
+				if ((this._RequestQueryString != value))
+				{
+					this.OnRequestQueryStringChanging(value);
+					this.SendPropertyChanging();
+					this._RequestQueryString = value;
+					this.SendPropertyChanged("RequestQueryString");
+					this.OnRequestQueryStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestServerVariables", DbType="NVarChar(MAX)")]
+		public string RequestServerVariables
+		{
+			get
+			{
+				return this._RequestServerVariables;
+			}
+			set
+			{
+				if ((this._RequestServerVariables != value))
+				{
+					this.OnRequestServerVariablesChanging(value);
+					this.SendPropertyChanging();
+					this._RequestServerVariables = value;
+					this.SendPropertyChanged("RequestServerVariables");
+					this.OnRequestServerVariablesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestBytes", DbType="Int NOT NULL")]
+		public int RequestBytes
+		{
+			get
+			{
+				return this._RequestBytes;
+			}
+			set
+			{
+				if ((this._RequestBytes != value))
+				{
+					this.OnRequestBytesChanging(value);
+					this.SendPropertyChanging();
+					this._RequestBytes = value;
+					this.SendPropertyChanged("RequestBytes");
+					this.OnRequestBytesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string URL
+		{
+			get
+			{
+				return this._URL;
+			}
+			set
+			{
+				if ((this._URL != value))
+				{
+					this.OnURLChanging(value);
+					this.SendPropertyChanging();
+					this._URL = value;
+					this.SendPropertyChanged("URL");
+					this.OnURLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserAgent", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserAgent
+		{
+			get
+			{
+				return this._UserAgent;
+			}
+			set
+			{
+				if ((this._UserAgent != value))
+				{
+					this.OnUserAgentChanging(value);
+					this.SendPropertyChanging();
+					this._UserAgent = value;
+					this.SendPropertyChanged("UserAgent");
+					this.OnUserAgentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserHost", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserHost
+		{
+			get
+			{
+				return this._UserHost;
+			}
+			set
+			{
+				if ((this._UserHost != value))
+				{
+					this.OnUserHostChanging(value);
+					this.SendPropertyChanging();
+					this._UserHost = value;
+					this.SendPropertyChanged("UserHost");
+					this.OnUserHostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserHostName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserHostName
+		{
+			get
+			{
+				return this._UserHostName;
+			}
+			set
+			{
+				if ((this._UserHostName != value))
+				{
+					this.OnUserHostNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserHostName = value;
+					this.SendPropertyChanged("UserHostName");
+					this.OnUserHostNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserRequestTime", DbType="DateTime NOT NULL")]
+		public System.DateTime UserRequestTime
+		{
+			get
+			{
+				return this._UserRequestTime;
+			}
+			set
+			{
+				if ((this._UserRequestTime != value))
+				{
+					this.OnUserRequestTimeChanging(value);
+					this.SendPropertyChanging();
+					this._UserRequestTime = value;
+					this.SendPropertyChanged("UserRequestTime");
+					this.OnUserRequestTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseEncoding", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ResponseEncoding
+		{
+			get
+			{
+				return this._ResponseEncoding;
+			}
+			set
+			{
+				if ((this._ResponseEncoding != value))
+				{
+					this.OnResponseEncodingChanging(value);
+					this.SendPropertyChanging();
+					this._ResponseEncoding = value;
+					this.SendPropertyChanged("ResponseEncoding");
+					this.OnResponseEncodingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseType", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string ResponseType
+		{
+			get
+			{
+				return this._ResponseType;
+			}
+			set
+			{
+				if ((this._ResponseType != value))
+				{
+					this.OnResponseTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ResponseType = value;
+					this.SendPropertyChanged("ResponseType");
+					this.OnResponseTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseCookies", DbType="NVarChar(MAX)")]
+		public string ResponseCookies
+		{
+			get
+			{
+				return this._ResponseCookies;
+			}
+			set
+			{
+				if ((this._ResponseCookies != value))
+				{
+					this.OnResponseCookiesChanging(value);
+					this.SendPropertyChanging();
+					this._ResponseCookies = value;
+					this.SendPropertyChanged("ResponseCookies");
+					this.OnResponseCookiesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseStatus", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string ResponseStatus
+		{
+			get
+			{
+				return this._ResponseStatus;
+			}
+			set
+			{
+				if ((this._ResponseStatus != value))
+				{
+					this.OnResponseStatusChanging(value);
+					this.SendPropertyChanging();
+					this._ResponseStatus = value;
+					this.SendPropertyChanged("ResponseStatus");
+					this.OnResponseStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseBytes", DbType="Int NOT NULL")]
+		public int ResponseBytes
+		{
+			get
+			{
+				return this._ResponseBytes;
+			}
+			set
+			{
+				if ((this._ResponseBytes != value))
+				{
+					this.OnResponseBytesChanging(value);
+					this.SendPropertyChanging();
+					this._ResponseBytes = value;
+					this.SendPropertyChanged("ResponseBytes");
+					this.OnResponseBytesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HandlerName", DbType="NVarChar(256)")]
+		public string HandlerName
+		{
+			get
+			{
+				return this._HandlerName;
+			}
+			set
+			{
+				if ((this._HandlerName != value))
+				{
+					this.OnHandlerNameChanging(value);
+					this.SendPropertyChanging();
+					this._HandlerName = value;
+					this.SendPropertyChanged("HandlerName");
+					this.OnHandlerNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_Sql2005Session", ThisKey="fkSessionID", OtherKey="SessionID", IsForeignKey=true)]
+		public Sql2005Session Sql2005Session
+		{
+			get
+			{
+				return this._Sql2005Session.Entity;
+			}
+			set
+			{
+				Sql2005Session previousValue = this._Sql2005Session.Entity;
 				if (((previousValue != value) 
-							|| (this._SQL2005Session.HasLoadedOrAssignedValue == false)))
+							|| (this._Sql2005Session.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SQL2005Session.Entity = null;
-						previousValue.SQL2005ResourceRequests.Remove(this);
+						this._Sql2005Session.Entity = null;
+						previousValue.Sql2005ResourceRequests.Remove(this);
 					}
-					this._SQL2005Session.Entity = value;
+					this._Sql2005Session.Entity = value;
 					if ((value != null))
 					{
-						value.SQL2005ResourceRequests.Add(this);
+						value.Sql2005ResourceRequests.Add(this);
 						this._fkSessionID = value.SessionID;
 					}
 					else
 					{
 						this._fkSessionID = default(Nullable<System.Guid>);
 					}
-					this.SendPropertyChanged("SQL2005Session");
+					this.SendPropertyChanged("Sql2005Session");
 				}
 			}
 		}

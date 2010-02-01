@@ -56,9 +56,65 @@ namespace LogEm.Logging.RequestLogs
             if (pContext == null)
                 throw new ArgumentNullException("pContext");
 
-            ResourceRequestBase request = new ResourceRequestBase(pContext);
+            ResourceRequestBase request = new ResourceRequestBase();
             return request;
         }
+
+        /// Most Log classes will probably have to override this.
+        /// </summary>
+        /// <param name="pContext">HttpContext of request (will be used to populate Session object.</param>
+        /// <returns>New SessionBase object, populated.</returns>
+        public virtual SessionBase CreateNewSession(HttpContext pContext)
+        {
+            if (pContext == null)
+                throw new ArgumentNullException("pContext");
+
+            SessionBase session = new SessionBase();
+            return session;
+        }
+
+        /// <summary>
+        /// Logs a request in the log for the application (creates request from Context).
+        /// </summary>
+        /// <param name="pContext">HttpContext of request (will be used to populate RR object.</param>
+        /// <returns>New ResourceRequestBase object, populated, which has been added to the log.</returns>
+        public virtual Guid LogResourceRequest(HttpContext pContext)
+        {
+            return LogResourceRequest(CreateNewResourceRequest(pContext));
+        }
+
+        /// <summary>
+        /// Logs a session in the log for the application (creates session from Context).
+        /// </summary>
+        /// <param name="pContext">HttpContext of session (will be used to populate Session object.</param>
+        /// <returns>New SessionBase object, populated, which has been added to the log.</returns>
+        public virtual Guid LogSession(HttpContext pContext)
+        {
+            return LogSession(CreateNewSession(pContext));
+        }
+
+        /// <summary>
+        /// Logs a request in the log for the application.
+        /// </summary>
+        /// <param name="pRequest">The resouce request to log.</param>
+        /// <returns>The</returns>
+        public abstract Guid LogResourceRequest(ResourceRequestBase pRequest);
+
+        /// <summary>
+        /// Logs a session in the log for the application.
+        /// </summary>
+        /// <param name="pRequest">The session to log.</param>
+        /// <returns>The</returns>
+        public abstract Guid LogSession(SessionBase pSession);
+
+        /// <summary>
+        /// Determines if the ASP session from the request is new, or has
+        /// already been logged.
+        /// </summary>
+        /// <param name="pASPSessionID">The current Session ID.</param>
+        /// <returns><c>true/false</c> whether or not the session is new.</returns>
+        public abstract Boolean IsNewSession(String pASPSessionID);
+
         #endregion
         // The line of Tom approval
         
@@ -66,10 +122,6 @@ namespace LogEm.Logging.RequestLogs
 
 
 
-        /// <summary>
-        /// Logs a request in the log for the application.
-        /// </summary>
-        public abstract string Log(ResourceRequestBase request);
         private delegate string LogHandler(ResourceRequestBase request);
 
         /// <summary>

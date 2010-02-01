@@ -1,28 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="E:\PROJECTS\LOGEM\SAMPLEDBS\LOGGING.MDF" Class="LogEmDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=ASPIRE\SQLEXPRESS;Initial Catalog=E:\PROJECTS\LOGEM\SAMPLEDBS\LOGGING.MDF;Integrated Security=True" SettingsObjectName="LogEm.Properties.Settings" SettingsPropertyName="E__PROJECTS_LOGEM_SAMPLEDBS_LOGGING_MDFConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="logEm.Session" Member="SQL2005Sessions">
-    <Type Name="SQL2005Session">
+  <Table Name="logEm.Session" Member="Sql2005Sessions">
+    <Type Name="Sql2005Session">
       <Column Name="SessionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Application" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="Host" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ASPSessionID" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="SessionBeginTimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="SessionEndTimeUtc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Session_ResourceRequest" Member="SQL2005ResourceRequests" ThisKey="SessionID" OtherKey="fkSessionID" Type="SQL2005ResourceRequest" />
+      <Association Name="Session_ResourceRequest" Member="Sql2005ResourceRequests" ThisKey="SessionID" OtherKey="fkSessionID" Type="Sql2005ResourceRequest" />
     </Type>
   </Table>
-  <Table Name="logEm.ResourceRequest" Member="SQL2005ResourceRequests">
-    <Type Name="SQL2005ResourceRequest">
+  <Table Name="logEm.ResourceRequest" Member="Sql2005ResourceRequests">
+    <Type Name="Sql2005ResourceRequest">
       <Column Name="ResourceRequestID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Application" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="Host" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="TimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="fkSessionID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="Session_ResourceRequest" Member="SQL2005Session" ThisKey="fkSessionID" OtherKey="SessionID" Type="SQL2005Session" IsForeignKey="true" />
+      <Column Name="ResourceRequestTimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="RequestAcceptTypes" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="AnonymousID" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ApplicationPath" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestEncoding" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestType" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestCookies" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RequestFormValues" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RequestHttpMethod" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestIsAuthenticated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequestIsLocal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequestIsSecure" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequestQueryString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RequestServerVariables" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RequestBytes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="URL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserAgent" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="UserHost" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="UserHostName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="UserRequestTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ResponseEncoding" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ResponseType" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="ResponseCookies" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ResponseStatus" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="ResponseBytes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HandlerName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Association Name="Session_ResourceRequest" Member="Sql2005Session" ThisKey="fkSessionID" OtherKey="SessionID" Type="Sql2005Session" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -62,17 +62,17 @@ GO
 IF EXISTS(
 	SELECT 1
 	FROM sys.tables
-	WHERE name = 'Session')
+	WHERE name = 'ResourceRequest')
 BEGIN
-	DROP TABLE logEm.Session;
+	DROP TABLE logEm.ResourceRequest;
 END
 
 IF EXISTS(
 	SELECT 1
 	FROM sys.tables
-	WHERE name = 'ResourceRequest')
+	WHERE name = 'Session')
 BEGIN
-	DROP TABLE logEm.ResourceRequest;
+	DROP TABLE logEm.Session;
 END
 
 CREATE TABLE [logEm].[Session]
@@ -80,11 +80,10 @@ CREATE TABLE [logEm].[Session]
     [SessionID]				UNIQUEIDENTIFIER NOT NULL,
     [Application]			NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
     [Host]					NVARCHAR(50) NOT NULL,
-	[User]					NVARCHAR(256) NOT NULL,
+	[User]					NVARCHAR(256) NULL,
     [Sequence]				INT IDENTITY (1, 1) NOT NULL,
     [ASPSessionID]			NVARCHAR(256) NOT NULL,
-    [SessionBeginTimeUtc]	DATETIME NOT NULL,
-    [SessionEndTimeUtc]		DATETIME NULL,
+    [SessionBeginTimeUtc]	DATETIME NOT NULL    
 ) 
 ON [PRIMARY]
 GO
@@ -94,10 +93,35 @@ CREATE TABLE [logEm].[ResourceRequest]
     [ResourceRequestID]		UNIQUEIDENTIFIER NOT NULL,
     [Application]			NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
     [Host]					NVARCHAR(50) NOT NULL,
-    [TimeUtc]				DATETIME NOT NULL,
-	[User]					NVARCHAR(256) NULL,
+    [User]					NVARCHAR(256) NULL,
     [Sequence]				INT IDENTITY (1, 1) NOT NULL,
-    [fkSessionID]			UNIQUEIDENTIFIER NULL
+    [fkSessionID]			UNIQUEIDENTIFIER NULL,
+    [ResourceRequestTimeUtc]DATETIME NOT NULL,
+    [RequestAcceptTypes]	NVARCHAR(256) NOT NULL,
+    [AnonymousID]			NVARCHAR(256) NULL,
+    [ApplicationPath]		NVARCHAR(256) NOT NULL,
+    [RequestEncoding]		NVARCHAR(100) NOT NULL,
+    [RequestType]			NVARCHAR(100) NOT NULL,
+    [RequestCookies]		NVARCHAR(max) NULL,
+    [RequestFormValues]		NVARCHAR(max) NULL,
+    [RequestHttpMethod]		NVARCHAR(25) NOT NULL,
+    [RequestIsAuthenticated]BIT NOT NULL,
+    [RequestIsLocal]		BIT NOT NULL,
+    [RequestIsSecure]		BIT NOT NULL,
+    [RequestQueryString]	NVARCHAR(max) NULL,
+    [RequestServerVariables]NVARCHAR(max) NULL,
+    [RequestBytes]			INT NOT NULL,
+    [URL]					NVARCHAR(max) NOT NULL,
+    [UserAgent]				NVARCHAR(256) NOT NULL,
+    [UserHost]				NVARCHAR(256) NOT NULL,
+    [UserHostName]			NVARCHAR(256) NOT NULL,
+    [UserRequestTime]		DATETIME NOT NULL,
+    [ResponseEncoding]		NVARCHAR(100) NOT NULL,
+    [ResponseType]			NVARCHAR(25) NOT NULL,
+    [ResponseCookies]		NVARCHAR(max) NULL,
+    [ResponseStatus]		NVARCHAR(25) NOT NULL,
+    [ResponseBytes]			INT NOT NULL,
+    [HandlerName]			NVARCHAR(256) NULL
 ) 
 ON [PRIMARY]
 GO
@@ -134,7 +158,7 @@ GO
 CREATE NONCLUSTERED INDEX [IX_ResourceRequest_App_Time_Seq] ON [logEm].[ResourceRequest] 
 (
     [Application]			ASC,
-    [TimeUtc]				DESC,
+    [ResourceRequestTimeUtc]DESC,
     [Sequence]				DESC
 ) 
 ON [PRIMARY]

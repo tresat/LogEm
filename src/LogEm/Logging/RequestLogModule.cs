@@ -15,7 +15,11 @@ namespace LogEm.Logging
 
     public class RequestLogModule : HttpModuleBase
     {
-#region "Application Event Handling"
+        #region "Constants"
+        protected const String LOGEM_URL = "LOGEM.AXD";
+        #endregion
+
+        #region "Application Event Handling"
         /// <summary>
         /// Initializes the module and prepares it to handle requests.
         /// </summary>
@@ -34,23 +38,13 @@ namespace LogEm.Logging
         /// </summary>
         protected virtual void OnRequest(object sender, EventArgs args)
         {
-            const String LOGEM_URL = "LOGEM.AXD";
-
             if (sender == null)
                 throw new ArgumentNullException("sender");
 
-            // Check each URL segment, if one of them matches logem.axd
-            // then we DON'T need to log it, since it's a request to LOGEM
+            // Don't log logEm requests
             HttpApplication application = (HttpApplication)sender;
-            foreach (String seg in application.Request.Url.Segments)
-            {
-                if (seg.ToUpper().StartsWith(LOGEM_URL, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return;
-                }
-            }
-
-            LogRequest(application.Context);
+            if (!IsLogEmRequest(application.Request.Url))
+                LogRequest(application.Context);
         }
 
         /// <summary>
@@ -61,56 +55,77 @@ namespace LogEm.Logging
             if (sender == null)
                 throw new ArgumentNullException("sender");
 
+            // Don't log logEm requests
             HttpApplication application = (HttpApplication)sender;
-            LogAuthentication(application.Context);
+            if (!IsLogEmRequest(application.Request.Url))
+                LogAuthentication(application.Context);
         }
-#endregion
+        #endregion
 
-#region "Protected Helpers"
+        #region "Protected Helpers"
+        /// <summary>
+        /// Check if the request is for LogEm, if so, ignore.
+        /// </summary>
+        /// <param name="pUrl">The request Uri.</param>
+        /// <returns><c>true/false</c> for whether or not the request is for logEm.</returns>
+        protected virtual Boolean IsLogEmRequest(Uri pUrl)
+        {
+            if (pUrl == null)
+                throw new ArgumentNullException("pUrl");
+
+            foreach (String seg in pUrl.Segments)
+            {
+                if (seg.ToUpper().StartsWith(LOGEM_URL, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Gets the <see cref="RequestLog"/> instance to which the module
         /// will log requests.
         /// </summary>
-        protected virtual RequestLog GetRequestLog(HttpContext context)
+        protected virtual RequestLog GetRequestLog(HttpContext pContext)
         {
-            return RequestLog.GetLog(context);
+            return RequestLog.GetLog(pContext);
         }
 
         /// <summary>
         /// Logs a request for a resource and its context to the error log.
         /// </summary>
-        protected virtual void LogRequest(HttpContext context)
+        protected virtual void LogRequest(HttpContext pContext)
         {
-            if (context == null)
+            if (pContext == null)
                 throw new ArgumentNullException("context");
 
             // Get the log
-            RequestLog log = GetRequestLog(context);
+            RequestLog log = GetRequestLog(pContext);
 
-            // Create the ResourceRequest object
-            ResourceRequestBase request = log.CreateNewResourceRequest(context);
-
-            // Log the user request
-            string id = log.Log(request);
+            // Log the ResourceRequest
+            log.LogResourceRequest(pContext);
         }
 
         /// <summary>
         /// Logs a user logging in to the application.
         /// </summary>
-        protected virtual void LogAuthentication(HttpContext context)
+        protected virtual void LogAuthentication(HttpContext pContext)
         {
-            if (context == null)
+            if (pContext == null)
                 throw new ArgumentNullException("context");
 
-            // Create the UserAuthentication object
-            //UserRequest request = new UserRequest();
-            //request.Application = 
+            // Get the log
+            RequestLog log = GetRequestLog(pContext);
 
-            // Log the user request
-            RequestLog log = GetRequestLog(context);
-
-            //context.Session.SessionID;
+            // Log new sessions only
+            if (log.IsNewSession(pContext.Session != null ? pContext.Session.SessionID : pContext.Request.Params["ASP.Net_SessionId"]))
+            {
+                // Log the session
+                log.LogSession(pContext);
+            }
         }
-#endregion
+        #endregion
     }
 }
