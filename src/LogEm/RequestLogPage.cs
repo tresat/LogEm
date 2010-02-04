@@ -51,7 +51,7 @@ namespace LogEm
             // Set the title of the page.
             //
 
-            this.PageTitle = string.Format("Error log for {0} on {1} (Page #{2})",
+            this.PageTitle = string.Format("Request log for {0} on {1} (Page #{2})",
                 this.ApplicationName, Environment.MachineName,
                 (_pageIndex + 1).ToString("N0"));
 
