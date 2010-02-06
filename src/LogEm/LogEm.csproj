@@ -85,7 +85,7 @@
     <Compile Include="Logging\SessionBase.cs" />
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005RequestLog.cs" />
-    <Compile Include="StringTranslation.cs" />
+    <Compile Include="Utilities\StringTranslation.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\css\LogEm.css" />

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Globalization;
+using LogEm.Utilities;
 
 namespace LogEm 
 {
@@ -31,7 +32,7 @@ namespace LogEm
         private static bool GetBoolean(IDictionary options, string name)
         {
             string str = GetString(options, name).Trim().ToLower(CultureInfo.InvariantCulture);
-            return Boolean.TrueString.Equals(StringTranslation.Translate(Boolean.TrueString, str, _trues));
+            return Boolean.TrueString.Equals(StringUtils.Translate(Boolean.TrueString, str, _trues));
         }
 
         private static string GetString(IDictionary options, string name)
