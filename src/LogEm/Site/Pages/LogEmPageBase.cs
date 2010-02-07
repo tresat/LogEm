@@ -13,6 +13,7 @@ namespace LogEm.Site.Pages
 #region Members
         protected RequestLog _log;
         protected HtmlTextWriter _writer;
+        protected String _title = "LogEm";
 #endregion
 
 #region Properties
@@ -73,24 +74,25 @@ namespace LogEm.Site.Pages
         }
 
         /// <summary>
-        /// Writes the HTML Head element.
+        /// Writes the HTML Head element.  Adds site stylesheet.
         /// </summary>
         protected virtual void RenderHtmlHead()
         {
-            _writer.RenderBeginTag(HtmlTextWriterTag.Head);
+            HtmlHead head = new HtmlHead();
 
-            _writer.RenderBeginTag(HtmlTextWriterTag.Title);
-            _writer.Write("TITLE");
-            _writer.RenderEndTag(); // TITLE
-            _writer.WriteLine();
+            HtmlTitle title = new HtmlTitle();
+            title.Text = _title;
+            head.Controls.Add(title);
 
-            _writer.AddAttribute(HtmlTextWriterAttribute.Rel, "stylesheet");
-            _writer.AddAttribute(HtmlTextWriterAttribute.Type, "text/css");
-            _writer.AddAttribute(HtmlTextWriterAttribute.Href, Context.Request.RawUrl + "/stylesheet");
-            _writer.RenderBeginTag(HtmlTextWriterTag.Link);
-            _writer.RenderEndTag(); // LINK
+            HtmlLink logEmCSS = new HtmlLink();
+            logEmCSS.Attributes.Add("rel", "stylesheet");
+            logEmCSS.Attributes.Add("type", "text/css");        
+            logEmCSS.Attributes.Add("href", Context.Request.RawUrl + "/stylesheet");
+            head.Controls.Add(logEmCSS);
 
-            _writer.RenderEndTag(); // HEAD
+            Page.Controls.Add(head);
+
+            head.RenderControl(_writer);
             _writer.WriteLine();
         }
 
@@ -101,10 +103,19 @@ namespace LogEm.Site.Pages
         {
             _writer.RenderBeginTag(HtmlTextWriterTag.Body);
 
-            _writer.Write("WELCOME TO LOGEM!");
+            RenderContents();
 
             _writer.RenderEndTag(); // BODY
             _writer.WriteLine();
+        }
+
+        /// <summary>
+        /// This is the only function that should have to be overriden
+        /// most of the time: render the contents of a specific page.
+        /// </summary>
+        protected virtual void RenderContents()
+        {
+            _writer.WriteLine("Welcome to LogEm!");
         }
     }
 }
