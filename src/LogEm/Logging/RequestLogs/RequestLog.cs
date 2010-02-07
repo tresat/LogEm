@@ -1,5 +1,6 @@
 using System;
 using System.Web;
+using LogEm.Utilities;
 using IList = System.Collections.IList;
 
 namespace LogEm.Logging.RequestLogs
@@ -144,7 +145,7 @@ namespace LogEm.Logging.RequestLogs
         /// Gets the currently running RequestLog in the given HttpContext.
         /// </summary>
         /// <param name="context">Current Http Context (where a log should be stored, if a request has already caused one to be created).</param>
-        /// <returns>The current active implementation of the RequestLog (a subclass of <see cref="LogEm.Logging.RequestLogs.RequestLog"/>being used for this HttpContext.</returns>
+        /// <returns>The current active implementation of the RequestLog (a subclass of <see cref="LogEm.Utilities.Logging.RequestLogs.RequestLog"/>being used for this HttpContext.</returns>
         public static RequestLog GetLog(HttpContext context)
         {
             // TODO: this feels VERY weird to me as a static of the base class...move it somewhere else?
@@ -215,7 +216,7 @@ namespace LogEm.Logging.RequestLogs
                 appName = HttpRuntime.AppDomainAppVirtualPath;
             }
 
-            return Mask.EmptyString(appName, "/");
+            return StringUtils.IfEmpty(appName, "/");
 #endif
         }
         #endregion

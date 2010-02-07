@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.Common;
 using System.IO;
 using System.Runtime.CompilerServices;
+using LogEm.Utilities;
 
 using IDictionary = System.Collections.IDictionary;
 
@@ -48,7 +49,7 @@ namespace LogEm.Logging
             // string was given directly.
             //
 
-            string connectionString = Mask.NullString((string)config["connectionString"]);
+            string connectionString = StringUtils.IfNull((string)config["connectionString"]);
 
             if (connectionString.Length > 0)
                 return connectionString;
@@ -60,7 +61,7 @@ namespace LogEm.Logging
             // be used.
             //
 
-            string connectionStringAppKey = Mask.NullString((string)config["connectionStringAppKey"]);
+            string connectionStringAppKey = StringUtils.IfNull((string)config["connectionStringAppKey"]);
 
             if (connectionStringAppKey.Length == 0)
                 return string.Empty;
@@ -198,7 +199,7 @@ namespace LogEm.Logging
             // trailing backslashes into account to avoid duplication.
             //
 
-            return Mask.NullString(baseDirectory).TrimEnd(_dirSeparators)
+            return StringUtils.IfNull(baseDirectory).TrimEnd(_dirSeparators)
                  + Path.DirectorySeparatorChar
                  + path.Substring(dataDirectoryMacroString.Length).TrimStart(_dirSeparators);
         }

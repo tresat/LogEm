@@ -113,7 +113,7 @@
       <Column Name="W3CDOMVersion" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="Win16" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Win32" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Session_ResourceRequest" Member="Sql2005ResourceRequests" ThisKey="SessionID" OtherKey="fkSessionID" Type="Sql2005ResourceRequest" />
+      <Association Name="Sql2005Session_Sql2005ResourceRequest" Member="Sql2005ResourceRequests" ThisKey="SessionID" OtherKey="fkSessionID" Type="Sql2005ResourceRequest" />
     </Type>
   </Table>
   <Table Name="logEm.ResourceRequest" Member="Sql2005ResourceRequests">
@@ -150,7 +150,7 @@
       <Column Name="ResponseStatus" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
       <Column Name="ResponseBytes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="HandlerName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Association Name="Session_ResourceRequest" Member="Sql2005Session" ThisKey="fkSessionID" OtherKey="SessionID" Type="Sql2005Session" IsForeignKey="true" />
+      <Association Name="Sql2005Session_Sql2005ResourceRequest" Member="Sql2005Session" ThisKey="fkSessionID" OtherKey="SessionID" Type="Sql2005Session" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

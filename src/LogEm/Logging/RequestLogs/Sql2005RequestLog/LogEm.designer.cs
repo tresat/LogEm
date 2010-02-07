@@ -22,6 +22,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="E:\\PROJECTS\\LOGEM\\SAMPLEDBS\\LOGGING.MDF")]
 	public partial class LogEmDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -2768,7 +2769,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_Sql2005ResourceRequests", ThisKey="SessionID", OtherKey="fkSessionID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sql2005Session_Sql2005ResourceRequest", Storage="_Sql2005ResourceRequests", ThisKey="SessionID", OtherKey="fkSessionID")]
 		public EntitySet<Sql2005ResourceRequest> Sql2005ResourceRequests
 		{
 			get
@@ -3606,7 +3607,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_ResourceRequest", Storage="_Sql2005Session", ThisKey="fkSessionID", OtherKey="SessionID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sql2005Session_Sql2005ResourceRequest", Storage="_Sql2005Session", ThisKey="fkSessionID", OtherKey="SessionID", IsForeignKey=true)]
 		public Sql2005Session Sql2005Session
 		{
 			get

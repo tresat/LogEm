@@ -58,6 +58,9 @@
     </Compile>
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005ResourceRequest.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005Session.cs" />
+    <Compile Include="Site\Pages\LogEmPageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -68,7 +71,6 @@
     <Compile Include="HttpRequestSecurity.cs" />
     <Compile Include="JetBrains.Annotations.cs" />
     <Compile Include="ManifestResourceHelper.cs" />
-    <Compile Include="Mask.cs" />
     <Compile Include="Logging\RequestLogModule.cs" />
     <Compile Include="HTTPHandlers\ManifestResourceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,7 +79,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="RequestLogPageFactory.cs" />
-    <Compile Include="RequestPageBase.cs">
+    <Compile Include="Site\Pages\RequestPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Logging\ResourceRequestBase.cs" />
@@ -85,13 +87,12 @@
     <Compile Include="Logging\SessionBase.cs" />
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005RequestLog.cs" />
-    <Compile Include="Utilities\StringTranslation.cs" />
+    <Compile Include="Utilities\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\css\LogEm.css" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Logging\RequestLogs\Sql2005RequestLog\LogEm.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>LogEm.designer.cs</LastGenOutput>

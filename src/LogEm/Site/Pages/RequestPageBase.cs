@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using LogEm.Logging.RequestLogs;
+using LogEm.Utilities;
 
 using CultureInfo = System.Globalization.CultureInfo;
 
@@ -33,7 +34,7 @@ namespace LogEm
 
         protected virtual string PageTitle
         {
-            get { return Mask.NullString(_title); }
+            get { return StringUtils.IfNull(_title); }
             set { _title = value; }
         }
 

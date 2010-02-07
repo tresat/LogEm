@@ -47,7 +47,7 @@ namespace LogEm
             if (value == null)
                 return string.Empty;
 
-            return Mask.NullString(value.ToString());
+            return StringUtils.IfNull(value.ToString());
         }
     }
 }

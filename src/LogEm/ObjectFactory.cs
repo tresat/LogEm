@@ -1,7 +1,8 @@
 using System;
 using IDictionary = System.Collections.IDictionary;
+using LogEm.Utilities;
 
-namespace LogEm.Logging
+namespace LogEm
 {
     /// <summary>
     /// A simple factory for creating instances of types specified in a 
@@ -38,7 +39,7 @@ namespace LogEm.Logging
             config = (IDictionary) ((ICloneable) config).Clone();
 
             // Get the type specification of the service provider.
-            string typeSpec = Mask.NullString((string) config["type"]);
+            string typeSpec = StringUtils.IfNull((string) config["type"]);
             if (typeSpec.Length == 0)
                 return null;
 

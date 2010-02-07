@@ -2,6 +2,7 @@
 using System.Web;
 using LogEm.Logging;
 using LogEm.HTTPHandlers;
+using LogEm.Site.Pages;
 using CultureInfo = System.Globalization.CultureInfo;
 using Encoding = System.Text.Encoding;
 
@@ -106,7 +107,7 @@ namespace LogEm
                 //    return new AboutPage();
 
                 default:
-                    return name.Length == 0 ? new RequestLogPage() : null;
+                    return name.Length == 0 ? new LogEmPageBase() : null;
             }
         }
 

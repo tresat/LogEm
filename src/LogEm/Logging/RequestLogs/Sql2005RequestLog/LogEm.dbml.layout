@@ -14,8 +14,8 @@
         <elementListCompartment Id="24a89447-cc00-4b9f-b7a3-19f6ac0dac2e" absoluteBounds="3.14, 0.96, 1.9700000000000002, 5.466573079427083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 3.51328653971354); (3.125 : 3.51328653971354)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/LogEmDataContext/Sql2005Session/Session_ResourceRequest" />
+    <associationConnector edgePoints="[(2.5 : 3.51328653971354); (3.125 : 3.51328653971354)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LogEmDataContext/Sql2005Session/Sql2005Session_Sql2005ResourceRequest" />
       <nodes>
         <classShapeMoniker Id="be3ae19b-7d64-4483-96d8-2cc387341d7e" />
         <classShapeMoniker Id="10f8eac9-9058-472c-a254-59638b1b8966" />
