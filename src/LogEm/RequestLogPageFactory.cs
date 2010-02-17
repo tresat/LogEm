@@ -75,6 +75,9 @@ namespace LogEm
 
             switch (name)
             {
+                case "browsers-by-request":
+                    return new BrowsersByRequestPage();
+
                 //case "detail":
                 //    return new RequestDetailPage();
 

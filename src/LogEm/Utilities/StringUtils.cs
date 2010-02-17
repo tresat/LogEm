@@ -3,8 +3,15 @@ using System.Collections.Generic;
 
 namespace LogEm.Utilities
 {
-    internal static class StringUtils
+    internal sealed class StringUtils
     {
+        #region Constructors
+        /// <summary>
+        /// Not Instantiable.
+        /// </summary>
+        private StringUtils() { }
+        #endregion
+
         #region "Public Functionality"
         /// <summary>
         /// Provides translation from multiple representations of a string/concept to a
