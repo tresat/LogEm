@@ -40,15 +40,16 @@ namespace LogEm.Site.Pages
             //imageStream.Seek(0, SeekOrigin.Begin);
 
             // return the normal FileResult available in the current release of MVC
+            string location = "/MyChart" + Guid.NewGuid() + ".png";
 
             browsersChart.RenderType = RenderType.ImageTag;
-            browsersChart.ImageLocation = "~/MyChart.png";
+            browsersChart.ImageLocation = location;
 
-            browsersChart.SaveImage(Server.MapPath("~/MyChart.png"), ChartImageFormat.Png);
+            browsersChart.SaveImage(Server.MapPath("~" + location), ChartImageFormat.Png);
 
             HtmlImage chart = new HtmlImage();
             chart.ID = "browsers chart";
-            chart.Src = Request.ApplicationPath + "/MyChart.png";
+            chart.Src = Request.ApplicationPath + location;
             chart.Height = 500;
             chart.Width = 500;
 
