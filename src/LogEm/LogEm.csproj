@@ -21,6 +21,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>1607</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,7 +64,10 @@
     </Compile>
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005ResourceRequest.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005Session.cs" />
-    <Compile Include="Site\Pages\BrowsersByRequestPage.cs">
+    <Compile Include="Site\ChartHandlerFactory.cs" />
+    <Compile Include="Site\HTTPHandlers\Charts\ChartHttpHandlerBase.cs" />
+    <Compile Include="Site\HTTPHandlers\Charts\BrowsersByRequestChart.cs" />
+    <Compile Include="Site\Pages\BrowserInfoPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site\Pages\LogEmPageBase.cs">
@@ -78,11 +84,11 @@
     <Compile Include="JetBrains.Annotations.cs" />
     <Compile Include="ManifestResourceHelper.cs" />
     <Compile Include="Logging\RequestLogModule.cs" />
-    <Compile Include="HTTPHandlers\ManifestResourceHandler.cs" />
+    <Compile Include="Site\HTTPHandlers\ManifestResourceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logging\RequestLogs\RequestLog.cs" />
     <Compile Include="RequestLogPage.cs" />
-    <Compile Include="RequestLogPageFactory.cs" />
+    <Compile Include="Site\RequestLogPageFactory.cs" />
     <Compile Include="Logging\ResourceRequestBase.cs" />
     <Compile Include="SecurityConfiguration.cs" />
     <Compile Include="Logging\SessionBase.cs" />

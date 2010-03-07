@@ -31,10 +31,8 @@ namespace LogEm.Utilities
         public const string NETFrameworkVersion = ".NET 2.0";
 #elif NET_3_5
         public const string NETFrameworkVersion = ".NET 3.5";
-#elif NET_4_0
-        public const string NETFrameworkVersion = ".NET 4.0";
 #else
-        public const string NETFrameworkVersion = ".NET version unknown";
+        public const string NETFrameworkVersion = ".NET 4.0 or later (or not built with Visual Studio)";
 #endif
         
         // What specific version of the CLR was it built under?

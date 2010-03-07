@@ -33,5 +33,7 @@ using LogEm.Utilities;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
+// Also, in project properties, disable warning 1607 if using *s for any of
+// these numbers, to avoid annoying warning msg
 [assembly: AssemblyVersion("0.1.*")]
 [assembly: AssemblyFileVersion("0.1.*")]

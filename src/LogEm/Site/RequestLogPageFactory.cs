@@ -1,22 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Web;
 using LogEm.Logging;
-using LogEm.HTTPHandlers;
+using LogEm.Site.HTTPHandlers;
 using LogEm.Site.Pages;
 using CultureInfo = System.Globalization.CultureInfo;
 using Encoding = System.Text.Encoding;
 
-namespace LogEm
+namespace LogEm.Site
 {
+    public interface IRequestAuthorizationHandler
+    {
+        bool Authorize(HttpContext context);
+    }
+
     /// <summary>
     /// HTTP handler factory that dispenses handlers for rendering views and 
-    /// resources needed to display the error log.
+    /// resources needed to display and visualize the request log.
     /// </summary>
-
     public class RequestLogPageFactory : IHttpHandlerFactory
     {
-        private static readonly object _authorizationHandlersKey = new object();
-        private static readonly IRequestAuthorizationHandler[] _zeroAuthorizationHandlers = new IRequestAuthorizationHandler[0];
+        protected static readonly object _authorizationHandlersKey = new object();
+        protected static readonly IRequestAuthorizationHandler[] _zeroAuthorizationHandlers = new IRequestAuthorizationHandler[0];
 
         /// <summary>
         /// Returns an object that implements the <see cref="IHttpHandler"/> 
@@ -25,58 +30,59 @@ namespace LogEm
         /// <returns>
         /// A new <see cref="IHttpHandler"/> object that processes the request.
         /// </returns>
-
         public virtual IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
         {
-            //
-            // The request resource is determined by the looking up the
-            // value of the PATH_INFO server variable.
-            //
+            if (context == null)
+                throw new ArgumentNullException("context");
 
-            string resource = context.Request.PathInfo.Length == 0 ? string.Empty :
-                context.Request.PathInfo.Substring(1).ToLower(CultureInfo.InvariantCulture);
-
-            IHttpHandler handler = FindHandler(resource);
-
-            if (handler == null)
-                throw new HttpException(404, "Resource not found.");
-
-            //
             // Check if authorized then grant or deny request.
-            //
-
             int authorized = IsAuthorized(context);
             if (authorized == 0
                 || (authorized < 0 // Compatibility case...
                     && !HttpRequestSecurity.IsLocal(context.Request)
                     && !SecurityConfiguration.Default.AllowRemoteAccess))
-            {
+            { // not authorized
                 (new ManifestResourceHandler("RemoteAccessError.htm", "text/html")).ProcessRequest(context);
                 HttpResponse response = context.Response;
                 response.Status = "403 Forbidden";
                 response.End();
 
-                //
                 // HttpResponse.End docs say that it throws 
                 // ThreadAbortException and so should never end up here but
                 // that's not been the observation in the debugger. So as a
                 // precautionary measure, bail out anyway.
-                //
-
                 return null;
-            }
+            } else { // authorized
+                // Create the HTTP Handler which will service the request
+                IHttpHandler handler = InstantiateHandler(context, requestType, url, pathTranslated);
+                if (handler == null)
+                    throw new HttpException(404, "Resource not found.");
 
-            return handler;
+                // And return it
+                return handler;
+            }
         }
 
-        private static IHttpHandler FindHandler(string name)
+        /// <summary>
+        /// Determines the handler type from the URL.  Takes same params from
+        /// GetHandler() call.  (Only uses context.)
+        /// </summary>
+        /// <returns>An instantiated handler, ready to service request.  
+        /// Or <c>null</c> if the handler is not known.</returns>
+        protected static IHttpHandler InstantiateHandler(HttpContext pContext, string pRequestType, string pUrl, string pPathTranslated)
         {
-            Debug.Assert(name != null);
+            if (pContext == null)
+                throw new ArgumentNullException("pContext");
 
-            switch (name)
+            // Switch off last segment of URL
+            switch (pContext.Request.Url.Segments[pContext.Request.Url.Segments.Length - 1].ToLowerInvariant())
             {
-                case "browsers-by-request":
-                    return new BrowsersByRequestPage();
+                case "browser-info":
+                    return new BrowserInfoPage();
+
+                case "chart":
+                    ChartHandlerFactory chartHandlerFactory = new ChartHandlerFactory();
+                    return chartHandlerFactory.GetHandler(pContext, pRequestType, pUrl, pPathTranslated);
 
                 //case "detail":
                 //    return new RequestDetailPage();
@@ -100,8 +106,7 @@ namespace LogEm
                 //    return new RequestLogDownloadHandler();
 
                 case "stylesheet":
-                    return new ManifestResourceHandler("LogEm.css",
-                        "text/css", Encoding.GetEncoding("Windows-1252"));
+                    return new ManifestResourceHandler("LogEm.css", "text/css", Encoding.GetEncoding("Windows-1252"));
 
                 //case "test":
                 //    throw new TestException();
@@ -110,18 +115,19 @@ namespace LogEm
                 //    return new AboutPage();
 
                 default:
-                    return name.Length == 0 ? new LogEmPageBase() : null;
+                    return new BrowserInfoPage();
             }
         }
 
         /// <summary>
         /// Enables the factory to reuse an existing handler instance.
+        /// Not currently used.
         /// </summary>
-
         public virtual void ReleaseHandler(IHttpHandler handler)
         {
         }
 
+        #region Authorization
         /// <summary>
         /// Determines if the request is authorized by objects implementing
         /// <see cref="IRequestAuthorizationHandler" />.
@@ -131,8 +137,7 @@ namespace LogEm
         /// authorized otherwise a value less than zero if no handlers
         /// were available to answer.
         /// </returns>
-
-        private static int IsAuthorized(HttpContext context)
+        protected static int IsAuthorized(HttpContext context)
         {
             Debug.Assert(context != null);
 
@@ -146,7 +151,7 @@ namespace LogEm
             return authorized;
         }
 
-        private static IList GetAuthorizationHandlers(HttpContext context)
+        protected static IList GetAuthorizationHandlers(HttpContext context)
         {
             Debug.Assert(context != null);
 
@@ -183,10 +188,6 @@ namespace LogEm
 
             return handlers;
         }
-    }
-
-    public interface IRequestAuthorizationHandler
-    {
-        bool Authorize(HttpContext context);
+        #endregion
     }
 }

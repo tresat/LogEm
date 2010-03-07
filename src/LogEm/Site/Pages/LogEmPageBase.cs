@@ -104,7 +104,7 @@ namespace LogEm.Site.Pages
             HtmlLink logEmCSS = new HtmlLink();
             logEmCSS.Attributes.Add("rel", "stylesheet");
             logEmCSS.Attributes.Add("type", "text/css");        
-            logEmCSS.Attributes.Add("href", ExtractBaseLogEmUrl(Context.Request.Url.Segments) + "stylesheet");
+            logEmCSS.Attributes.Add("href", HtmlUtils.BaseLogEmUrl() + "stylesheet");
             _head.Controls.Add(logEmCSS);
 
             Page.Controls.Add(_head);
@@ -256,18 +256,6 @@ namespace LogEm.Site.Pages
             logProvider.Controls.Add(new LiteralControl(sb.ToString()));
 
             return logProvider;
-        }
-
-        protected string ExtractBaseLogEmUrl(String[] pRequestUrlSegments)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 0; i < pRequestUrlSegments.Length - 1; i++)
-            {
-                sb.Append(pRequestUrlSegments[i]);
-            }
-
-            return sb.ToString();
         }
         #endregion
     }

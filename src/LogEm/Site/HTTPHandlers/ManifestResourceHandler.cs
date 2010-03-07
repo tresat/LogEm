@@ -7,7 +7,7 @@ using Stream = System.IO.Stream;
 using Debug = LogEm.Debug;
 using ManifestResourceHelper = LogEm.ManifestResourceHelper;
 
-namespace LogEm.HTTPHandlers
+namespace LogEm.Site.HTTPHandlers
 {
     /// <summary>
     /// Reads a resource from the assembly manifest and returns its contents
