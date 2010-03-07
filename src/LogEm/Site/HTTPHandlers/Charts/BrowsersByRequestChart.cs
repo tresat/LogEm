@@ -12,9 +12,20 @@ namespace LogEm.Site.HTTPHandlers.Charts
     {
         public override void ProcessRequest(HttpContext context) {
             Chart browsersChart = new Chart();
-            browsersChart.Width = 500;
-            browsersChart.Height = 500;
             browsersChart.Titles.Add("Requests by Browser");
+
+            // Create new chart area
+            ChartArea area = new ChartArea("Browsers");
+
+            // Create new data series and set it's visual attributes
+            Series series = new Series("Browsers");
+            series.ChartType = SeriesChartType.Pie;
+            series.Points.AddY(30);
+            series.Points.AddY(50);
+            series.Points.AddY(20);
+
+            browsersChart.ChartAreas.Add(area);
+            browsersChart.Series.Add(series);
 
             // Simply use a MemoryStream to save the chart. 
             MemoryStream imageStream = new MemoryStream();
