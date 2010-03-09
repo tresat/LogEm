@@ -5,6 +5,7 @@ using System.Web.UI.DataVisualization.Charting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LogEm.Logging.RequestLogs;
 
 namespace LogEm.Site.HTTPHandlers.Charts
 {
@@ -13,16 +14,13 @@ namespace LogEm.Site.HTTPHandlers.Charts
         public override void ProcessRequest(HttpContext context) {
             Chart browsersChart = new Chart();
             browsersChart.Titles.Add("Requests by Browser");
+            browsersChart.Height = 500;
+            browsersChart.Width = 500;
 
             // Create new chart area
             ChartArea area = new ChartArea("Browsers");
 
-            // Create new data series and set it's visual attributes
-            Series series = new Series("Browsers");
-            series.ChartType = SeriesChartType.Pie;
-            series.Points.AddY(30);
-            series.Points.AddY(50);
-            series.Points.AddY(20);
+            Series series = RequestLogBase.GetLog(HttpContext.Current).SeriesBrowsersByRequest();
 
             browsersChart.ChartAreas.Add(area);
             browsersChart.Series.Add(series);

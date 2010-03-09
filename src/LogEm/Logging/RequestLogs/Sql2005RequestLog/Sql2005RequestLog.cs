@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Collections;
 using System.Web;
+using System.Web.UI.DataVisualization.Charting;
 using LogEm.Logging;
 using LogEm.Logging.RequestLogs;
 using LogEm.ExtensionMethods;
@@ -20,7 +21,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
     /// An <see cref="ErrorLog"/> implementation that uses Microsoft SQL 
     /// Server 2000 as its backing store.
     /// </summary>
-    public class Sql2005RequestLog : RequestLog
+    public class Sql2005RequestLog : RequestLogBase
     {
         #region "Constants"
         protected const int _MAX_APP_NAME_LENGTH = 256;
@@ -30,6 +31,24 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
         protected readonly string _connectionString;
         protected LogEmDataContext _dc;
          #endregion
+
+        #region "Properties"
+        /// <summary>
+        /// Gets the name of this Request Log implementation.
+        /// </summary>
+        public override string Name
+        {
+            get { return "Microsoft SQL Server Request Log"; }
+        }
+
+        /// <summary>
+        /// Gets the connection string used by the log to connect to the database.
+        /// </summary>
+        public virtual string ConnectionString
+        {
+            get { return _connectionString; }
+        }
+        #endregion
 
         #region "Constructors
         /// <summary>
@@ -76,24 +95,6 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
             // Set the application name as this implementation provides
             // per-application isolation over a single store.
             SetupAppName(applicationName);
-        }
-        #endregion
-
-        #region "Properties"
-        /// <summary>
-        /// Gets the name of this Request Log implementation.
-        /// </summary>
-        public override string Name
-        {
-            get { return "Microsoft SQL Server Request Log"; }
-        }
-
-        /// <summary>
-        /// Gets the connection string used by the log to connect to the database.
-        /// </summary>
-        public virtual string ConnectionString
-        {
-            get { return _connectionString; }
         }
         #endregion
 
@@ -147,8 +148,6 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
             request.ResponseType = pContext.Response.ContentType;
             request.ResponseCookies = pContext.Response.Cookies.ToCSVString();
             request.ResponseStatus = pContext.Response.Status;
-
-            request.Handler = (pContext.Handler != null ? pContext.Handler.GetType().Name : null);
 
             return request;
         }
@@ -328,13 +327,11 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
             return session.SessionID;
         }
 
-        #endregion
-
         /// <summary>
         /// Returns a page of resource requests from the databse in descending order 
         /// of logged time.
         /// </summary>
-        public override int GetRequests(int pageIndex, int pageSize, IList requestEntryList)
+        public override int GetRequests(int pageIndex, int pageSize, IList<ResourceRequestBase> requestEntryList)
         {
             if (pageIndex < 0)
                 throw new ArgumentOutOfRangeException("pageIndex", pageIndex, null);
@@ -349,7 +346,7 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
                 requestEntryList.Add(rr);
             }
 
-            requestEntryList = requestList;
+            requestEntryList = (IList<ResourceRequestBase>)requestList;
 
             return requestList.Count;
         }
@@ -391,7 +388,49 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
             return (GetSessionID(pASPSessionID) == null);
         }
 
-#region "Protected Helpers"
+        #region DataQueries
+        /// <summary>
+        /// Build the browsers by request series from the log data.
+        /// </summary>
+        /// <returns>Returns a series of percents, were each percent is the fraction
+        /// of the total of requests made by each type and majorversion of
+        /// browser in the log.</returns>
+        public override Series SeriesBrowsersByRequest()
+        {
+            List<int> requestCount = new List<int>();
+            List<string> browserNames = new List<string>();
+
+            Series result = new Series("BrowsersByRequest");
+            result.ChartType = SeriesChartType.Pie;
+
+            // Query the database for the required grouping
+            var browsers = (from rr in _dc.Sql2005ResourceRequests
+                            group rr by new { rr.Sql2005Session.Browser, rr.Sql2005Session.MajorVersion } into grouping
+                            orderby grouping.Count() descending
+                            select new
+                            {
+                                Name = grouping.Key.Browser,
+                                MajorVersion = grouping.Key.MajorVersion,
+                                Count = grouping.Count()
+                            });
+
+            // Now iterate the browser groupings and add Points to the data
+            // series for plotting on the chart
+            foreach (var browser in browsers.ToList())
+            {
+                requestCount.Add(browser.Count);
+                browserNames.Add(String.Format("{0}, version {1}", browser.Name, browser.MajorVersion));
+            }
+
+            // Populate series data
+            result.Points.DataBindXY(browserNames, requestCount);
+
+            return result;
+        }
+        #endregion
+        #endregion
+
+        #region "Protected Helpers"
         /// <summary>
         /// Stores the application name (first verifies it is valid)
         /// </summary>

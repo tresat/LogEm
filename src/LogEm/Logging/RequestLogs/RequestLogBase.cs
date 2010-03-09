@@ -1,7 +1,9 @@
 using System;
 using System.Web;
+using System.Web.UI.DataVisualization.Charting;
+using System.Linq;
 using LogEm.Utilities;
-using IList = System.Collections.IList;
+using System.Collections.Generic;
 
 namespace LogEm.Logging.RequestLogs
 {
@@ -9,7 +11,7 @@ namespace LogEm.Logging.RequestLogs
     /// Represents an request log capable of storing and retrieving request
     /// and session information generated in an ASP.NET Web application.
     /// </summary>
-    public abstract class RequestLog
+    public abstract class RequestLogBase
     {
         #region "Member Vars"
         private string _appName;
@@ -116,6 +118,15 @@ namespace LogEm.Logging.RequestLogs
         /// <returns><c>true/false</c> whether or not the session is new.</returns>
         public abstract Boolean IsNewSession(String pASPSessionID);
 
+        #region DataQueries
+        /// <summary>
+        /// Build the browsers by request series from the log data.
+        /// </summary>
+        /// <returns>Returns a series of percents, were each percent is the fraction
+        /// of the total of requests made by each type and majorversion of
+        /// browser in the log.</returns>
+        public abstract Series SeriesBrowsersByRequest();
+        #endregion
         #endregion
         // The line of Tom approval
         
@@ -136,8 +147,8 @@ namespace LogEm.Logging.RequestLogs
         /// Retrieves a page of application requests from the log in 
         /// descending order of logged time.
         /// </summary>
-        public abstract int GetRequests(int pageIndex, int pageSize, IList errorEntryList);
-        private delegate int GetRequestsHandler(int pageIndex, int pageSize, IList errorEntryList);
+        public abstract int GetRequests(int pageIndex, int pageSize, IList<ResourceRequestBase> errorEntryList);
+        private delegate int GetRequestsHandler(int pageIndex, int pageSize, IList<ResourceRequestBase> errorEntryList);
 
 
         #region "Public Functionality"
@@ -146,21 +157,21 @@ namespace LogEm.Logging.RequestLogs
         /// </summary>
         /// <param name="context">Current Http Context (where a log should be stored, if a request has already caused one to be created).</param>
         /// <returns>The current active implementation of the RequestLog (a subclass of <see cref="LogEm.Utilities.Logging.RequestLogs.RequestLog"/>being used for this HttpContext.</returns>
-        public static RequestLog GetLog(HttpContext context)
+        public static RequestLogBase GetLog(HttpContext context)
         {
             // TODO: this feels VERY weird to me as a static of the base class...move it somewhere else?
             if (context == null)
                 throw new ArgumentNullException("context");
 
             // Check for the log in the Context store
-            RequestLog log = (RequestLog)context.Items[_contextKey];
+            RequestLogBase log = (RequestLogBase)context.Items[_contextKey];
             if (log == null)
             {
                 // Log not found in context, have to create a logger
 
                 // Determine the default store type from the configuration and 
                 // create an instance of it.
-                log = (RequestLog)ObjectFactory.CreateFromConfigSection(Configuration.GroupSlash + "requestLog");
+                log = (RequestLogBase)ObjectFactory.CreateFromConfigSection(Configuration.GroupSlash + "requestLog");
 
                 // If no object got created (probably because the right 
                 // configuration settings are missing) then throw an exception.

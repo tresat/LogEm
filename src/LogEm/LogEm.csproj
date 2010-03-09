@@ -86,7 +86,7 @@
     <Compile Include="Logging\RequestLogModule.cs" />
     <Compile Include="Site\HTTPHandlers\ManifestResourceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logging\RequestLogs\RequestLog.cs" />
+    <Compile Include="Logging\RequestLogs\RequestLogBase.cs" />
     <Compile Include="RequestLogPage.cs" />
     <Compile Include="Site\RequestLogPageFactory.cs" />
     <Compile Include="Logging\ResourceRequestBase.cs" />

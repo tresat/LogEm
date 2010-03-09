@@ -14,7 +14,7 @@ namespace LogEm.Site.Pages
     public class LogEmPageBase : Page
     {
 #region Members
-        protected RequestLog _log;
+        protected RequestLogBase _log;
         protected HtmlTextWriter _writer;
         protected String _title;
 
@@ -26,13 +26,13 @@ namespace LogEm.Site.Pages
 #endregion
 
 #region Properties
-        public virtual RequestLog RequestLog
+        public virtual RequestLogBase RequestLog
         {
             get
             {
                 // Save reference to log on first request
                 if (_log == null)
-                    _log = RequestLog.GetLog(Context);
+                    _log = RequestLogBase.GetLog(Context);
 
                 return _log;
             }

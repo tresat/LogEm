@@ -14,27 +14,24 @@ namespace LogEm.Logging
         #endregion
 
         #region "Properties"
-        public HttpContext Context
-        {
-            get { return _context; }
-        }
-
-        public virtual Guid? ID
+        public virtual Guid? IDBase
         {
             get { return _id; }
-            set { _id = value; }
+        }
+        public virtual string BrowserBase
+        {
+            get { return null; }
+        }
+        public virtual int? MajorVersionBase
+        {
+            get { return null; }
         }
         #endregion
 
-        #region "Constructors"
-        public SessionBase() : this(null) { }
-
-        public SessionBase(HttpContext context)
+        #region Constructors
+        public SessionBase()
         {
-            // context allowed to be null
-
             _id = Guid.NewGuid();
-            _context = context;
         }
         #endregion
     }

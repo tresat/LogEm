@@ -1,4 +1,5 @@
 src/*.suo
+queries/*
 *.csproj.user
 src/LogEm/obj/*
 src/LogEm/bin/*

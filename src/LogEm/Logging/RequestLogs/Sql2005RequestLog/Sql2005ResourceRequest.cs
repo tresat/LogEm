@@ -7,10 +7,9 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 {
     public partial class Sql2005ResourceRequest
     {
-        public override Guid? ID
+        public override Guid? BaseID
         {
             get { return _ResourceRequestID; }
-            set { _id = value; } 
         }
     }
 }

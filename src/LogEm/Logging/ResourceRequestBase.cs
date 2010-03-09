@@ -9,19 +9,13 @@ namespace LogEm.Logging
     {
         #region "Member Vars"
         protected Guid? _id;
-        protected String _handler;
         #endregion
 
         #region "Properties"
-        public virtual Guid? ID
+        public virtual Guid? BaseID
         {
             get { return _id; }
             set { _id = value; }
-        }
-        public virtual String Handler
-        {
-            get { return _handler; }
-            set { _handler = value; }
         }
         #endregion
 

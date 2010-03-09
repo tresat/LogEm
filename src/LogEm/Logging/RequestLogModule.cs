@@ -85,12 +85,12 @@ namespace LogEm.Logging
         }
 
         /// <summary>
-        /// Gets the <see cref="RequestLog"/> instance to which the module
+        /// Gets the <see cref="RequestLogBase"/> instance to which the module
         /// will log requests.
         /// </summary>
-        protected virtual RequestLog GetRequestLog(HttpContext pContext)
+        protected virtual RequestLogBase GetRequestLog(HttpContext pContext)
         {
-            return RequestLog.GetLog(pContext);
+            return RequestLogBase.GetLog(pContext);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace LogEm.Logging
                 throw new ArgumentNullException("context");
 
             // Get the log
-            RequestLog log = GetRequestLog(pContext);
+            RequestLogBase log = GetRequestLog(pContext);
 
             // Log the ResourceRequest
             log.LogResourceRequest(pContext);
@@ -117,7 +117,7 @@ namespace LogEm.Logging
                 throw new ArgumentNullException("context");
 
             // Get the log
-            RequestLog log = GetRequestLog(pContext);
+            RequestLogBase log = GetRequestLog(pContext);
 
             // Log new sessions only
             if (log.IsNewSession(pContext.Session != null ? pContext.Session.SessionID : pContext.Request.Params["ASP.Net_SessionId"]))

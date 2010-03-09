@@ -7,10 +7,17 @@ namespace LogEm.Logging.RequestLogs.Sql2005RequestLog
 {
     public partial class Sql2005Session
     {
-        public override Guid? ID
+        public override Guid? IDBase
         {
             get { return _SessionID; }
-            set { _id = value; }
+        }
+        public override string BrowserBase
+        {
+            get { return _Browser; }
+        }
+        public override int? MajorVersionBase
+        {
+            get { return _MajorVersion; }
         }
     }
 }
