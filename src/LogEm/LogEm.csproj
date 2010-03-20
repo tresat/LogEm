@@ -42,6 +42,7 @@
     <Reference Include="System.Web.DataVisualization">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,8 +66,11 @@
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005ResourceRequest.cs" />
     <Compile Include="Logging\RequestLogs\Sql2005RequestLog\Sql2005Session.cs" />
     <Compile Include="Site\ChartHandlerFactory.cs" />
+    <Compile Include="Site\DataHandlerFactory.cs" />
     <Compile Include="Site\HTTPHandlers\Charts\ChartHttpHandlerBase.cs" />
     <Compile Include="Site\HTTPHandlers\Charts\BrowsersByRequestChart.cs" />
+    <Compile Include="Site\HTTPHandlers\Data\DataHandlerBase.cs" />
+    <Compile Include="Site\HTTPHandlers\Data\RequestsByBrowserHandler.cs" />
     <Compile Include="Site\Pages\BrowserInfoPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -118,7 +122,9 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\BrowserInfo.js" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\LogEm.js" />
   </ItemGroup>

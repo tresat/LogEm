@@ -20,6 +20,9 @@ namespace LogEm.Site
     /// </summary>
     public class RequestLogPageFactory : IHttpHandlerFactory
     {
+        protected const String BASE_HANDLER_NAME = "LOGEM.AXD";
+        protected const String BASE_HANDLER_NAME_WITH_TRAILING_SLASH = BASE_HANDLER_NAME + "/";
+
         protected static readonly object _authorizationHandlersKey = new object();
         protected static readonly IRequestAuthorizationHandler[] _zeroAuthorizationHandlers = new IRequestAuthorizationHandler[0];
 
@@ -75,51 +78,26 @@ namespace LogEm.Site
                 throw new ArgumentNullException("pContext");
 
             // Switch off last segment of URL
-            String lastSegment = pContext.Request.Url.Segments[pContext.Request.Url.Segments.Length - 1];
-            switch (lastSegment.ToLowerInvariant())
+            String resourceType = GetResourceType(pContext.Request.Url.Segments);
+            switch (resourceType.ToLowerInvariant().TrimEnd(new Char[]{'/'}))
             {
                 case "browser-info":
                     return new BrowserInfoPage();
 
                 case "chart":
-                    ChartHandlerFactory chartHandlerFactory = new ChartHandlerFactory();
-                    return chartHandlerFactory.GetHandler(pContext, pRequestType, pUrl, pPathTranslated);
+                    return (new ChartHandlerFactory()).GetHandler(pContext, pRequestType, pUrl, pPathTranslated);
 
                 case "stylesheet":
-                    return new ManifestResourceHandler("LogEm.css", "text/css", Encoding.GetEncoding("Windows-1252"));
+                    return new ManifestResourceHandler(GetResourceName(pContext.Request.Url.Segments), "text/css", Encoding.GetEncoding("Windows-1252"));
 
                 case "javascript":
-                    return new ManifestResourceHandler("LogEm.js", "text/javascript", Encoding.GetEncoding("Windows-1252"));
+                    return new ManifestResourceHandler(GetResourceName(pContext.Request.Url.Segments), "text/javascript", Encoding.GetEncoding("Windows-1252"));
                 
-                //case "detail":
-                //    return new RequestDetailPage();
-
-                //case "html":
-                //    return new RequestHtmlPage();
-
-                //case "xml":
-                //    return new RequestXmlHandler();
-
-                //case "json":
-                //    return new RequestJsonHandler();
-
-                //case "rss":
-                //    return new RequestRssHandler();
-
-                //case "digestrss":
-                //    return new RequestDigestRssHandler();
-
-                //case "download":
-                //    return new RequestLogDownloadHandler();
-
-               //case "test":
-                //    throw new TestException();
-
-                //case "about":
-                //    return new AboutPage();
+                case "data":
+                    return (new DataHandlerFactory()).GetHandler(pContext, pRequestType, pUrl, pPathTranslated);
 
                 default:
-                    return new BrowserInfoPage();
+                    throw new Exception(String.Format("Unknown request type: {0}", resourceType));
             }
         }
 
@@ -130,6 +108,35 @@ namespace LogEm.Site
         public virtual void ReleaseHandler(IHttpHandler handler)
         {
         }
+
+        #region Helpers
+        protected static String GetResourceType(String[] pSegments)
+        {
+            for(int i = 0; i< pSegments.Length; i++) {
+                if (pSegments[i].Equals(BASE_HANDLER_NAME_WITH_TRAILING_SLASH, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    Debug.Assert(i + 1 < pSegments.Length);
+                    return pSegments[i + 1];
+                }
+            }
+
+            throw new Exception(String.Format("Couldn't find base handler name: {0} in request string.", BASE_HANDLER_NAME));
+        }
+
+        protected static String GetResourceName(String[] pSegments)
+        {
+            for (int i = 0; i < pSegments.Length; i++)
+            {
+                if (pSegments[i].Equals(BASE_HANDLER_NAME_WITH_TRAILING_SLASH, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    Debug.Assert(i + 2 < pSegments.Length);
+                    return pSegments[i + 2];
+                }
+            }
+
+            throw new Exception(String.Format("Couldn't find base handler name: {0} in request string.", BASE_HANDLER_NAME));
+        }
+        #endregion
 
         #region Authorization
         /// <summary>

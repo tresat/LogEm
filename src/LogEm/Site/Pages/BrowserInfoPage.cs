@@ -14,32 +14,10 @@ namespace LogEm.Site.Pages
 {
     public class BrowserInfoPage : LogEmPageBase
     {
-        /// <summary>
-        /// Writes the HTML Head element.  Adds site stylesheet.
-        /// </summary>
-        protected override void RenderHtmlHead()
+        public BrowserInfoPage(): base()
         {
-            _head = new HtmlHead();
-
-            HtmlTitle title = new HtmlTitle();
-            title.Text = _title;
-            _head.Controls.Add(title);
-
-            HtmlLink logEmCSS = new HtmlLink();
-            logEmCSS.Attributes.Add("rel", "stylesheet");
-            logEmCSS.Attributes.Add("type", "text/css");
-            logEmCSS.Attributes.Add("href", HtmlUtils.BaseLogEmUrl() + "stylesheet");
-            _head.Controls.Add(logEmCSS);
-
-            HtmlGenericControl logEmJS = new HtmlGenericControl("script");
-            logEmJS.Attributes.Add("type", "text/javascript");
-            logEmJS.Attributes.Add("src", HtmlUtils.BaseLogEmUrl() + "javascript");
-            _head.Controls.Add(logEmJS);
-
-            Page.Controls.Add(_head);
-
-            _head.RenderControl(_writer);
-            _writer.WriteLine();
+            _head.Controls.Add(HtmlUtils.CreateLinkToJavaScriptFile("http://www.google.com/jsapi", false));
+            _head.Controls.Add(HtmlUtils.CreateLinkToJavaScriptFile("BrowserInfo.js", true));
         }
 
         protected override void RenderContents()
@@ -50,6 +28,11 @@ namespace LogEm.Site.Pages
             HtmlGenericControl h1 = new HtmlGenericControl("h1");
             h1.InnerText = "Browser Information";
             contents.Controls.Add(h1);
+
+            HtmlGenericControl timeline = new HtmlGenericControl("div");
+            timeline.ID = "timeline";
+            timeline.Attributes.Add("style", "width: 800px; height: 400px;");
+            contents.Controls.Add(timeline);
 
             HtmlImage chart = new HtmlImage();
             chart.ID = "chartBrowsersByRequest";

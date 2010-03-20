@@ -47,6 +47,19 @@ namespace LogEm.Site.Pages
             _title = "LogEm";
             _showHeader = true;
             _showFooter = true;
+
+            // Create the head tag so that derived class constructors can
+            // have it available for adding new links/scripts
+            _head = new HtmlHead();
+            // We'll want to add sitewide includes here...so that they get included first 
+            // Can't include .css or .js in the link names?
+            _head.Controls.Add(HtmlUtils.CreateLinkToJavaScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", false));
+            _head.Controls.Add(HtmlUtils.CreateLinkToCSSFile("LogEm", true));
+            _head.Controls.Add(HtmlUtils.CreateLinkToJavaScriptFile("LogEm", true));
+
+            // Create the body tag and set it up so that Render calls
+            // will have it available
+            _body = new HtmlGenericControl("body");
         } 
         #endregion
 
@@ -95,17 +108,9 @@ namespace LogEm.Site.Pages
         /// </summary>
         protected virtual void RenderHtmlHead()
         {
-            _head = new HtmlHead();
-
             HtmlTitle title = new HtmlTitle();
             title.Text = _title;
             _head.Controls.Add(title);
-
-            HtmlLink logEmCSS = new HtmlLink();
-            logEmCSS.Attributes.Add("rel", "stylesheet");
-            logEmCSS.Attributes.Add("type", "text/css");        
-            logEmCSS.Attributes.Add("href", HtmlUtils.BaseLogEmUrl() + "stylesheet");
-            _head.Controls.Add(logEmCSS);
 
             Page.Controls.Add(_head);
 
@@ -118,10 +123,6 @@ namespace LogEm.Site.Pages
         /// </summary>
         protected virtual void RenderHtmlBody()
         {
-            // Create the body tag and set it up so that Render calls
-            // will have it available
-            _body = new HtmlGenericControl("body");
-
             if (_showHeader)
                 RenderPageHeader();
 

@@ -11,7 +11,7 @@ namespace LogEm.Site.HTTPHandlers.Charts
     /// which create a logEm chart and output the binary result to the 
     /// Response stream.
     /// </summary>
-    public abstract class ChartHttpHandlerBase : IHttpHandler
+    internal abstract class ChartHttpHandlerBase : IHttpHandler
     {
         #region Properties
         public virtual bool IsReusable

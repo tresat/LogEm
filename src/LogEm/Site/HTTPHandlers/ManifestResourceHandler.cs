@@ -82,16 +82,15 @@ namespace LogEm.Site.HTTPHandlers
                 switch (pContentType.ToUpper())
                 {
                     case "TEXT/CSS":
-                        name.Append("css.");
+                        name.Append("css.").Append(pFileName).Append(".css");
                         break;
                     case "TEXT/JAVASCRIPT":
-                        name.Append("js.");
+                        name.Append("js.").Append(pFileName).Append(".js");
                         break;
                     default:
                         throw new ArgumentException("pContentType is not a known encoding type.");
                 }
             }
-            name.Append(pFileName);
 
             return name.ToString();
         }
