@@ -84,6 +84,9 @@ namespace LogEm.Site.HTTPHandlers
                     case "TEXT/CSS":
                         name.Append("css.");
                         break;
+                    case "TEXT/JAVASCRIPT":
+                        name.Append("js.");
+                        break;
                     default:
                         throw new ArgumentException("pContentType is not a known encoding type.");
                 }

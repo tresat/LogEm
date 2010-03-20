@@ -75,7 +75,8 @@ namespace LogEm.Site
                 throw new ArgumentNullException("pContext");
 
             // Switch off last segment of URL
-            switch (pContext.Request.Url.Segments[pContext.Request.Url.Segments.Length - 1].ToLowerInvariant())
+            String lastSegment = pContext.Request.Url.Segments[pContext.Request.Url.Segments.Length - 1];
+            switch (lastSegment.ToLowerInvariant())
             {
                 case "browser-info":
                     return new BrowserInfoPage();
@@ -84,6 +85,12 @@ namespace LogEm.Site
                     ChartHandlerFactory chartHandlerFactory = new ChartHandlerFactory();
                     return chartHandlerFactory.GetHandler(pContext, pRequestType, pUrl, pPathTranslated);
 
+                case "stylesheet":
+                    return new ManifestResourceHandler("LogEm.css", "text/css", Encoding.GetEncoding("Windows-1252"));
+
+                case "javascript":
+                    return new ManifestResourceHandler("LogEm.js", "text/javascript", Encoding.GetEncoding("Windows-1252"));
+                
                 //case "detail":
                 //    return new RequestDetailPage();
 
@@ -105,10 +112,7 @@ namespace LogEm.Site
                 //case "download":
                 //    return new RequestLogDownloadHandler();
 
-                case "stylesheet":
-                    return new ManifestResourceHandler("LogEm.css", "text/css", Encoding.GetEncoding("Windows-1252"));
-
-                //case "test":
+               //case "test":
                 //    throw new TestException();
 
                 //case "about":

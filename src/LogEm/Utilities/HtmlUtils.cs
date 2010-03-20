@@ -19,7 +19,7 @@ namespace LogEm.Utilities
             StringBuilder sb = new StringBuilder();
 
             int idx = 0;
-            while (idx < urlParts.Length && urlParts[idx].ToUpperInvariant().StartsWith("LOGEM.AXD")) {
+            while (idx < urlParts.Length && !urlParts[idx].ToUpperInvariant().StartsWith("LOGEM.AXD")) {
                 sb.Append(urlParts[idx]);
                 idx++;
             }
